@@ -19,7 +19,7 @@
 
 	<build>
 		<finalName>bntuDEV</finalName>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -62,6 +62,12 @@
 			<version>${javax.servlet.jsp.jstl.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+
 	</dependencies>
-	
+
 </project>
