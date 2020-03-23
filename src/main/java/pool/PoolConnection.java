@@ -58,11 +58,11 @@ public enum PoolConnection {
 				availableConnection.add(new ProxyConnection(connection));
 			}
 		} catch (SQLException e) {
-			LOGGER.error("Error_init_pool_connection_sql_error");
-			throw new PoolException("Error_init_pool_connection_sql_error", e);
+			LOGGER.error("Error init pool connection sql error");
+			throw new PoolException("Error init pool connection sql error", e);
 		} catch (ClassNotFoundException e) {
-			LOGGER.error("Error_init_pool_connection_sql_driver_error");
-			throw new PoolException("Error_init_pool_connection_sql_driver_error", e);
+			LOGGER.error("Error init pool connection sql driver error");
+			throw new PoolException("Error init pool connection sql driver error", e);
 		}
 		
 		isInitPool.set(true);
@@ -75,8 +75,8 @@ public enum PoolConnection {
 		try {
 			connection = availableConnection.take();
 		} catch (InterruptedException e) {
-			LOGGER.error("Error_not_received_connection_from_pool");
-			throw new PoolException("Error_not_received_connection_from_pool");
+			LOGGER.error("Error not received connection from pool");
+			throw new PoolException("Error not received connection from pool");
 		}
 		
 		blockedConnection.add(connection);
@@ -87,13 +87,11 @@ public enum PoolConnection {
 	public boolean releaseConnection(Connection connection) throws PoolException {
 		validateIsInitPool();
 		
-		if (blockedConnection.remove(connection)) {
-			if (availableConnection.add(connection)) {
-				return true;
-			}
+		if (blockedConnection.remove(connection) && availableConnection.add(connection)) {
+			return true;
 		}
-		LOGGER.error("Error_connection_not_release");
-		throw new PoolException("Error_connection_not_release");		
+		LOGGER.error("Error connection not release");
+		throw new PoolException("Error connection not release");		
 	}
 	
 	public void closePool() throws PoolException, InterruptedException {
@@ -105,16 +103,16 @@ public enum PoolConnection {
 			try {
 				proxyConnection.closeInPool();
 			} catch (SQLException e) {
-				LOGGER.error("Error_close_pool_connection_sql_error");
-				throw new PoolException("Error_close_pool_connection_sql_error", e);
+				LOGGER.error("Error close pool connection sql error");
+				throw new PoolException("Error close pool connection sql error", e);
 			}
 		}
 	}
 	
 	private void validateIsInitPool() throws PoolException {
 		if (!isInitPool.get()) {
-			LOGGER.error("Error_pool_connection_not_initialized");
-			throw new PoolException("Error_pool_connection_not_initialized");
+			LOGGER.error("Error pool connection not initialized");
+			throw new PoolException("Error pool connection not initialized");
 		}
 	}
 
@@ -124,12 +122,12 @@ public enum PoolConnection {
 			dbInfo.load(
 					new FileReader(this.getClass().getClassLoader().getResource(DB_PROPERTIES_FILE_NAME).getFile()));
 		} catch (IOException e) {
-			LOGGER.error("Error_DB_properties_file");
-			throw new PoolException("Error_DB_properties_file", e);
+			LOGGER.error("Error DB properties file", e);
+			throw new PoolException("Error DB properties file", e);
 		}
 		if (!Validator.isValidPropertyDB(dbInfo)) {
-			LOGGER.error("Error_content_DB_properties_file");
-			throw new PoolException("Error_content_DB_properties_file");
+			LOGGER.error("Error content DB properties file");
+			throw new PoolException("Error content DB properties file");
 		}
 	}
 
@@ -139,18 +137,13 @@ public enum PoolConnection {
 			poolInfo.load(
 					new FileReader(this.getClass().getClassLoader().getResource(POOL_PROPERTIES_FILE_NAME).getFile()));
 		} catch (IOException e) {
-			LOGGER.error("Error_pool_properties_file");
-			throw new PoolException("Error_pool_properties_file", e);
+			LOGGER.error("Error pool properties file");
+			throw new PoolException("Error pool properties file", e);
 		}
 		if (!Validator.isValidPropertyPool(poolInfo)) {
-			LOGGER.error("Error_content_pool_properties_file");
-			throw new PoolException("Error_content_pool_properties_file");
+			LOGGER.error("Error content pool properties file");
+			throw new PoolException("Error content pool properties file");
 		}
-	}
+	}	
 	
-	public void print() {
-		System.out.println("avail " + availableConnection.size());
-		System.out.println("block " + blockedConnection.size());
-	}
-
 }

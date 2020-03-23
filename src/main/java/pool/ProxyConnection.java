@@ -40,7 +40,7 @@ public class ProxyConnection implements Connection{
 		try {
 			PoolConnection.INSANCE.releaseConnection(this);
 		} catch (PoolException e) {
-			LOGGER.error("Error_release_proxy_connection");
+			LOGGER.error("Error release proxy connection");
 		}
 	}
 	
