@@ -230,12 +230,12 @@
 
 	</div>
 
-	<div class="tab-pane fade" id="profile" role="tabpanel"
+	<div class="tab-pane fade show ${Registration}" id="profile" role="tabpanel"
 		aria-labelledby="profile-tab">
 
 		<p class="login-text">Регистрация на сайте</p>
 
-		<form class="form-3">
+		<form class="form-3" action="do?command=registration" method="post">
 			<p class="clearfix">
 				<label for="login">Логин</label> <input type="text" name="login"
 					id="login" placeholder="Логин">
@@ -250,6 +250,10 @@
 				<input type="submit" name="submit" value="Регистрация">
 			</p>
 		</form>
+		
+		<p style="text-align: center;">
+			${message}
+		</p>
 
 
 	</div>

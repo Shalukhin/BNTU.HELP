@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public List<User> takeUserFromDB(User user) throws ServiceException {
-		if (!UserValidator.validate(user)) {
+		if (!UserValidator.validateByLoginAndPassword(user)) {
 			return null;
 		}
 		
