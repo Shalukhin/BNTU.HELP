@@ -38,10 +38,10 @@ public class StatusDAOImpl implements StatusDAO {
 			result.setRatioPay(resultSet.getDouble("ratioPay"));
 			
 		} catch (SQLException e) {
-			LOGGER.error("Error read status - SQL error");
+			LOGGER.error("Error read status - SQL error", e);
 			throw new DAOException("Error read status - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error read status - pool error");
+			LOGGER.error("Error read status - pool error", e);
 			throw new DAOException("Error read status - pool error", e);
 		};
 		

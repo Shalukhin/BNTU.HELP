@@ -4,24 +4,22 @@
 <br>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-	<li class="nav-item"><a class="nav-link ${Inorganic}" id="home-tab"
-		data-toggle="tab" href="#home" role="tab" aria-controls="home"
-		aria-selected="true"><h6>Общая и неорганическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${Organic}" id="profile-tab"
-		data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+	<li class="nav-item"><a class="nav-link ${Inorganic}" id="inorganic-tab"
+		data-toggle="tab" href="#inorganic" role="tab" aria-controls="inorganic"
+		aria-selected="false"><h6>Общая и неорганическая химия</h6></a></li>
+	<li class="nav-item"><a class="nav-link ${Organic}" id="organic-tab"
+		data-toggle="tab" href="#organic" role="tab" aria-controls="organic"
 		aria-selected="false"><h6>Органическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${Analitic}" id="contact-tab"
-		data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+	<li class="nav-item"><a class="nav-link ${Analitic}" id="analitic-tab"
+		data-toggle="tab" href="#analitic" role="tab" aria-controls="analitic"
 		aria-selected="false"><h6>Аналитическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${ExamChemistry}" id="contact-tab"
-		data-toggle="tab" href="#exam" role="tab" aria-controls="exam"
+	<li class="nav-item"><a class="nav-link ${ExamChemistry}" id="examChemistry-tab"
+		data-toggle="tab" href="#examChemistry" role="tab" aria-controls="examChemistry"
 		aria-selected="false"><h6>Экзамен</h6></a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
-	<div class="tab-pane fade show active" id="home" role="tabpanel"
-		aria-labelledby="home-tab">
-
+	<div class="tab-pane fade show ${Inorganic}" id="inorganic" role="tabpanel"	aria-labelledby="inorganic-tab">
 		<br>
 		<h4>
 			<p style="text-align: center;">
@@ -53,8 +51,8 @@
 
 	</div>
 
-	<div class="tab-pane fade" id="profile" role="tabpanel"
-		aria-labelledby="profile-tab">
+	<div class="tab-pane fade show ${Organic}" id="organic" role="tabpanel"
+		aria-labelledby="organic-tab">
 
 		<br>
 		<h4>
@@ -86,8 +84,9 @@
 		</p>
 
 	</div>
-	<div class="tab-pane fade" id="contact" role="tabpanel"
-		aria-labelledby="contact-tab">
+	
+	<div class="tab-pane fade show ${Analitic}" id="analitic" role="tabpanel"
+		aria-labelledby="analitic-tab">
 
 		<br>
 		<h4>
@@ -120,8 +119,8 @@
 
 	</div>
 
-	<div class="tab-pane fade" id="exam" role="tabpanel"
-		aria-labelledby="contact-tab">
+	<div class="tab-pane fade show ${ExamChemistry}" id="examChemistry" role="tabpanel"
+		aria-labelledby="examChemistry-tab">
 
 		<br>
 		<h4>
@@ -139,6 +138,7 @@
 
 
 	</div>
+
 </div>
 
 

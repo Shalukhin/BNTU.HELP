@@ -38,10 +38,10 @@ public class RoleDAOImpl implements RoleDAO {
 			result.setNameRole(resultSet.getString("nameRole"));			
 			
 		} catch (SQLException e) {
-			LOGGER.error("Error read role - SQL error");
+			LOGGER.error("Error read role - SQL error", e);
 			throw new DAOException("Error read role - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error read role - pool error");
+			LOGGER.error("Error read role - pool error", e);
 			throw new DAOException("Error read role - pool error", e);
 		};
 		

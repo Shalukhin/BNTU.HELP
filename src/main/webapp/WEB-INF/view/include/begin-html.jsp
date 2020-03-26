@@ -17,11 +17,19 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 
+
+<link href='http://fonts.googleapis.com/css?family=Lobster'
+	rel='stylesheet' type='text/css'>
+
+
+
+
+
 <title>BNTU.HELP</title>
 </head>
 
 <body background="pict/background.gif">
-	
+
 	<br>
 
 	<div class="container">
@@ -37,13 +45,14 @@
 			</div>
 		</div>
 		<br>
-		
-			
+
+
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 			<div
 				class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item "><a class="nav-link ${chemistryMenuPosition}"
+					<li class="nav-item "><a
+						class="nav-link ${chemistryMenuPosition}"
 						href="do?command=chemistry&kindOfChemistry=Inorganic">Химия</a></li>
 
 					<li class="nav-item"><a class="nav-link"
@@ -68,10 +77,23 @@
 			</div>
 			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 				<ul class="navbar-nav ml-auto">
+				
+				<c:if test="${user == null}">
+					<li class="nav-item"><a class="nav-link ${signMenuPosition}"
+						href="do?command=sign&kindOfSign=Login">Вход</a></li>
+				</c:if>
+				
+				<c:if test="${user != null}">
+					<li class="nav-item"><a class="nav-link ${accountMenuPosition}"
+						href="do?command=account">${user.getLogin()}</a></li>
+					<li class="nav-item"><a class="nav-link ${logoutMenuPosition}"
+						href="do?command=logout">Выход</a></li>
+				</c:if>
+					
 					<li class="nav-item"><a class="nav-link"
 						href="view/oplata.jsp">Оплата</a></li>
-					<li class="nav-item"><a class="nav-link ${contactMenuPosition}"
-						href="do?command=contact">Контакты</a></li>
+					<li class="nav-item"><a
+						class="nav-link ${contactMenuPosition}" href="do?command=contact">Контакты</a></li>
 					<li class="nav-item"><a class="nav-link ${indexMenuPosition}"
 						href="do?command=index">О нас</a></li>
 				</ul>

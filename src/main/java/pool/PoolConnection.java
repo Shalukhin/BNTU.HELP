@@ -119,8 +119,7 @@ public enum PoolConnection {
 	private void initDBProperties() throws PoolException {
 		dbInfo = new Properties();
 		try {
-			dbInfo.load(
-					new FileReader(this.getClass().getClassLoader().getResource(DB_PROPERTIES_FILE_NAME).getFile()));
+			dbInfo.load(new FileReader(this.getClass().getClassLoader().getResource(DB_PROPERTIES_FILE_NAME).getFile()));
 		} catch (IOException e) {
 			LOGGER.error("Error DB properties file", e);
 			throw new PoolException("Error DB properties file", e);
@@ -134,8 +133,7 @@ public enum PoolConnection {
 	private void initPoolProperties() throws PoolException {
 		poolInfo = new Properties();
 		try {
-			poolInfo.load(
-					new FileReader(this.getClass().getClassLoader().getResource(POOL_PROPERTIES_FILE_NAME).getFile()));
+			poolInfo.load(new FileReader(this.getClass().getClassLoader().getResource(POOL_PROPERTIES_FILE_NAME).getFile()));
 		} catch (IOException e) {
 			LOGGER.error("Error pool properties file");
 			throw new PoolException("Error pool properties file", e);

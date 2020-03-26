@@ -39,10 +39,10 @@ public class UserDAOImpl implements UserDAO {
 					bean.getLogin(), bean.getPassword(), bean.getRole().getId(), bean.getStatus().getId());			
 			result = statement.executeUpdate(request);
 		} catch (SQLException e) {
-			LOGGER.error("Error create user - SQL error");
+			LOGGER.error("Error create user - SQL error, e");
 			throw new DAOException("Error create user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create user - pool error");
+			LOGGER.error("Error create user - pool error, e");
 			throw new DAOException("Error create user - pool error", e);
 		}
 		
@@ -57,6 +57,12 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("Error user not found");
 		}
 		return readByParametr(parameter).get(0);
+	}
+	
+	@Override
+	public List<User> read(String login, String password) throws DAOException {
+		String parameter = String.format("WHERE `login` = '%s' AND `password` = '%s'", login, password);
+		return readByParametr(parameter);
 	}
 	
 	private List<User> readByParametr(String parameter) throws DAOException {
@@ -78,10 +84,10 @@ public class UserDAOImpl implements UserDAO {
 			}
 			
 		} catch (SQLException e) {
-			LOGGER.error("Error read user - SQL error");
+			LOGGER.error("Error read user - SQL error", e);
 			throw new DAOException("Error read user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error read user - pool error");
+			LOGGER.error("Error read user - pool error", e);
 			throw new DAOException("Error read user - pool error", e);
 		}
 		return userList;
@@ -103,10 +109,10 @@ public class UserDAOImpl implements UserDAO {
 			
 			result = statement.executeUpdate(request);
 		} catch (SQLException e) {
-			LOGGER.error("Error read user - SQL error");
+			LOGGER.error("Error read user - SQL error", e);
 			throw new DAOException("Error read user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error read user - pool error");
+			LOGGER.error("Error read user - pool error", e);
 			throw new DAOException("Error read user - pool error", e);
 		}
 		return (result == 1);
@@ -132,13 +138,15 @@ public class UserDAOImpl implements UserDAO {
 			
 			result = statement.executeUpdate(request);
 		} catch (SQLException e) {
-			LOGGER.error("Error delete user - SQL error");
+			LOGGER.error("Error delete user - SQL error", e);
 			throw new DAOException("Error delete user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error delete user - pool error");
+			LOGGER.error("Error delete user - pool error", e);
 			throw new DAOException("Error delete user - pool error", e);
 		}
 		return (result == 1);
 	}
+
+	
 	
 }
