@@ -5,14 +5,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import controller.command.CommandName;
-import dao.impl.UserDAOImpl;
-import exception.ControllerException;
-import exception.DAOException;
 import exception.PoolException;
 import pool.PoolConnection;
 
