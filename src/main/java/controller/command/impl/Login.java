@@ -1,14 +1,9 @@
 package controller.command.impl;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import builder.UserBuilder;
 import controller.command.Command;
 import entity.User;

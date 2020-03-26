@@ -1,17 +1,13 @@
 package controller.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import builder.UserBuilder;
 import controller.command.Command;
-import entity.Role;
 import entity.User;
 import exception.ServiceException;
 import factory.ServiceFactory;
-import service.LoginService;
 import service.RegistrationService;
 
 public class Registration implements Command {

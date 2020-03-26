@@ -1,11 +1,8 @@
 package service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import dao.RoleDAO;
 import dao.StatusDAO;
 import dao.UserDAO;

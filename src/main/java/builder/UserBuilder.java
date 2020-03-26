@@ -1,7 +1,5 @@
 package builder;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 
 import entity.User;

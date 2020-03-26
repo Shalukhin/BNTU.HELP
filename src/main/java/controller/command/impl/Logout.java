@@ -3,7 +3,6 @@ package controller.command.impl;
 import javax.servlet.http.HttpServletRequest;
 
 import controller.command.Command;
-import entity.User;
 
 public class Logout implements Command {
 

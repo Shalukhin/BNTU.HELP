@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import dao.RoleDAO;
 import entity.Role;
-import entity.User;
 import exception.DAOException;
 import exception.PoolException;
 import pool.PoolConnection;

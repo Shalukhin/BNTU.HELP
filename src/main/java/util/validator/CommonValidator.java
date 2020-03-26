@@ -1,8 +1,8 @@
-package util;
+package util.validator;
 
 import java.util.Properties;
 
-public class Validator {
+public class CommonValidator {
 	private final static String DB_PROPERTY_URL = "url";
 	private final static String DB_PROPERTY_USER = "user";
 	private final static String DB_PROPERTY_PASSWORD = "password";
