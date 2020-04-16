@@ -7,14 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import command.CommandProvider;
 import exception.PoolException;
 import pool.PoolConnection;
 
-public class Controller extends HttpServlet{
+public class FrontControllerServlet extends HttpServlet{
 
 	private static final long serialVersionUID = -5618225533764372191L;
 	
-	private final static Logger LOGGER = LogManager.getLogger(Controller.class.getName());
+	private final static Logger LOGGER = LogManager.getLogger(FrontControllerServlet.class.getName());
 	
 	private CommandProvider commandProvider = new CommandProvider();
 	
@@ -40,7 +42,7 @@ public class Controller extends HttpServlet{
 	
 	protected void processRequest(HttpServletRequest req, HttpServletResponse resp) {		
 		
-		String page = commandProvider.getCommand(req.getParameter("command")).execute(req);
+		String page = commandProvider.getCommand(req.getParameter("command")).execute(req).getUrl();
 				
 		try {
 			req.getRequestDispatcher(page).forward(req, resp);

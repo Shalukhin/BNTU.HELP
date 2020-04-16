@@ -1,16 +1,13 @@
 package factory;
 
-import service.LoginService;
-import service.RegistrationService;
-import service.impl.LoginServiceImpl;
-import service.impl.RegistrationServiceImpl;
+import service.UserService;
+import service.impl.UserServiceImpl;
 
 public class ServiceFactory {
 	
 	private static ServiceFactory instance;
 	
-	private LoginService loginService = new LoginServiceImpl();
-	private RegistrationService registrationService = new RegistrationServiceImpl();
+	private UserService userService = new UserServiceImpl();
 	
 	private ServiceFactory() {};
 	
@@ -19,14 +16,10 @@ public class ServiceFactory {
 			instance = new ServiceFactory();
 		}
 		return instance;
-	}
-	
-	public LoginService getLoginService() {
-		return loginService;
 	}	
 	
-	public RegistrationService getRegistrationService() {
-		return registrationService;
+	public UserService getUserService() {
+		return userService;
 	}
 
 }

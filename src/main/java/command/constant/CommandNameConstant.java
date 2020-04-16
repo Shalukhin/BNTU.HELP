@@ -1,6 +1,6 @@
-package controller.command;
+package command.constant;
 
-public enum CommandName {
+public enum CommandNameConstant {
 	INDEX,
 	SIGN,
 	LOGIN,
@@ -9,8 +9,7 @@ public enum CommandName {
 	ACCOUNT,
 	CONTACT,
 	CHEMISTRY,
-	INORGANIC,
-	
+		
 	
 	ERROR;
 }

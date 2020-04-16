@@ -5,7 +5,7 @@
 
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&kindOfChemistry=Inorganic"> (назад к ценам)</a></strong></span>
+			href="do?command=chemistry&kindOfChemistry=inorganic"> (назад к ценам)</a></strong></span>
 </p>
 
 
@@ -28,7 +28,7 @@
 </p>
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&kindOfChemistry=Inorganic"> (назад к ценам)</a></strong></span>
+			href="do?command=chemistry&kindOfChemistry=inorganic"> (назад к ценам)</a></strong></span>
 </p>
 
 <%@ include file="../include/end-html.jsp"%>

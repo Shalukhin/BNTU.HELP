@@ -1,19 +1,44 @@
 package builder;
 
-import javax.servlet.http.HttpServletRequest;
-
+import entity.Role;
+import entity.Status;
 import entity.User;
-import util.Parser;
 
 public class UserBuilder {
 	
-	public static String PARAMETER_LOGIN = "login";
-	public static String PARAMETER_PASSWORD = "password";
+	private User user = new User();
 	
-	public static User getUser(HttpServletRequest request) {
-		User user = new User();
-		user.setLogin(Parser.getStringParameterByName(request, PARAMETER_LOGIN));
-		user.setPassword(Parser.getStringParameterByName(request, PARAMETER_PASSWORD));
+	public UserBuilder createNewUser() {
+		user = new User();
+		return this;
+	}
+	
+	public UserBuilder withId(int id) {
+		user.setId(id);
+		return this;
+	}
+	
+	public UserBuilder withLogin(String login) {
+		user.setLogin(login);
+		return this;
+	}
+	
+	public UserBuilder withPassword(String password) {
+		user.setPassword(password);
+		return this;
+	}
+	
+	public UserBuilder withRole(Role role) {
+		user.setRole(role);
+		return this;
+	}
+	
+	public UserBuilder withStatus(Status status) {
+		user.setStatus(status);
+		return this;
+	}
+	
+	public User build() {
 		return user;
 	}
 

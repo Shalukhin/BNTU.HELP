@@ -4,22 +4,22 @@
 <br>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-	<li class="nav-item"><a class="nav-link ${Inorganic}" id="inorganic-tab"
+	<li class="nav-item"><a class="nav-link ${inorganic}" id="inorganic-tab"
 		data-toggle="tab" href="#inorganic" role="tab" aria-controls="inorganic"
 		aria-selected="false"><h6>Общая и неорганическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${Organic}" id="organic-tab"
+	<li class="nav-item"><a class="nav-link ${organic}" id="organic-tab"
 		data-toggle="tab" href="#organic" role="tab" aria-controls="organic"
 		aria-selected="false"><h6>Органическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${Analitic}" id="analitic-tab"
+	<li class="nav-item"><a class="nav-link ${analitic}" id="analitic-tab"
 		data-toggle="tab" href="#analitic" role="tab" aria-controls="analitic"
 		aria-selected="false"><h6>Аналитическая химия</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${ExamChemistry}" id="examChemistry-tab"
+	<li class="nav-item"><a class="nav-link ${examChemistry}" id="examChemistry-tab"
 		data-toggle="tab" href="#examChemistry" role="tab" aria-controls="examChemistry"
 		aria-selected="false"><h6>Экзамен</h6></a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
-	<div class="tab-pane fade show ${Inorganic}" id="inorganic" role="tabpanel"	aria-labelledby="inorganic-tab">
+	<div class="tab-pane fade show ${inorganic}" id="inorganic" role="tabpanel"	aria-labelledby="inorganic-tab">
 		<br>
 		<h4>
 			<p style="text-align: center;">
@@ -29,7 +29,7 @@
 		<p>Методичка: «Программа и контрольные задания по химии.
 			Методические указания». Минск 2006. Под редакцией В.Н. Яглова.</p>
 		<p style="text-align: center;">
-			<a href="do?command=inorganic"><img alt=""
+			<a href="do?command=chemistry&kindOfChemistry=inorganic&textbook=true"><img alt=""
 				src="pict/chemistry/inorganic/met1_bntu_inorg_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
@@ -51,7 +51,7 @@
 
 	</div>
 
-	<div class="tab-pane fade show ${Organic}" id="organic" role="tabpanel"
+	<div class="tab-pane fade show ${organic}" id="organic" role="tabpanel"
 		aria-labelledby="organic-tab">
 
 		<br>
@@ -63,8 +63,8 @@
 		<p>Методичка: «Органическая химия. Учебно-методическое пособие».
 			Минск 2005. Л.М. Слепнева.</p>
 		<p style="text-align: center;">
-			<a href="organ/him_organ.html"><img alt=""
-				src="organ/met1_bntu_org_mini.png"></a>
+			<a href="do?command=chemistry&kindOfChemistry=organic&textbook=true"><img alt=""
+				src="pict/chemistry/organic/met1_bntu_org_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
 			Контрольная работа состоит <strong> из 19 заданий </strong>. Номер
@@ -79,13 +79,13 @@
 				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a href="organ/met1_bntu_org_Zad_9-3.pdf"
+			Пример решения:<a href="download?fileName=met1_bntu_org_Zad_9-3.pdf"
 				target="_blank" style="text-decoration: none;"> Задание 9.3</a>
 		</p>
 
 	</div>
 	
-	<div class="tab-pane fade show ${Analitic}" id="analitic" role="tabpanel"
+	<div class="tab-pane fade show ${analitic}" id="analitic" role="tabpanel"
 		aria-labelledby="analitic-tab">
 
 		<br>
@@ -97,8 +97,8 @@
 		<p>Методичка: "АНАЛИТИЧЕСКАЯ ХИМИЯ". Учебно-методическое пособие.
 			Минск 2010. С.В.</p>
 		<p style="text-align: center;">
-			<a href="analit/him_analit.html"><img alt=""
-				src="analit/met_bntu_analit_mini.png"></a>
+			<a href="do?command=chemistry&kindOfChemistry=analitic&textbook=true"><img alt=""
+				src="pict/chemistry/analitic/met1_bntu_analit_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
 			Контрольная работа состоит <strong> из 18 заданий </strong>. Номер
@@ -113,13 +113,13 @@
 				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a href="analit/met_bntu_analit_Zad_4_60.pdf"
+			Пример решения:<a href="download?fileName=met_bntu_analit_Zad_4_60.pdf"
 				target="_blank" style="text-decoration: none;"> Задание 4.60</a>
 		</p>
 
 	</div>
 
-	<div class="tab-pane fade show ${ExamChemistry}" id="examChemistry" role="tabpanel"
+	<div class="tab-pane fade show ${examChemistry}" id="examChemistry" role="tabpanel"
 		aria-labelledby="examChemistry-tab">
 
 		<br>

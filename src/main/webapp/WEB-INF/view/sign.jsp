@@ -1,6 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="include/begin-html.jsp"%>
 
+<script type="text/javascript">	
+<%@include file="js/loginAJAX/jquery-1.11.1.min.js"%>	
+</script>
+
+<script type="text/javascript">	
+<%@include file="js/loginAJAX/script.js"%>	
+</script>
 
 <style>
 .form-3 {
@@ -183,14 +190,14 @@
 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 
 
-	<li class="nav-item"><a class="nav-link ${Login}" id="login-tab"
+	<li class="nav-item"><a class="nav-link ${login}" id="login-tab"
 		data-toggle="tab" href="#login" role="tab" aria-controls="login"
 		aria-selected="true">
 			<h6>Войти</h6>
 	</a></li>
 
 
-	<li class="nav-item"><a class="nav-link ${Registration}"
+	<li class="nav-item"><a class="nav-link ${registration}"
 		id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 		aria-controls="profile" aria-selected="false">
 			<h6>Регистрация</h6>
@@ -200,19 +207,19 @@
 
 <div class="tab-content" id="myTabContent">
 
-	<div class="tab-pane fade show ${Login}" id="login" role="tabpanel"
+	<div class="tab-pane fade show ${login}" id="login" role="tabpanel"
 		aria-labelledby="login-tab">
 
 		<p class="login-text">Авторизация на сайте</p>
 
 		<form class="form-3" action="do?command=login" method="post">
 			<p class="clearfix">
-				<label for="login">Логин</label> <input type="text" name="login"
-					id="login" placeholder="Логин">
+				<label for="login">Логин</label> 
+				<input type="text" name="login"	id="login" placeholder="Логин">
 			</p>
 			<p class="clearfix">
-				<label for="password">Пароль</label> <input type="password"
-					name="password" id="password" placeholder="Пароль">
+				<label for="password">Пароль</label> 
+				<input type="password" name="password" id="password" placeholder="Пароль">
 			</p>
 			<p class="clearfix">
 				<input type="checkbox" name="remember" id="remember"> <label
@@ -223,25 +230,23 @@
 			</p>
 		</form>
 
-		<p style="text-align: center;">
-			${message}
-		</p>
+		<p style="text-align: center;">${messageLogin}</p>
 
 	</div>
 
-	<div class="tab-pane fade show ${Registration}" id="profile" role="tabpanel"
-		aria-labelledby="profile-tab">
-
+	<div class="tab-pane fade show ${registration}" id="profile"
+		role="tabpanel" aria-labelledby="profile-tab">
+		
 		<p class="login-text">Регистрация на сайте</p>
-
+		
 		<form class="form-3" action="do?command=registration" method="post">
 			<p class="clearfix">
-				<label for="login">Логин</label> <input type="text" name="login"
-					id="login" placeholder="Логин">
+				<label for="login">Логин</label> 
+				<input type="text" name="login"	id="loginAJAX" placeholder="Логин">
 			</p>
 			<p class="clearfix">
-				<label for="password">Пароль</label> <input type="password"
-					name="password" id="password" placeholder="Пароль">
+				<label for="password">Пароль</label> 
+				<input type="password" name="password" id="password" placeholder="Пароль">
 			</p>
 			<p></p>
 
@@ -249,14 +254,27 @@
 				<input type="submit" name="submit" value="Регистрация">
 			</p>
 		</form>
+		<div id="auth-info" align="center">${messageRegistration}</div>
 		
-		<p style="text-align: center;">
-			${message}
-		</p>
-
-
+		
 	</div>
 
 </div>
 
-<%@ include file="include/end-html.jsp"%>
+
+<b>${error}</b>
+
+</div>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous">
+	</script>
+	
+<script type="text/javascript">	
+ <%@include file="js/bootstrap.min.js"%> 
+</script>
+
+</body>
+</html>

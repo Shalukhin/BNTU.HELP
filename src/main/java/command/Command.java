@@ -1,8 +1,8 @@
-package controller.command;
+package command;
 
 import javax.servlet.http.HttpServletRequest;
 
 public interface Command {
-	String execute(HttpServletRequest request);
+	PageManager execute(HttpServletRequest request);
 
 }

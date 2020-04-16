@@ -53,7 +53,7 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item "><a
 						class="nav-link ${chemistryMenuPosition}"
-						href="do?command=chemistry&kindOfChemistry=Inorganic">Химия</a></li>
+						href="do?command=chemistry&kindOfChemistry=inorganic">Химия</a></li>
 
 					<li class="nav-item"><a class="nav-link"
 						href="view/math/math.jsp">Математика</a></li>
@@ -80,13 +80,13 @@
 				
 				<c:if test="${user == null}">
 					<li class="nav-item"><a class="nav-link ${signMenuPosition}"
-						href="do?command=sign&kindOfSign=Login">Вход</a></li>
+						href="do?command=sign&kindOfSign=login">Вход</a></li>
 				</c:if>
 				
 				<c:if test="${user != null}">
 					<li class="nav-item"><a class="nav-link ${accountMenuPosition}"
 						href="do?command=account">${user.getLogin()}</a></li>
-					<li class="nav-item"><a class="nav-link ${logoutMenuPosition}"
+					<li class="nav-item"><a class="nav-link"
 						href="do?command=logout">Выход</a></li>
 				</c:if>
 					
