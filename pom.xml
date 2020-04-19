@@ -17,10 +17,11 @@
 		<javax.servlet.jsp.jstl.version>1.2.1</javax.servlet.jsp.jstl.version>
 		<bootstrap.versiov>4.1.1</bootstrap.versiov>
 		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+		<json.version>20190722</json.version>
 	</properties>
 
 	<build>
-		<finalName>BNTUHELP</finalName>
+		<finalName>BNTU.HELP</finalName>
 
 		<plugins>
 			<plugin>
@@ -75,12 +76,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
 		</dependency>
-		
+
 		<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20190722</version>
-</dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>${json.version}</version>
+		</dependency>
 
 	</dependencies>
 

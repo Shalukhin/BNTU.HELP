@@ -1,6 +1,8 @@
 package factory;
 
+import service.PersonalDataService;
 import service.UserService;
+import service.impl.PersonalDataServiceImpl;
 import service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -8,6 +10,7 @@ public class ServiceFactory {
 	private static ServiceFactory instance;
 	
 	private UserService userService = new UserServiceImpl();
+	private PersonalDataService personalDataService = new PersonalDataServiceImpl();
 	
 	private ServiceFactory() {};
 	
@@ -20,6 +23,10 @@ public class ServiceFactory {
 	
 	public UserService getUserService() {
 		return userService;
+	}
+	
+	public PersonalDataService getPersonalDataService() {
+		return personalDataService;
 	}
 
 }

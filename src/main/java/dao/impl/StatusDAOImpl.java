@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -76,36 +75,17 @@ public class StatusDAOImpl implements StatusDAO {
 		}
 		return statusList;
 	}
-
+	
 	@Override
 	public Status findById(int id) throws DAOException {
-		Status result = new Status();
-		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				Statement statement = connection.createStatement()) {
-
-			String request = String.format("SELECT * FROM `status` WHERE id = %s", String.valueOf(id));
-			ResultSet resultSet = statement.executeQuery(request);
-			resultSet.next();
-			result.setId(resultSet.getInt("id"));
-			result.setNameStatus(resultSet.getString("nameStatus"));
-			result.setRatioPay(resultSet.getDouble("ratioPay"));
-
-		} catch (SQLException e) {
-			LOGGER.error("Error read status - SQL error", e);
-			throw new DAOException("Error read status - SQL error", e);
-		} catch (PoolException e) {
-			LOGGER.error("Error read status - pool error", e);
-			throw new DAOException("Error read status - pool error", e);
-		}
-		;
-
-		return result;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public boolean update(Status bean) throws DAOException {
+	public Status update(Status bean) throws DAOException {
 		
-		return false;
+		return null;
 	}
 
 	@Override
@@ -118,6 +98,6 @@ public class StatusDAOImpl implements StatusDAO {
 	public boolean delete(Status bean) throws DAOException {
 		
 		return false;
-	}
+	}	
 
 }

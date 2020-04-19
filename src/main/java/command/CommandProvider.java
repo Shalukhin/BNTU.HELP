@@ -12,12 +12,18 @@ import command.constant.CommandNameConstant;
 import command.impl.AccountCommand;
 import command.impl.ChemistryCommand;
 import command.impl.ContactCommand;
+import command.impl.EnginCommand;
 import command.impl.ErrorCommand;
 import command.impl.IndexCommand;
+import command.impl.InformaticCommand;
 import command.impl.LoginCommand;
 import command.impl.LogoutCommand;
+import command.impl.MathCommand;
+import command.impl.PayCommand;
+import command.impl.PersonalDataCommand;
 import command.impl.RegistrationCommand;
 import command.impl.SignCommand;
+import command.impl.TestCommand;
 
 public class CommandProvider {
 	
@@ -27,14 +33,20 @@ public class CommandProvider {
 	
 	public CommandProvider() {
 		repository.put(INDEX, new IndexCommand());
+		repository.put(CONTACT, new ContactCommand());
+		repository.put(PAY, new PayCommand());
 		repository.put(SIGN, new SignCommand());
 		repository.put(LOGIN, new LoginCommand());
 		repository.put(LOGOUT, new LogoutCommand());
 		repository.put(REGISTRATION, new RegistrationCommand());
 		repository.put(ACCOUNT, new AccountCommand());
-		repository.put(CONTACT, new ContactCommand());
-		repository.put(CHEMISTRY, new ChemistryCommand());		
+		repository.put(PERSONAL, new PersonalDataCommand());
+		repository.put(CHEMISTRY, new ChemistryCommand());
+		repository.put(MATH, new MathCommand());
+		repository.put(ENGIN, new EnginCommand());
+		repository.put(INFORMATIC, new InformaticCommand());
 		
+		repository.put(TEST, new TestCommand());
 		repository.put(ERROR, new ErrorCommand());
 	}
 	

@@ -6,9 +6,11 @@ import org.apache.logging.log4j.Logger;
 import builder.UserBuilder;
 import command.Command;
 import command.PageManager;
+import entity.PersonalData;
 import entity.User;
 import exception.ServiceException;
 import factory.ServiceFactory;
+import service.PersonalDataService;
 import service.UserService;
 import util.Parser;
 import static command.constant.AttributeNameConstant.*;
@@ -19,6 +21,7 @@ public class LoginCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class.getName());
 	
+	private PersonalDataService personalDataService = ServiceFactory.getInstance().getPersonalDataService();
 	private UserService userService = ServiceFactory.getInstance().getUserService();
 	private UserBuilder userBuilder = new UserBuilder();
 
@@ -46,7 +49,16 @@ public class LoginCommand implements Command {
 			return PageManager.ERROR_PAGE;
 		}	
 		
-		request.setAttribute(ACCOUNT_MAIN_MENU_POSITION, ACTIVE);
+		PersonalData personalData = null;
+		try {
+			personalData = personalDataService.takeUserPersonalData(userFromDB.getId());
+		} catch (ServiceException e) {
+			LOGGER.error("Error take user personal data", e);
+		}
+		
+		request.getSession().setAttribute(PERSONAL_DATA, personalData);
+		request.setAttribute(ACCOUNT_MAIN_MENU_POSITION, ACTIVE);		
+		request.setAttribute(Parser.getStringParameterByName(request, KIND_OF_ACCOUNT), ACTIVE);	//for indicate current tab
 		request.getSession().setAttribute(USER, userFromDB);
 		return PageManager.ACCOUNT_PAGE;
 	}

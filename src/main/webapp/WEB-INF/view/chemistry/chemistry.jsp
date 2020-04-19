@@ -45,7 +45,7 @@
 				style="color: #0000ff;"><strong>1,5 бел.руб.</strong></span>
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a href="download?fileName=met1_bntu_inorg_task_5-22.pdf"
+			Пример решения:<a href="download?fileName=material/chemistry/inorg_task_5-22.pdf"
 				target="_blank" style="text-decoration: none;"> Задание 5.22</a>
 		</p>
 
@@ -79,7 +79,7 @@
 				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a href="download?fileName=met1_bntu_org_Zad_9-3.pdf"
+			Пример решения:<a href="download?fileName=material/chemistry/org_task_9-3.pdf"
 				target="_blank" style="text-decoration: none;"> Задание 9.3</a>
 		</p>
 
@@ -113,7 +113,7 @@
 				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a href="download?fileName=met_bntu_analit_Zad_4_60.pdf"
+			Пример решения:<a href="download?fileName=material/chemistry/analit_task_4_60.pdf"
 				target="_blank" style="text-decoration: none;"> Задание 4.60</a>
 		</p>
 

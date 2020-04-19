@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import builder.RoleBuilder;
 import dao.RoleDAO;
 import entity.Role;
@@ -79,33 +76,14 @@ public class RoleDAOImpl implements RoleDAO {
 
 	@Override
 	public Role findById(int id) throws DAOException {
-		Role result = new Role();
-		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				Statement statement = connection.createStatement()){
-			
-			String request = String.format("SELECT * FROM `role` WHERE id = %s", String.valueOf(id));
-			ResultSet resultSet = statement.executeQuery(request);
-			resultSet.next();
-			result.setId(resultSet.getInt("id"));
-			result.setNameRole(resultSet.getString("nameRole"));			
-			
-		} catch (SQLException e) {
-			LOGGER.error("Error read role - SQL error", e);
-			throw new DAOException("Error read role - SQL error", e);
-		} catch (PoolException e) {
-			LOGGER.error("Error read role - pool error", e);
-			throw new DAOException("Error read role - pool error", e);
-		};
-		
-		return result;
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	
-
 	@Override
-	public boolean update(Role bean) throws DAOException {
+	public Role update(Role bean) throws DAOException {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
@@ -119,6 +97,8 @@ public class RoleDAOImpl implements RoleDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
 
 	
 

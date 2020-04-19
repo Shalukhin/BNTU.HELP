@@ -14,8 +14,6 @@ import org.apache.logging.log4j.Logger;
 import builder.RoleBuilder;
 import builder.StatusBuilder;
 import builder.UserBuilder;
-import dao.RoleDAO;
-import dao.StatusDAO;
 import dao.UserDAO;
 import entity.Role;
 import entity.Status;
@@ -185,30 +183,30 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean update(User entity) throws DAOException {
-		if (entity == null) {
-			LOGGER.error("Error update user - user null");
-			throw new DAOException("Error update user - user null");
-		}
-		int result;
-		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				Statement statement = connection.createStatement()) {
-
-			String request = String.format(
-					"UPDATE `user` SET `login` = '%s', `password` = '%s', `idRole` = '%s', `idStatus` = '%s' "
-							+ "WHERE id = %s",
-					entity.getLogin(), entity.getPassword(), String.valueOf(entity.getRole().getId()),
-					String.valueOf(entity.getStatus().getId()), String.valueOf(entity.getId()));
-
-			result = statement.executeUpdate(request);
-		} catch (SQLException e) {
-			LOGGER.error("Error read user - SQL error", e);
-			throw new DAOException("Error read user - SQL error", e);
-		} catch (PoolException e) {
-			LOGGER.error("Error read user - pool error", e);
-			throw new DAOException("Error read user - pool error", e);
-		}
-		return (result == 1);
+	public User update(User entity) throws DAOException {
+//		if (entity == null) {
+//			LOGGER.error("Error update user - user null");
+//			throw new DAOException("Error update user - user null");
+//		}
+//		int result;
+//		try (Connection connection = PoolConnection.INSANCE.getConnection();
+//				Statement statement = connection.createStatement()) {
+//
+//			String request = String.format(
+//					"UPDATE `user` SET `login` = '%s', `password` = '%s', `idRole` = '%s', `idStatus` = '%s' "
+//							+ "WHERE id = %s",
+//					entity.getLogin(), entity.getPassword(), String.valueOf(entity.getRole().getId()),
+//					String.valueOf(entity.getStatus().getId()), String.valueOf(entity.getId()));
+//
+//			result = statement.executeUpdate(request);
+//		} catch (SQLException e) {
+//			LOGGER.error("Error read user - SQL error", e);
+//			throw new DAOException("Error read user - SQL error", e);
+//		} catch (PoolException e) {
+//			LOGGER.error("Error read user - pool error", e);
+//			throw new DAOException("Error read user - pool error", e);
+//		}
+		return null;
 	}
 
 	@Override

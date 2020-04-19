@@ -9,8 +9,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import command.CommandProvider;
+import command.PageManager;
+import command.constant.ParameterNameConstant;
 import exception.PoolException;
 import pool.PoolConnection;
+import util.Parser;
 
 public class FrontControllerServlet extends HttpServlet{
 
@@ -40,12 +43,12 @@ public class FrontControllerServlet extends HttpServlet{
 		processRequest(req, resp);
 	}
 	
-	protected void processRequest(HttpServletRequest req, HttpServletResponse resp) {		
+	protected void processRequest(HttpServletRequest req, HttpServletResponse resp) {
 		
-		String page = commandProvider.getCommand(req.getParameter("command")).execute(req).getUrl();
-				
+		PageManager page = commandProvider.getCommand(Parser.getStringParameterByName(req, ParameterNameConstant.COMMAND)).execute(req);		
+			
 		try {
-			req.getRequestDispatcher(page).forward(req, resp);
+			req.getRequestDispatcher(page.getUrl()).forward(req, resp);
 		} catch (Exception e) {
 			LOGGER.error("Error request", e);
 		}

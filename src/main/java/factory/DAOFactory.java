@@ -1,8 +1,10 @@
 package factory;
 
+import dao.PersonalDataDAO;
 import dao.RoleDAO;
 import dao.StatusDAO;
 import dao.UserDAO;
+import dao.impl.PersonalDataDAOImpl;
 import dao.impl.RoleDAOImpl;
 import dao.impl.StatusDAOImpl;
 import dao.impl.UserDAOImpl;
@@ -14,6 +16,7 @@ public class DAOFactory {
 	private UserDAO userDAO = new UserDAOImpl();
 	private RoleDAO roleDAO = new RoleDAOImpl();
 	private StatusDAO statusDAO = new StatusDAOImpl();
+	private PersonalDataDAO personalDataDAO = new PersonalDataDAOImpl(); 
 	
 	private DAOFactory() {};
 	
@@ -34,6 +37,10 @@ public class DAOFactory {
 	
 	public StatusDAO getStatusDAO() {
 		return statusDAO;
-	}	
+	}
+	
+	public PersonalDataDAO getPersonalDataDAO() {
+		return personalDataDAO;
+	}
 
 }

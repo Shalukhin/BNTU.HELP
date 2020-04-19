@@ -15,8 +15,7 @@ import util.Parser;
 
 import static command.constant.AttributeNameConstant.*;
 import static command.constant.AttributeValueConstant.*;
-import static command.constant.ParameterNameConstant.LOGIN;
-import static command.constant.ParameterNameConstant.PASSWORD;
+import static command.constant.ParameterNameConstant.*;
 
 public class RegistrationCommand implements Command {
 	
@@ -50,7 +49,8 @@ public class RegistrationCommand implements Command {
 			return PageManager.ERROR_PAGE;			
 		}
 		
-		request.setAttribute(ACCOUNT_MAIN_MENU_POSITION, ACTIVE);
+		request.setAttribute(ACCOUNT_MAIN_MENU_POSITION, ACTIVE);		
+		request.setAttribute(Parser.getStringParameterByName(request, KIND_OF_ACCOUNT), ACTIVE);	//for indicate current tab
 		request.getSession().setAttribute(USER, userAfterRegistration);
 		return PageManager.ACCOUNT_PAGE;
 	}	
