@@ -18,6 +18,8 @@
 		<bootstrap.versiov>4.1.1</bootstrap.versiov>
 		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
 		<json.version>20190722</json.version>
+		<commons-lang3.version>3.10</commons-lang3.version>
+		<commons-fileupload.version>1.4</commons-fileupload.version>
 	</properties>
 
 	<build>
@@ -82,6 +84,19 @@
 			<artifactId>json</artifactId>
 			<version>${json.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
+
 
 	</dependencies>
 

@@ -4,7 +4,7 @@ package dao;
 
 import exception.DAOException;
 
-public interface BaseDAO<T> {
+public interface AbstractDAO<T> {
 	
 	T create(T entity) throws DAOException;
 	T findById(int id) throws DAOException;

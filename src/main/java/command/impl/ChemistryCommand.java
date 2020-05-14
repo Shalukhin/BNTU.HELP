@@ -15,7 +15,7 @@ public class ChemistryCommand implements Command{
 	@Override
 	public PageManager execute(HttpServletRequest request) {
 		boolean isTextbookPage = Boolean.valueOf(Parser.getStringParameterByName(request, TEXTBOOK));
-		String kindOfChemistry = Parser.getStringParameterByName(request, KIND_OF_CHEMISTRY);
+		String kindOfChemistry = Parser.getStringParameterByName(request, TAB);
 		
 		if (kindOfChemistry == null) {
 			return PageManager.ERROR_PAGE;

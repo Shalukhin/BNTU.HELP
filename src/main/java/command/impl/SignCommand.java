@@ -15,7 +15,7 @@ public class SignCommand implements Command {
 	@Override
 	public PageManager execute(HttpServletRequest request) {
 		request.setAttribute(SIGN_MAIN_MENU_POSITION, ACTIVE);
-		request.setAttribute(request.getParameter(KIND_OF_SIGN), ACTIVE);
+		request.setAttribute(request.getParameter(TAB), ACTIVE);
 		return PageManager.SIGN_PAGE;
 		
 	}

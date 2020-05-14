@@ -1,13 +1,15 @@
 package controller;
 
+import static command.constant.AttributeNameConstant.*;
+import static command.constant.AttributeValueConstant.*;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import command.CommandProvider;
 import command.PageManager;
 import command.constant.ParameterNameConstant;
@@ -25,30 +27,40 @@ public class FrontControllerServlet extends HttpServlet{
 	
 	@Override
 	public void init() throws ServletException {
+		
 		try {
 			PoolConnection.INSANCE.initialization();
 		} catch (PoolException e) {
 			LOGGER.error("Error init pool", e);
 		}
+		
+		getServletContext().setAttribute(DATE_FORMAT, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_FOR_WEB_TABLE));
+		
 		super.init();
+	}	
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("tempdir", getServletContext().getAttribute("javax.servlet.context.tempdir"));
+		super.service(request, response);
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processRequest(req, resp);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processRequest(req, resp);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		processRequest(request, response);
 	}
 	
-	protected void processRequest(HttpServletRequest req, HttpServletResponse resp) {
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		PageManager page = commandProvider.getCommand(Parser.getStringParameterByName(req, ParameterNameConstant.COMMAND)).execute(req);		
+		PageManager page = commandProvider.getCommand(Parser.getStringParameterByName(request, ParameterNameConstant.COMMAND)).execute(request);		
 			
 		try {
-			req.getRequestDispatcher(page.getUrl()).forward(req, resp);
+			request.getRequestDispatcher(page.getUrl()).forward(request, response);
 		} catch (Exception e) {
 			LOGGER.error("Error request", e);
 		}

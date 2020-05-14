@@ -26,6 +26,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 	private static final String SQL_REQUEST_FIND_PERSONAL_DATA_BY_ID = "SELECT * FROM `personaldata` WHERE idUser = ?;";
 	private static final String SQL_REQUEST_UPDATE_PERSONAL_DATA = "UPDATE `personaldata` "
 			+ "SET `name` = ?, `phone` = ?, `email` = ?, `bonusMoney` = ?, `idInvitingUser` = ? WHERE idUser = ?";
+	private static final String SQL_REQUEST_DELETE_PERSONAL_DATA = "DELETE FROM `personaldata` WHERE idUser = ?";
 	
 	@Override
 	public PersonalData create(PersonalData entity) throws DAOException {
@@ -48,7 +49,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			preparedStatement.setString(3, entity.getPhone());
 			preparedStatement.setString(4, entity.getEmail());
 			preparedStatement.setBigDecimal(5, entity.getBonusMoney());
-			preparedStatement.setInt(6, entity.getIdInvitingUser());
+			preparedStatement.setInt(6, entity.getIdInvitingUser());			
 
 			result = preparedStatement.executeUpdate();
 
@@ -158,19 +159,37 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 		
 		return findById(entity.getIdUser());
 	}
+	
+	@Override
+	public boolean delete(PersonalData entity) throws DAOException {
+		if (entity == null) {
+			LOGGER.error("Error delete personal data - personal data null");
+			throw new DAOException("Error delete personal data - personal data null");
+		}
+
+		return delete(entity.getIdUser());
+	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		
+		int result;
+		try (Connection connection = PoolConnection.INSANCE.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_DELETE_PERSONAL_DATA);) {		
+			
+			preparedStatement.setInt(1, id);			
 
-	@Override
-	public boolean delete(PersonalData bean) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+			result = preparedStatement.executeUpdate();
 
-	
+		} catch (SQLException e) {
+			LOGGER.error("Error delete personal data - SQL error, e");
+			throw new DAOException("Error delete personal data - SQL error", e);
+		} catch (PoolException e) {
+			LOGGER.error("Error delete personal data - pool error, e");
+			throw new DAOException("Error delete personal data - pool error", e);
+		}		
+				
+		return (result == 1);
+	}
 
 }

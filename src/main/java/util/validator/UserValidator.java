@@ -1,5 +1,7 @@
 package util.validator;
 
+import org.apache.commons.lang3.StringUtils;
+
 import entity.User;
 
 public class UserValidator {
@@ -22,19 +24,16 @@ public class UserValidator {
 	}
 	
 	private static boolean valadateLogin(String login) {
-		if (login == null) {
-			return false;
-		}
-		//return login.matches(VALIDATE_LOGIN_REGEX);
-		return true;
+		
+		return !StringUtils.isBlank(login);
+		//return !StringUtils.isBlank(login) && login.matches(VALIDATE_LOGIN_REGEX);
+		
 	}
 	
 	private static boolean validatePassword(String password) {
-		if (password == null) {
-			return false;
-		}
-		//return password.matches(VALIDATE_PASSWORD_REGEX);
-		return true;
-	}	
-
+		
+		return !StringUtils.isBlank(password);
+		//return password.matches(VALIDATE_PASSWORD_REGEX) && !StringUtils.isBlank(password);
+		
+	}
 }

@@ -1,6 +1,7 @@
 package builder;
 
 import entity.Role;
+import entity.Subject;
 
 public class RoleBuilder {
 	
@@ -21,9 +22,13 @@ public class RoleBuilder {
 		return this;
 	}
 	
-	public Role build() {
-		return role;
+	public RoleBuilder withSubject(Subject subject) {
+		role.setSubject(subject);
+		return this;
 	}
 	
+	public Role build() {
+		return role;
+	}	
 
 }

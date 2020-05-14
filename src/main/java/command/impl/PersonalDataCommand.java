@@ -37,17 +37,17 @@ public class PersonalDataCommand implements Command {
 		
 		if (currentUser == null) {
 			request.setAttribute(SIGN_MAIN_MENU_POSITION, ACTIVE);
-			request.setAttribute(LOGIN_SUBMENY_POSITION, ACTIVE);
+			request.setAttribute(LOGIN_TAB_POSITION, ACTIVE);
 			return PageManager.SIGN_PAGE;
-		}
-						
+		}			
+			
 		PersonalData personalDataFromGUI = personalDataBuilder
 											.createNewPersonalData()
 											.withIdUser(currentUser.getId())
 											.withName(Parser.getStringParameterByName(request, NAME))
 											.withPhone(Parser.getStringParameterByName(request, PHONE))
 											.withEmail(Parser.getStringParameterByName(request, EMAIL))
-											.build();
+											.build();		
 		
 		PersonalData personalDataFromDB;
 		try {
@@ -57,10 +57,10 @@ public class PersonalDataCommand implements Command {
 			return PageManager.ERROR_PAGE;
 		}
 		
-		request.getSession().setAttribute(PERSONAL_DATA, personalDataFromDB);
-		request.setAttribute(MESSAGE_PERSONAL, SAVED);
+		request.getSession().setAttribute(PERSONAL_DATA, (personalDataFromDB != null ? personalDataFromDB : personalDataFromGUI));
+		request.setAttribute(MESSAGE_PERSONAL, (personalDataFromDB != null ? SAVED : NOT_SAVED));
 		request.setAttribute(ACCOUNT_MAIN_MENU_POSITION, ACTIVE);		
-		request.setAttribute(Parser.getStringParameterByName(request, KIND_OF_ACCOUNT), ACTIVE);	//for indicate current tab
+		request.setAttribute(Parser.getStringParameterByName(request, TAB), ACTIVE);	//for indicate current tab
 		return PageManager.ACCOUNT_PAGE;
 	}
 

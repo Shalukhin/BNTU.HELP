@@ -4,6 +4,7 @@ public class PageURLConstant {
 	
 	public static final String INDEX_PAGE_URL = "WEB-INF/view/index.jsp";	
 	public static final String SIGN_PAGE_URL = "WEB-INF/view/sign.jsp";
+	public static final String ADMINISTATOR_URL = "WEB-INF/view/administrator.jsp";
 	public static final String ACCOUNT_PAGE_URL = "WEB-INF/view/account.jsp";
 	public static final String CONTACT_PAGE_URL = "WEB-INF/view/contact.jsp";
 	public static final String PAY_PAGE_URL = "WEB-INF/view/pay.jsp";

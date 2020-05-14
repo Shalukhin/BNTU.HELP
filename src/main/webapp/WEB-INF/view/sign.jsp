@@ -212,7 +212,7 @@
 
 		<p class="login-text">Авторизация на сайте</p>
 
-		<form class="form-3" action="do?command=login&kindOfAccount=welcome" method="post">
+		<form class="form-3" action="do?command=login&tab=welcome" method="post">
 			<p class="clearfix">
 				<label for="login">Логин</label> 
 				<input type="text" name="login"	id="login" placeholder="Логин">
@@ -239,7 +239,7 @@
 		
 		<p class="login-text">Регистрация на сайте</p>
 		
-		<form class="form-3" action="do?command=registration&kindOfAccount=welcome" method="post">
+		<form class="form-3" action="do?command=registration&tab=welcome" method="post">
 			<p class="clearfix">
 				<label for="login">Логин</label> 
 				<input type="text" name="login"	id="loginAJAX" placeholder="Логин">

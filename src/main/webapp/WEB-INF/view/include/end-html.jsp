@@ -1,11 +1,10 @@
 
-<b>${error}</b>
 
 </div>
 <!-- container -->
 
 <!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -18,13 +17,17 @@
 	crossorigin="anonymous">
 	</script>
 	
+-->
 	
-<!-- <script src="WEb-INF/view/js/bootstrap.min.js"></script>  -->
+	
+<!-- <script src="WEb-INF/view/js/bootstrap.min.js"></script>  
 
 <script type="text/javascript">
 	
- <%@include file="../js/bootstrap.min.js"%> 
+ <%@include file="../js/bootstrap.min.js"%>    
 </script>
+
+-->
 
 </body>
 </html>

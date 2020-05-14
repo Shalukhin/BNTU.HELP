@@ -19,11 +19,16 @@ import command.impl.InformaticCommand;
 import command.impl.LoginCommand;
 import command.impl.LogoutCommand;
 import command.impl.MathCommand;
+import command.impl.OrderConfirmCommand;
+import command.impl.OrderCommand;
 import command.impl.PayCommand;
 import command.impl.PersonalDataCommand;
 import command.impl.RegistrationCommand;
 import command.impl.SignCommand;
 import command.impl.TestCommand;
+import command.impl.administrator.AdministratorCommand;
+import command.impl.administrator.ChangeTaskCommand;
+import command.impl.administrator.ChangeUserCommand;
 
 public class CommandProvider {
 	
@@ -39,8 +44,13 @@ public class CommandProvider {
 		repository.put(LOGIN, new LoginCommand());
 		repository.put(LOGOUT, new LogoutCommand());
 		repository.put(REGISTRATION, new RegistrationCommand());
+		repository.put(ADMINISTRATOR, new AdministratorCommand());
+		repository.put(CHANGEUSER, new ChangeUserCommand());
+		repository.put(CHANGETASK, new ChangeTaskCommand());
 		repository.put(ACCOUNT, new AccountCommand());
 		repository.put(PERSONAL, new PersonalDataCommand());
+		repository.put(ORDER, new OrderCommand());
+		repository.put(ORDERCONFIRM, new OrderConfirmCommand());
 		repository.put(CHEMISTRY, new ChemistryCommand());
 		repository.put(MATH, new MathCommand());
 		repository.put(ENGIN, new EnginCommand());

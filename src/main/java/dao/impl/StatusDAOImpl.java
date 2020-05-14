@@ -21,7 +21,9 @@ public class StatusDAOImpl implements StatusDAO {
 
 	private StatusBuilder statusBuilder = new StatusBuilder();
 
-	private String sqlRequestFindStatusByName = "SELECT * FROM `status` WHERE nameStatus = ?;";
+	private static final String SQL_REQUEST_FIND_STATUS_BY_NAME = "SELECT * FROM `status` WHERE nameStatus = ?;";
+	private static final String SQL_REQUEST_FIND_STATUS_BY_ID = "SELECT * FROM `status` WHERE id = ?;";
+	private static final String SQL_REQUEST_FIND_ALL_STATUS = "SELECT * FROM `status`;";
 
 	@Override
 	public Status create(Status bean) throws DAOException {
@@ -33,25 +35,70 @@ public class StatusDAOImpl implements StatusDAO {
 	public Status findByName(String nameStatus) throws DAOException {
 
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(sqlRequestFindStatusByName);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_FIND_STATUS_BY_NAME);) {
 
 			preparedStatement.setString(1, nameStatus);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			List<Status> result = buildStatusList(resultSet);
 			if (result.size() == 0) {
-				throw new DAOException("Error StatusDAO - status not found");
+				LOGGER.error("Error status not found by name");
+				throw new DAOException("Error status not found by name");
 			}
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find status - SQL error, e");
-			throw new DAOException("Error find status - SQL error", e);
+			LOGGER.error("Error find status by name - SQL error, e");
+			throw new DAOException("Error find status by name - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find status - pool error, e");
-			throw new DAOException("Error find status - pool error", e);
+			LOGGER.error("Error find status by name - pool error, e");
+			throw new DAOException("Error find status by name - pool error", e);
 		}
 	}
+	
+	@Override
+	public Status findById(int id) throws DAOException {
+		
+		try (Connection connection = PoolConnection.INSANCE.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_FIND_STATUS_BY_ID);) {
+			
+			preparedStatement.setInt(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			List<Status> result = buildStatusList(resultSet);
+			if (result.size() == 0) {
+				LOGGER.error("Error status not found by ID");
+				throw new DAOException("Error status not found by ID");
+			}
+			return result.get(0);
+
+		} catch (SQLException e) {
+			LOGGER.error("Error find status by ID - SQL error, e");
+			throw new DAOException("Error find status by ID - SQL error", e);
+		} catch (PoolException e) {
+			LOGGER.error("Error find status by ID - pool error, e");
+			throw new DAOException("Error find status by ID - pool error", e);
+		}
+	}
+	
+	@Override
+	public List<Status> findAllStatus() throws DAOException {
+		
+		try (Connection connection = PoolConnection.INSANCE.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_FIND_ALL_STATUS);) {
+			
+			ResultSet resultSet = preparedStatement.executeQuery();			
+			
+			return buildStatusList(resultSet);
+
+		} catch (SQLException e) {
+			LOGGER.error("Error find all role - SQL error, e");
+			throw new DAOException("Error find all role - SQL error", e);
+		} catch (PoolException e) {
+			LOGGER.error("Error find all role - pool error, e");
+			throw new DAOException("Error find all role - pool error", e);
+		}
+	}	
 
 	private List<Status> buildStatusList(ResultSet resultSet) throws DAOException {
 		List<Status> statusList = new ArrayList<>();
@@ -70,17 +117,11 @@ public class StatusDAOImpl implements StatusDAO {
 			}
 
 		} catch (SQLException e) {
-			LOGGER.error("Error build user - SQL error", e);
-			throw new DAOException("Error build user - SQL error", e);
+			LOGGER.error("Error build status - SQL error", e);
+			throw new DAOException("Error build status - SQL error", e);
 		}
 		return statusList;
-	}
-	
-	@Override
-	public Status findById(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	}	
 
 	@Override
 	public Status update(Status bean) throws DAOException {
@@ -98,6 +139,8 @@ public class StatusDAOImpl implements StatusDAO {
 	public boolean delete(Status bean) throws DAOException {
 		
 		return false;
-	}	
+	}
+
+	
 
 }

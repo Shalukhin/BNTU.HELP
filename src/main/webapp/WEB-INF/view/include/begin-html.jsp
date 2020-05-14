@@ -17,13 +17,22 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 	
-	-->
+	
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-
+	
+	-->
+	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ 
 
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css'>
@@ -97,7 +106,7 @@ h1 {
 				
 					<li class="nav-item "><a
 						class="nav-link ${chemistryMenuPosition}"
-						href="do?command=chemistry&kindOfChemistry=inorganic">Химия</a></li>
+						href="do?command=chemistry&tab=inorganic">Химия</a></li>
 
 					<li class="nav-item"><a 
 						class="nav-link ${mathMenuPosition}"
@@ -127,12 +136,18 @@ h1 {
 
 					<c:if test="${user == null}">
 						<li class="nav-item"><a class="nav-link ${signMenuPosition}"
-							href="do?command=sign&kindOfSign=login">Вход</a></li>
+							href="do?command=sign&tab=login">Вход</a></li>
 					</c:if>
 
 					<c:if test="${user != null}">
-						<li class="nav-item"><a
-							class="nav-link ${accountMenuPosition}" href="do?command=account&kindOfAccount=welcome">${user.getLogin()}</a></li>
+						<li class="nav-item"><a	class="nav-link ${accountMenuPosition}" 
+							href="do?command=account&tab=welcome">${user.getLogin()}</a></li>
+						
+						<c:if test="${user.getRole().getNameRole() == \"admin\"}" >
+							<li class="nav-item"><a class="nav-link ${adminMenuPosition}"
+							href="do?command=administrator&tab=allUser">Управление</a></li>						
+						</c:if>	
+							
 						<li class="nav-item"><a class="nav-link"
 							href="do?command=logout">Выход</a></li>
 					</c:if>

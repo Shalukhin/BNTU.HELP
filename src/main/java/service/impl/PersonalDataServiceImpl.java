@@ -19,6 +19,7 @@ public class PersonalDataServiceImpl implements PersonalDataService {
 
 	@Override
 	public PersonalData saveUserPersonalData(PersonalData personalData) throws ServiceException {
+		
 		if (!PersonalDataValidator.validate(personalData)) {
 			LOGGER.error("Error save personal data - invalid personal data");
 			return null;
