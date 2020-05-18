@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.PersonalDataBuilder;
@@ -22,36 +26,49 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 
 	private PersonalDataBuilder PersonalDataBuilder = new PersonalDataBuilder();
 
-	private static final String SQL_REQUEST_CREATE_PERSONAL_DATA = "INSERT INTO `personaldata` (`idUser`, `name`, `phone`, `email`, `bonusMoney`, `idInvitingUser`) VALUES (?, ?, ?, ?, ?, ?);";
-	private static final String SQL_REQUEST_FIND_PERSONAL_DATA_BY_ID = "SELECT * FROM `personaldata` WHERE idUser = ?;";
+	private static final String SQL_REQUEST_CREATE_PERSONAL_DATA = "INSERT INTO `personaldata` (`name`, `phone`, `email`, `bonusMoney`, `idInvitingUser`) VALUES (?, ?, ?, ?, ?);";
+	private static final String SQL_REQUEST_FIND_PERSONAL_DATA_BY_ID = "SELECT * FROM `personaldata` WHERE id = ?;";
 	private static final String SQL_REQUEST_UPDATE_PERSONAL_DATA = "UPDATE `personaldata` "
-			+ "SET `name` = ?, `phone` = ?, `email` = ?, `bonusMoney` = ?, `idInvitingUser` = ? WHERE idUser = ?";
-	private static final String SQL_REQUEST_DELETE_PERSONAL_DATA = "DELETE FROM `personaldata` WHERE idUser = ?";
+			+ "SET `name` = ?, `phone` = ?, `email` = ?, `bonusMoney` = ?, `idInvitingUser` = ? WHERE id = ?";
+	private static final String SQL_REQUEST_DELETE_PERSONAL_DATA = "DELETE FROM `personaldata` WHERE id = ?";
 	
 	@Override
 	public PersonalData create(PersonalData entity) throws DAOException {
 		if (entity == null) {
 			LOGGER.error("Error create personal data - personal data null");
 			throw new DAOException("Error create personal data - personal data null");
-		}
-		
-		if(findById(entity.getIdUser()) != null) {
-			LOGGER.error("Error create personal data - personal data exists");
-			throw new DAOException("Error create personal data - personal data exists");
-		}
+		}		
 		
 		int result;
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_PERSONAL_DATA);) {
-
-			preparedStatement.setInt(1, entity.getIdUser());
-			preparedStatement.setString(2, entity.getName());
-			preparedStatement.setString(3, entity.getPhone());
-			preparedStatement.setString(4, entity.getEmail());
-			preparedStatement.setBigDecimal(5, entity.getBonusMoney());
-			preparedStatement.setInt(6, entity.getIdInvitingUser());			
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_PERSONAL_DATA, Statement.RETURN_GENERATED_KEYS);) {
+			
+			if (!StringUtils.isBlank(entity.getName())) {
+				preparedStatement.setString(1, entity.getName());
+			} else {
+				preparedStatement.setNull(1, Types.NULL);
+			}
+			
+			if (!StringUtils.isBlank(entity.getPhone())) {
+				preparedStatement.setString(2, entity.getPhone());
+			} else {
+				preparedStatement.setNull(2, Types.NULL);
+			}
+			
+			if (!StringUtils.isBlank(entity.getEmail())) {
+				preparedStatement.setString(3, entity.getEmail());
+			} else {
+				preparedStatement.setNull(3, Types.NULL);
+			}			
+			
+			preparedStatement.setBigDecimal(4, entity.getBonusMoney());			
+			preparedStatement.setInt(5, entity.getIdInvitingUser());			
 
 			result = preparedStatement.executeUpdate();
+			
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
 			LOGGER.error("Error create personal data - SQL error, e");
@@ -64,13 +81,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 		if (result != 1) {
 			throw new DAOException("Error personal data - personal data not create");
 		}
-		return findById(entity.getIdUser());
-	}
-	
-	@Override
-	public boolean checkExistIdUser(int idUser) throws DAOException {
-		
-		return findById(idUser) != null ? true : false ;
+		return entity;
 	}
 
 	@Override
@@ -86,7 +97,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			List<PersonalData> result = buildPersonalDataList(resultSet);
 			if (result.size() == 0) {
 				LOGGER.error("Error personal data not found by ID");
-				return null;
+				throw new DAOException("Error personal data not found by ID");
 			}
 			return result.get(0);
 
@@ -106,7 +117,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 		try {
 			while (resultSet.next()) {
 				personalData = PersonalDataBuilder.createNewPersonalData()
-						.withIdUser(resultSet.getInt(DBColumnNameConstant.PERSONAL_DATA_ID_USER))
+						.withId(resultSet.getInt(DBColumnNameConstant.PERSONAL_DATA_ID))
 						.withName(resultSet.getString(DBColumnNameConstant.PERSONAL_DATA_NAME))
 						.withPhone(resultSet.getString(DBColumnNameConstant.PERSONAL_DATA_PHONE))
 						.withEmail(resultSet.getString(DBColumnNameConstant.PERSONAL_DATA_EMAIL))
@@ -127,8 +138,8 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 	@Override
 	public PersonalData update(PersonalData entity) throws DAOException {
 		if (entity == null) {
-			LOGGER.error("Error update user - user null");
-			throw new DAOException("Error update user - user null");
+			LOGGER.error("Error update personal data - personal data null");
+			throw new DAOException("Error update personal data - personal data null");
 		}
 		
 		int result;
@@ -136,12 +147,27 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 				PreparedStatement preparedStatement = connection
 						.prepareStatement(SQL_REQUEST_UPDATE_PERSONAL_DATA);) {			
 			
-			preparedStatement.setString(1, entity.getName());
-			preparedStatement.setString(2, entity.getPhone());
-			preparedStatement.setString(3, entity.getEmail());
+			if (!StringUtils.isBlank(entity.getName())) {
+				preparedStatement.setString(1, entity.getName());
+			} else {
+				preparedStatement.setNull(1, Types.NULL);
+			}
+			
+			if (!StringUtils.isBlank(entity.getPhone())) {
+				preparedStatement.setString(2, entity.getPhone());
+			} else {
+				preparedStatement.setNull(2, Types.NULL);
+			}
+			
+			if (!StringUtils.isBlank(entity.getEmail())) {
+				preparedStatement.setString(3, entity.getEmail());
+			} else {
+				preparedStatement.setNull(3, Types.NULL);
+			}	
+			
 			preparedStatement.setBigDecimal(4, entity.getBonusMoney());
 			preparedStatement.setInt(5, entity.getIdInvitingUser());
-			preparedStatement.setInt(6, entity.getIdUser());
+			preparedStatement.setInt(6, entity.getId());
 
 			result = preparedStatement.executeUpdate();
 			
@@ -157,7 +183,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			throw new DAOException("Error personal data - personal data not update");
 		}
 		
-		return findById(entity.getIdUser());
+		return entity;
 	}
 	
 	@Override
@@ -167,7 +193,7 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			throw new DAOException("Error delete personal data - personal data null");
 		}
 
-		return delete(entity.getIdUser());
+		return delete(entity.getId());
 	}
 
 	@Override

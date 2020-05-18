@@ -6,16 +6,16 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 	<li class="nav-item"><a class="nav-link active" id="inf1-tab"
 		data-toggle="tab" href="#inf1" role="tab" aria-controls="inf1"
-		aria-selected="true"><h6>Пример решения</h6></a></li>
+		aria-selected="true"><h6>${languageManager.getString("inform01")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link " id="inf2-tab"
 		data-toggle="tab" href="#inf2" role="tab" aria-controls="inf2"
-		aria-selected="false"><h6>Методические пособия</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("inform02")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link" id="inf3-tab"
 		data-toggle="tab" href="#inf3" role="tab" aria-controls="inf3"
-		aria-selected="false"><h6>Цены</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("inform03")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link" id="exam-tab"
 		data-toggle="tab" href="#exam" role="tab" aria-controls="exam"
-		aria-selected="false"><h6>Экзамен</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("inform04")}</h6></a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
@@ -25,7 +25,7 @@
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong>Некоторы страницы из контрольной работы</strong>
+				<strong>${languageManager.getString("inform05")}</strong>
 			</p>
 		</h4>
 
@@ -36,7 +36,7 @@
 					<p style="text-align: center;">
 						<a href="do?command=informatic&example=1"><img alt=""
 							src="pict/informatic/informatic_example1_mini.png"></a><br>
-						<a href="do?command=informatic&example=1">(увеличить)</a>
+						<a href="do?command=informatic&example=1">(${languageManager.getString("inform06")})</a>
 					</p>
 				</td>
 				<td width="55"></td>
@@ -44,7 +44,7 @@
 					<p style="text-align: center;">
 						<a href="do?command=informatic&example=2"><img alt=""
 							src="pict/informatic/informatic_example2_mini.png"></a><br>
-						<a href="do?command=informatic&example=2">(увеличить)</a>
+						<a href="do?command=informatic&example=2">(${languageManager.getString("inform06")})</a>
 					</p>
 				</td>
 				<td width="55"></td>
@@ -52,11 +52,10 @@
 					<p style="text-align: center;">
 						<a href="do?command=informatic&example=3"><img alt=""
 							src="pict/informatic/informatic_example3_mini.png"></a><br>
-						<a href="do?command=informatic&example=3">(увеличить)</a>
+						<a href="do?command=informatic&example=3">(${languageManager.getString("inform06")})</a>
 					</p>
 				</td>
 			</tr>
-
 
 		</table>
 
@@ -69,7 +68,7 @@
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Методические пособия</strong>
+				<strong>${languageManager.getString("inform07")}</strong>
 			</p>
 		</h4>
 
@@ -86,10 +85,8 @@
 		<hr align="left" width="980" size="4" color="#0000dd">
 
 		<p style="text-align: left;">
-			<b>Если вам необходима работа по другой методичке - просто
-				передайте свои задания исполнителю при заказе!</b>
+			<b>${languageManager.getString("inform08")}</b>
 		</p>
-
 
 	</div>
 
@@ -99,15 +96,13 @@
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Цены</strong>
+				<strong>${languageManager.getString("inform09")}</strong>
 			</p>
 		</h4>
 		<br>
 		<p style="text-align: left;">
-			Цена одной контрольной работы <span style="color: #0000ff;"><strong>15
-					бел.руб.</strong></span>
+			${languageManager.getString("inform10")}
 		</p>
-
 
 	</div>
 
@@ -118,18 +113,15 @@
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Экзамен</strong>
+				<strong>${languageManager.getString("inform11")}</strong>
 			</p>
 		</h4>
 
 		<br>
-		<p>Даём консультации и оказываем online-помощь на экзаменах и
-			зачётах. Подробности уточняйте по телефону или viber.</p>
+		<p>${languageManager.getString("inform12")}</p>
 		<p style="text-align: left;">
-			Цена консультации, в случае успешной сдачи экзамена (зачёта) - <span
-				style="color: #0000ff;"><strong> 25 бел.руб.</strong></span>
+			${languageManager.getString("inform13")}
 		</p>
-
 
 	</div>
 </div>

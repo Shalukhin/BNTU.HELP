@@ -2,10 +2,12 @@ package command.constant;
 
 public class PageURLConstant {
 	
-	public static final String INDEX_PAGE_URL = "WEB-INF/view/index.jsp";	
+	public static final String INDEX_PAGE_URL = "WEB-INF/view/index.jsp";
+	public static final String ABOUT_PAGE_URL = "WEB-INF/view/about.jsp";
 	public static final String SIGN_PAGE_URL = "WEB-INF/view/sign.jsp";
 	public static final String ADMINISTATOR_URL = "WEB-INF/view/administrator.jsp";
 	public static final String ACCOUNT_PAGE_URL = "WEB-INF/view/account.jsp";
+	public static final String ORDER_PAGE_URL = "WEB-INF/view/order.jsp";
 	public static final String CONTACT_PAGE_URL = "WEB-INF/view/contact.jsp";
 	public static final String PAY_PAGE_URL = "WEB-INF/view/pay.jsp";
 	public static final String ERROR_PAGE_URL = "WEB-INF/view/error.jsp";
@@ -20,6 +22,7 @@ public class PageURLConstant {
 	public static final String INFORMATIC_PAGE_URL = "WEB-INF/view/informatic/informatic.jsp";
 	public static final String INFORMATIC_EXAMPLE_PAGE_URL = "WEB-INF/view/informatic/informatic_example.jsp";
 	public static final String INFORMATIC_TEXTBOOK_PAGE_URL = "pict/informatic/informatic_textbook.pdf";
+	public static final String LANGUAGE_PAGE_URL = "WEB-INF/view/index.jsp";
 	
 	public static final String TEST_PAGE_URL = "WEB-INF/view/test.jsp";
 	

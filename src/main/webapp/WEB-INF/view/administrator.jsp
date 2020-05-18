@@ -6,16 +6,16 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 	<li class="nav-item"><a class="nav-link ${allUser}" id="adm1-tab"
 		data-toggle="tab" href="#adm1" role="tab" aria-controls="adm1"
-		aria-selected="true"><h6>Список пользователей</h6></a></li>
+		aria-selected="true"><h6>${languageManager.getString("admin01")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${allTask}" id="adm2-tab"
 		data-toggle="tab" href="#adm2" role="tab" aria-controls="adm2"
-		aria-selected="false"><h6>Список услуг</h6></a></li>
-	<li class="nav-item"><a class="nav-link ${allOrder}" id="adm3-tab"
+		aria-selected="false"><h6>${languageManager.getString("admin02")}</h6></a></li>
+<!--  	<li class="nav-item"><a class="nav-link ${allOrder}" id="adm3-tab"
 		data-toggle="tab" href="#adm3" role="tab" aria-controls="adm3"
-		aria-selected="false"><h6>Список заказов</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("admin03")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${reset}" id="adm4-tab"
 		data-toggle="tab" href="#adm4" role="tab" aria-controls="adm4"
-		aria-selected="false"><h6>Отчистка базы</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("admin04")}</h6></a></li>				-->
 </ul>
 <div class="tab-content" id="myTabContent">
 
@@ -26,7 +26,7 @@
 
 		<h4>
 			<p style="text-align: center;">
-				<strong>Список пользователей</strong>
+				<strong>${languageManager.getString("admin05")}</strong>
 			</p>
 		</h4>
 		
@@ -39,12 +39,12 @@
 				<tr bgcolor="#A9A9A9">
 					<th scope="col" width="3%">#</th>
 					<th scope="col" width="6%">id</th>
-					<th scope="col" width="20%">Логин</th>
-					<th scope="col" width="20%">Пароль</th>
-					<th scope="col" width="20%">Роль</th>
-					<th scope="col" width="20%">Статус</th>
-					<th scope="col" width="7%">Изменить</th>
-					<th scope="col" width="4%">Удалить</th>
+					<th scope="col" width="20%">${languageManager.getString("admin06")}</th>
+					<th scope="col" width="20%">${languageManager.getString("admin07")}</th>
+					<th scope="col" width="20%">${languageManager.getString("admin08")}</th>
+					<th scope="col" width="20%">${languageManager.getString("admin09")}</th>
+					<th scope="col" width="7%">${languageManager.getString("admin10")}</th>
+					<th scope="col" width="4%">${languageManager.getString("admin11")}</th>
 				</tr>
 			</thead>
 			<tbody bgcolor="#FFFAFA">
@@ -111,12 +111,12 @@
 						
 						<td>
 							<button title="Изменить" class="btn btn-outline-primary" style="margin-top: 0px;" type="submit" 
-									form="formChangeUserID${itemUser.getId()}" name="action" value="edit">Изменить</button>
+									form="formChangeUserID${itemUser.getId()}" name="action" value="edit">${languageManager.getString("admin12")}</button>
 						</td>
 										
 						<td>
 							<button title="Удалить" class="btn btn-outline-danger" style="margin-top: 0px;" type="submit" 
-									form="formChangeUserID${itemUser.getId()}" name="action" value="del">del</button>
+									form="formChangeUserID${itemUser.getId()}" name="action" value="del">&nbsp;X&nbsp;</button>
 						</td>
 					</tr>
 					
@@ -137,7 +137,7 @@
 
 		<h4>
 			<p style="text-align: center;">
-				<strong>Список услуг</strong>
+				<strong>${languageManager.getString("admin13")}</strong>
 			</p>
 		</h4>
 
@@ -151,8 +151,8 @@
 				<tr bgcolor="#90EE90">					
 						<form id="formCreateTask" action="do?command=changetask&tab=allTask" method="post">
 						
-							<td colspan="2"><font size="2"><strong>Новая услуга</strong></font></td>							
-							<td><input size="48" name="changeNameTask" placeholder="Введите название услуги" value="${inputNameTask}"></td>
+							<td colspan="2"><font size="2"><strong>${languageManager.getString("admin14")}</strong></font></td>							
+							<td><input size="48" name="changeNameTask" placeholder="${languageManager.getString('admin15')}" value="${inputNameTask}"></td>
 							<td><input size="4" name="changePriceTask" placeholder="0.00" value="${inputPriceTask}"></td>
 							
 							<td>
@@ -181,7 +181,7 @@
 							
 								<select id="selectSubject" name="changeSubjectTask" class="form-control">
 									
-									<option selected>Предмет</option>
+									<option selected>${languageManager.getString("admin16")}</option>
 									
 									<c:forEach items="${listAllSubject}" var="subject">										
 
@@ -203,7 +203,7 @@
 						
 						<td colspan="2">
 							<button title="Добавить услугу" class="btn btn-success" style="margin-top: 0px;" type="submit" 
-									form="formCreateTask" name="action" value="create">Добавить услугу в БД</button>
+									form="formCreateTask" name="action" value="create">${languageManager.getString("admin17")}</button>
 
 						</td>						
 					
@@ -212,12 +212,12 @@
 				<tr bgcolor="#A9A9A9">
 					<th scope="col" width="3%">#</th>
 					<th scope="col" width="5%">id</th>
-					<th scope="col" width="40%">Названи услуги</th>
-					<th scope="col" width="5%">Цена</th>
-					<th scope="col" width="10%">Курс</th>
-					<th scope="col" width="30%">Предмет</th>
-					<th scope="col" width="7%">Изменить</th>
-					<th scope="col" width="4%">Удалить</th>
+					<th scope="col" width="40%">${languageManager.getString("admin18")}</th>
+					<th scope="col" width="5%">${languageManager.getString("admin19")}</th>
+					<th scope="col" width="10%">${languageManager.getString("admin20")}</th>
+					<th scope="col" width="30%">${languageManager.getString("admin21")}</th>
+					<th scope="col" width="7%">${languageManager.getString("admin22")}</th>
+					<th scope="col" width="4%">${languageManager.getString("admin23")}</th>
 				</tr>
 			</thead>
 			<tbody bgcolor="#FFFAFA">
@@ -276,12 +276,12 @@
 						
 						<td>
 							<button title="Изменить" class="btn btn-outline-primary" style="margin-top: 0px;" type="submit" 
-									form="formChangeTaskID${itemTask.getId()}" name="action" value="edit">Изменить</button>
+									form="formChangeTaskID${itemTask.getId()}" name="action" value="edit">${languageManager.getString("admin24")}</button>
 						</td>
 										
 						<td>
 							<button title="Удалить" class="btn btn-outline-danger" style="margin-top: 0px;" type="submit" 
-									form="formChangeTaskID${itemTask.getId()}" name="action" value="del">del</button>
+									form="formChangeTaskID${itemTask.getId()}" name="action" value="del">&nbsp;X&nbsp;</button>
 						</td>
 					</tr>
 					
@@ -295,7 +295,7 @@
 
 
 	</div>
-
+<!--  
 	<div class="tab-pane fade show ${allOrder}" id="adm3" role="tabpanel"
 		aria-labelledby="adm3-tab">
 
@@ -307,22 +307,7 @@
 		</h4>
 		<br>
 		
-		<form action="do?command=test" method="POST" enctype="multipart/form-data">
-    		<input type="file" name="myfile">
-   			 <br/>
-   	 		<input type="submit" name="Submit">
-		</form>
 		
-		<br>
-		<br>
-		
-		<form>
-  			<div class="form-group">
-    			<label for="exampleFormControlFile1">Example file input</label>
-    			<input type="file" class="form-control-file" id="exampleFormControlFile1">
- 			 </div>
-		</form>
-
 
 
 
@@ -345,8 +330,7 @@
 
 
 	</div>
+				-->
 </div>
-
-
 
 <%@ include file="include/end-html.jsp"%>

@@ -58,58 +58,58 @@ public class TestCommand implements Command {
 		
 		request.setAttribute("xxx", sb.toString());
 		
-//		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-//		if (!isMultipart) {			
-//			return PageManager.ERROR_PAGE;
-//		}		
-//		
-//		// Создаём класс фабрику 
-//		DiskFileItemFactory factory = new DiskFileItemFactory();
-//		
-//		// Максимальный буфера данных в байтах,
-//		// при его привышении данные начнут записываться на диск во временную директорию
-//		// устанавливаем один мегабайт
-//		 factory.setSizeThreshold(1024*1024*50);
-//		
-//		// устанавливаем временную директорию
-//		
-//		//File tempDir = new File(TestCommand.class.getClassLoader().getResource("uploads/temp").getFile());
-//		//File tempDir = new File(request.getAttribute("tempdir"));
-//		File tempDir = (File) request.getAttribute("tempdir");
-//		factory.setRepository(tempDir);
-//		
-//		ServletFileUpload upload = new ServletFileUpload(factory);
-//		
-//		//максимальный размер данных который разрешено загружать в байтах
-//		//по умолчанию -1, без ограничений. Устанавливаем 10 мегабайт. 
-//		
-//		upload.setSizeMax(1024*1024*50);
-//		
-//		
-//		try {
-//			List<FileItem> items = upload.parseRequest(request);
-//			Iterator<FileItem> iter = items.iterator();
-//			
-//			while (iter.hasNext()) {
-//				FileItem item = iter.next();
-//				System.out.println(item.isFormField());
-//				System.out.println("fildname = " + item.getFieldName());
-//				System.out.println("name = " + item.getName());
-//				//System.out.println(item.getString());
-//				System.out.println("-------");
-//				
-//				if (!item.isFormField()) {	
-//					System.out.println("in cikl");
-//					//File uploadFile = new File(request.getAttribute("uploads") + item.getName());
-//					//uploadFile.createNewFile();					
-//					//item.write(uploadFile);
-//					finishFileService.addNewFinishFile(item.getName(), item);
-//				}
-//			}
-//			
-//		} catch (Exception e) {			
-//			return PageManager.ERROR_PAGE;
-//		}
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (!isMultipart) {			
+			return PageManager.ERROR_PAGE;
+		}		
+		
+		// Создаём класс фабрику 
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		
+		// Максимальный буфера данных в байтах,
+		// при его привышении данные начнут записываться на диск во временную директорию
+		// устанавливаем один мегабайт
+		 factory.setSizeThreshold(1024*1024*50);
+		
+		// устанавливаем временную директорию
+		
+		//File tempDir = new File(TestCommand.class.getClassLoader().getResource("uploads/temp").getFile());
+		//File tempDir = new File(request.getAttribute("tempdir"));
+		File tempDir = (File) request.getAttribute("tempdir");
+		factory.setRepository(tempDir);
+		
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		
+		//максимальный размер данных который разрешено загружать в байтах
+		//по умолчанию -1, без ограничений. Устанавливаем 10 мегабайт. 
+		
+		upload.setSizeMax(1024*1024*50);
+		
+		
+		try {
+			List<FileItem> items = upload.parseRequest(request);
+			Iterator<FileItem> iter = items.iterator();
+			
+			while (iter.hasNext()) {
+				FileItem item = iter.next();
+				System.out.println(item.isFormField());
+				System.out.println("fildname = " + item.getFieldName());
+				System.out.println("name = " + item.getName());
+				//System.out.println(item.getString());
+				System.out.println("-------");
+				
+				if (!item.isFormField()) {	
+					System.out.println("in cikl");
+					//File uploadFile = new File(request.getAttribute("uploads") + item.getName());
+					//uploadFile.createNewFile();					
+					//item.write(uploadFile);
+					finishFileService.addNewFinishFile(item.getName(), item);
+				}
+			}
+			
+		} catch (Exception e) {			
+			return PageManager.ERROR_PAGE;
+		}
 		
 		
 		return PageManager.TEST_PAGE;

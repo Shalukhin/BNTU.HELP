@@ -16,14 +16,18 @@ public class ParameterNameConstant {
 	public static final String INSTRUCTION_FOR_ORDER = "instructionForOrder";	
 	
 	public static final String ORDERED_TASK = "orderedTask";
-	public static final String NOTE = "note";
-	
-	public static final String DELETE_ORDER_ID = "delOrderId";
+	public static final String NOTE = "note";	
 	
 	public static final String PROCESS_ORDER_ID = "processOrderId";
-	public static final String CONFIRM_ORDER_ID = "confirmOrderId";
+	public static final String PROCESS_ADJUSTED_PRICE_TASK = "processAdjustedPriceTask";	
+	public static final String CONFIRM_ORDER_ID = "confirmOrderId";	
 	public static final String PAY_ORDER_ID = "payOrderId";
 	public static final String COMPLETE_ORDER_ID = "completeOrderId";	
+	public static final String DOWNLOAD_FINISH_FILE_ID = "downloadFinishFileId";
+	public static final String DOWNLOAD_SOURCE = "source";
+	public static final String DELETE_ORDER_ID = "delOrderId";
+	
+	public static final String VIEW_ORDER_ID = "viewOrderId";	
 	
 	public static final String TEXTBOOK = "textbook";
 	public static final String TAB = "tab";

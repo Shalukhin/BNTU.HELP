@@ -7,18 +7,10 @@ public class User {
 	private String password;
 	private Role role;
 	private Status status;
+	private PersonalData personalData;
 	
 	public User() {
 		super();
-	}
-
-	public User(int id, String login, String password, Role role, Status status) {
-		super();
-		this.id = id;
-		this.login = login;
-		this.password = password;
-		this.role = role;
-		this.status = status;
 	}
 
 	public int getId() {
@@ -61,6 +53,14 @@ public class User {
 		this.status = status;
 	}
 
+	public PersonalData getPersonalData() {
+		return personalData;
+	}
+
+	public void setPersonalData(PersonalData personalData) {
+		this.personalData = personalData;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -68,6 +68,7 @@ public class User {
 		result = prime * result + id;
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((personalData == null) ? 0 : personalData.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
@@ -94,6 +95,11 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (personalData == null) {
+			if (other.personalData != null)
+				return false;
+		} else if (!personalData.equals(other.personalData))
+			return false;
 		if (role == null) {
 			if (other.role != null)
 				return false;
@@ -110,7 +116,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", role=" + role + ", status="
-				+ status + "]";
+				+ status + ", personalData=" + personalData + "]";
 	}
 	
 }

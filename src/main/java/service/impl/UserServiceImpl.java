@@ -3,10 +3,14 @@ package service.impl;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import builder.PersonalDataBuilder;
 import builder.UserBuilder;
+import dao.PersonalDataDAO;
 import dao.RoleDAO;
 import dao.StatusDAO;
 import dao.UserDAO;
+import entity.PersonalData;
 import entity.Role;
 import entity.Status;
 import entity.User;
@@ -14,6 +18,7 @@ import exception.DAOException;
 import exception.ServiceException;
 import factory.DAOFactory;
 import service.UserService;
+import util.validator.PersonalDataValidator;
 import util.validator.UserValidator;
 
 public class UserServiceImpl implements UserService {
@@ -24,6 +29,8 @@ public class UserServiceImpl implements UserService {
 	private static final String NAME_STATUS_STANDART = "standart";
 
 	private UserBuilder userBuilder = new UserBuilder();
+	private PersonalDataBuilder personalDataBuilder = new PersonalDataBuilder();
+	private PersonalDataDAO personalDataDAO = DAOFactory.getInstance().getPersonalDataDAO();	
 	private UserDAO userDAO = DAOFactory.getInstance().getUserDAO();
 	private RoleDAO roleDAO = DAOFactory.getInstance().getRoleDAO();
 	private StatusDAO statusDAO = DAOFactory.getInstance().getStatusDAO();
@@ -54,15 +61,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User registrationUser(User user) throws ServiceException {
+	public User registrationUser(String login, String password) throws ServiceException {
+
+		User user = userBuilder.createNewUser().withLogin(login).withPassword(password).build();
+
 		if (!UserValidator.validateByLoginAndPassword(user)) {
 			LOGGER.error("Error registration user - invalid user");
 			return null;
 		}
-
-//		if (!UserValidator.validate(user)) {
-//			throw new ServiceException("Error registration user - invalid user");
-//		}
 
 		try {
 			if (userDAO.checkExistLogin(user.getLogin())) {
@@ -82,18 +88,51 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User editUser(String idUserStr, String loginUserStr, String passwordUserStr, String nameRoleStr, String nameStatusStr) throws ServiceException {
+	public User savePersonalData(String name, String phone, String email, User user) throws ServiceException {
+
+		PersonalData personalData = personalDataBuilder
+										.createNewPersonalData()
+										.withName(name)
+										.withPhone(phone)
+										.withEmail(email)
+										.build();
+
+		if (!PersonalDataValidator.validate(personalData)) {
+			LOGGER.error("Error save personal data - invalid personal data");
+			return null;
+		}
 		
+		try {
+			if (user.getPersonalData() == null) {
+				user.setPersonalData(personalDataDAO.create(personalData));
+				
+			} else {
+				personalData.setId(user.getPersonalData().getId());
+				personalData.setBonusMoney(user.getPersonalData().getBonusMoney());
+				personalData.setIdInvitingUser(user.getPersonalData().getIdInvitingUser());
+				user.setPersonalData(personalDataDAO.update(personalData));				
+			}			
+			return userDAO.update(user);
+		} catch (DAOException e) {
+			LOGGER.error("Error save personal data", e);
+			throw new ServiceException("Error save personal data", e);
+		}
+	}
+
+	@Override
+	public User editUser(String idUserStr, String loginUserStr, String passwordUserStr, String nameRoleStr,
+			String nameStatusStr) throws ServiceException {
+
 		User modifiedUser = buildUser(loginUserStr, passwordUserStr, nameRoleStr, nameStatusStr);
-		
+
 		if (!UserValidator.validate(modifiedUser)) {
 			LOGGER.error("Error update user - invalid user");
 			return null;
 		}
-		
+
 		modifiedUser.setId(Integer.valueOf(idUserStr));
 
-		try {			
+		try {
 			return userDAO.update(modifiedUser);
 		} catch (DAOException e) {
 			LOGGER.error("Error update user", e);
@@ -111,7 +150,7 @@ public class UserServiceImpl implements UserService {
 			} else {
 				role = roleDAO.findByNameAndSubject(roleParameter[0], roleParameter[1]);
 			}
-			
+
 		} catch (DAOException e) {
 			LOGGER.error("Error build user - invalid role user", e);
 			return null;
@@ -125,14 +164,9 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
-		User user = userBuilder
-						.createNewUser()
-						.withLogin(loginUserStr)
-						.withPassword(passwordUserStr)
-						.withRole(role)
-						.withStatus(status)
-						.build();
-		
+		User user = userBuilder.createNewUser().withLogin(loginUserStr).withPassword(passwordUserStr).withRole(role)
+				.withStatus(status).build();
+
 		return user;
 	}
 
@@ -157,4 +191,5 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException("Error delete user", e);
 		}
 	}
+
 }

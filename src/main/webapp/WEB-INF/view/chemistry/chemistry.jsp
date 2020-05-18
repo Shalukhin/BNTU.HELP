@@ -6,19 +6,16 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 	<li class="nav-item"><a class="nav-link ${inorganic}"
 		id="inorganic-tab" data-toggle="tab" href="#inorganic" role="tab"
-		aria-controls="inorganic" aria-selected="false"><h6>Общая и
-				неорганическая химия</h6></a></li>
+		aria-controls="inorganic" aria-selected="false"><h6>${languageManager.getString("chemistry01")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${organic}"
 		id="organic-tab" data-toggle="tab" href="#organic" role="tab"
-		aria-controls="organic" aria-selected="false"><h6>Органическая
-				химия</h6></a></li>
+		aria-controls="organic" aria-selected="false"><h6>${languageManager.getString("chemistry02")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${analitic}"
 		id="analitic-tab" data-toggle="tab" href="#analitic" role="tab"
-		aria-controls="analitic" aria-selected="false"><h6>Аналитическая
-				химия</h6></a></li>
+		aria-controls="analitic" aria-selected="false"><h6>${languageManager.getString("chemistry03")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${examChemistry}"
 		id="examChemistry-tab" data-toggle="tab" href="#examChemistry"
-		role="tab" aria-controls="examChemistry" aria-selected="false"><h6>Экзамен</h6></a></li>
+		role="tab" aria-controls="examChemistry" aria-selected="false"><h6>${languageManager.getString("chemistry04")}</h6></a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
@@ -29,36 +26,35 @@
 		<div align="right" style="margin-bottom: -32px;">
 			<form action="do?command=account&tab=order" method=POST>
 
-				<input name="taskForOrder" value="Контрольная работа по общей химии"
-					hidden>
+				<input name="taskForOrder" value="Контрольная работа по общей химии" hidden>
 
-				<textarea name="noteForOrder" hidden>Методичка: «Программа и контрольные задания по химии. Методические указания». Минск 2006. Под редакцией В.Н. Яглова.
+				<textarea name="noteForOrder" hidden>${languageManager.getString("chemistry05")}: «Программа и контрольные задания по химии. Методические указания». Минск 2006. Под редакцией В.Н. Яглова.
 
-Номера заданий: 
+${languageManager.getString("chemistry06")}: 
 
 
-Контактный номер: 
+${languageManager.getString("chemistry07")}: 
 
 </textarea>
 
-				<textarea name="instructionForOrder" hidden>⬅  Напишите номер вашего варианта, либо перечень номеров нужных вам заданий.
-⬅  Укажите ваш контактный номер (если не заполнены "личные данные")
-⬆️  Нажмите кнопку "Заказать"</textarea>
+				<textarea name="instructionForOrder" hidden>⬅  ${languageManager.getString("chemistry08")}
+⬅  ${languageManager.getString("chemistry09")}
+⬆️  ${languageManager.getString("chemistry10")}</textarea>
 
 				<button id="Update" value="toOrder" name="toOrder" align="center"
-					class="btn btn-success">Перейти к заказу</button>
+					class="btn btn-success">${languageManager.getString("chemistry11")}</button>
 			</form>
 		</div>
 
 		<div align="center">
 			<h4>
 				<p>
-					<strong> Общая и неорганическая химия.</strong>
+					<strong>${languageManager.getString("chemistry12")}</strong>
 				</p>
 			</h4>
 		</div>
 
-		<p>Методичка: «Программа и контрольные задания по химии.
+		<p>${languageManager.getString("chemistry13")}: «Программа и контрольные задания по химии.
 			Методические указания». Минск 2006. Под редакцией В.Н. Яглова.</p>
 		<p style="text-align: center;">
 			<a
@@ -66,23 +62,19 @@
 				alt="" src="pict/chemistry/inorganic/met1_bntu_inorg_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
-			Контрольная работа состоит <strong> из 12 заданий </strong>. Номер
-			варианта и входящие в него задания определяет преподаватель.
+			${languageManager.getString("chemistry14")}
 		</p>
 
 		<p align="left">
-			Цена данной контрольной работы: <span style="color: #0000ff;"><strong>12
-					бел.руб.</strong></span>
+			${languageManager.getString("chemistry15")}
 		</p>
 		<p align="left">
-			Цена одного задания (при заказе поштучно): <span
-				style="color: #0000ff;"><strong>1,5 бел.руб.</strong></span>
+			${languageManager.getString("chemistry16")}
 		</p>
 
 		<p style="text-align: left;">
-			Пример решения:<a
-				href="download?fileName=material/chemistry/inorg_task_5-22.pdf"
-				target="_blank" style="text-decoration: none;"> Задание 5.22</a>
+			${languageManager.getString("chemistry17")}<a href="download?fileName=material/chemistry/inorg_task_5-22.pdf"
+				target="_blank" style="text-decoration: none;"> ${languageManager.getString("chemistry18")} 5.22</a>
 		</p>
 
 	</div>
@@ -97,54 +89,51 @@
 				<input name="taskForOrder" value="Контрольная работа по органической химии"
 					hidden>
 
-				<textarea name="noteForOrder" hidden>Методичка: «Органическая химия. Учебно-методическое пособие». Минск 2005. Л.М. Слепнева.
+				<textarea name="noteForOrder" hidden>${languageManager.getString("chemistry05")}: «Органическая химия. Учебно-методическое пособие». Минск 2005. Л.М. Слепнева.
 
-Номера заданий: 
+${languageManager.getString("chemistry06")}: 
 
 
-Контактный номер: 
+${languageManager.getString("chemistry07")}: 
 
 </textarea>
 
-				<textarea name="instructionForOrder" hidden>⬅  Напишите номер вашего варианта, либо перечень номеров нужных вам заданий.
-⬅  Укажите ваш контактный номер (если не заполнены "личные данные")
-⬆️  Нажмите кнопку "Заказать"</textarea>
+				<textarea name="instructionForOrder" hidden>⬅  ${languageManager.getString("chemistry08")}.
+⬅  ${languageManager.getString("chemistry09")}
+⬆️  ${languageManager.getString("chemistry10")}</textarea>
 
 				<button id="Update" value="toOrder" name="toOrder" align="center"
-					class="btn btn-success">Перейти к заказу</button>
+					class="btn btn-success">${languageManager.getString("chemistry11")}</button>
 			</form>
 		</div>
 
 		<div align="center">
 			<h4>
 				<p>
-					<strong> Органическая химия.</strong>
+					<strong>${languageManager.getString("chemistry19")}</strong>
 				</p>
 			</h4>
 		</div>
 		
-		<p>Методичка: «Органическая химия. Учебно-методическое пособие».
+		<p>${languageManager.getString("chemistry20")}: «Органическая химия. Учебно-методическое пособие».
 			Минск 2005. Л.М. Слепнева.</p>
 		<p style="text-align: center;">
 			<a href="do?command=chemistry&tab=organic&textbook=true"><img
 				alt="" src="pict/chemistry/organic/met1_bntu_org_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
-			Контрольная работа состоит <strong> из 19 заданий </strong>. Номер
-			варианта и входящие в него задания определяет преподаватель.
+			${languageManager.getString("chemistry21")}
 		</p>
 		<p style="text-align: left;">
-			Цена данной контрольной работы: <span style="color: #0000ff;"><strong>30
-					бел.руб.</strong></span>
+			${languageManager.getString("chemistry22")}
 		</p>
 		<p style="text-align: left;">
-			Цена одного задания (при заказе поштучно): <span
-				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
+			${languageManager.getString("chemistry23")}
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a
+			${languageManager.getString("chemistry24")}:<a
 				href="download?fileName=material/chemistry/org_task_9-3.pdf"
-				target="_blank" style="text-decoration: none;"> Задание 9.3</a>
+				target="_blank" style="text-decoration: none;"> ${languageManager.getString("chemistry25")} 9.3</a>
 		</p>
 
 	</div>
@@ -160,53 +149,50 @@
 				<input name="taskForOrder" value="Контрольная работа по аналитической химии"
 					hidden>
 
-				<textarea name="noteForOrder" hidden>Методичка: «АНАЛИТИЧЕСКАЯ ХИМИЯ». Учебно-методическое пособие. Минск 2010. С.В. Дорожко, Н.Ф. Макаревич.
+				<textarea name="noteForOrder" hidden>${languageManager.getString("chemistry05")}: «АНАЛИТИЧЕСКАЯ ХИМИЯ». Учебно-методическое пособие. Минск 2010. С.В. Дорожко, Н.Ф. Макаревич.
 
-Номера заданий: 
+${languageManager.getString("chemistry06")}: 
 
 
-Контактный номер: 
+${languageManager.getString("chemistry07")}: 
 
 </textarea>
 
-				<textarea name="instructionForOrder" hidden>⬅  Напишите номер вашего варианта, либо перечень номеров нужных вам заданий.
-⬅  Укажите ваш контактный номер (если не заполнены "личные данные")
-⬆️  Нажмите кнопку "Заказать"</textarea>
+				<textarea name="instructionForOrder" hidden>⬅ ${languageManager.getString("chemistry08")}
+⬅  ${languageManager.getString("chemistry09")}
+⬆️ ${languageManager.getString("chemistry10")}</textarea>
 
 				<button id="Update" value="toOrder" name="toOrder" align="center"
-					class="btn btn-success">Перейти к заказу</button>
+					class="btn btn-success">${languageManager.getString("chemistry11")}</button>
 			</form>
 		</div>
 
 		<div align="center">
 			<h4>
 				<p>
-					<strong> Аналитическая химия.</strong>
+					<strong>${languageManager.getString("chemistry26")}</strong>
 				</p>
 			</h4>
 		</div>
 		
-		<p>Методичка: «АНАЛИТИЧЕСКАЯ ХИМИЯ». Учебно-методическое пособие. Минск 2010. С.В. Дорожко, Н.Ф. Макаревич.</p>
+		<p>${languageManager.getString("chemistry27")}: «АНАЛИТИЧЕСКАЯ ХИМИЯ». Учебно-методическое пособие. Минск 2010. С.В. Дорожко, Н.Ф. Макаревич.</p>
 		<p style="text-align: center;">
 			<a href="do?command=chemistry&tab=analitic&textbook=true"><img
 				alt="" src="pict/chemistry/analitic/met1_bntu_analit_mini.png"></a>
 		</p>
 		<p style="text-align: left;">
-			Контрольная работа состоит <strong> из 18 заданий </strong>. Номер
-			варианта и входящие в него задания определяет преподаватель.
+			${languageManager.getString("chemistry28")}
 		</p>
 		<p style="text-align: left;">
-			Цена данной контрольной работы: <span style="color: #0000ff;"><strong>30
-					бел.руб.</strong></span>
+			${languageManager.getString("chemistry29")}
 		</p>
 		<p style="text-align: left;">
-			Цена одного задания (при заказе поштучно): <span
-				style="color: #0000ff;"><strong>2 бел.руб.</strong></span>
+			${languageManager.getString("chemistry30")}
 		</p>
 		<p style="text-align: left;">
-			Пример решения:<a
+			${languageManager.getString("chemistry31")}:<a
 				href="download?fileName=material/chemistry/analit_task_4_60.pdf"
-				target="_blank" style="text-decoration: none;"> Задание 4.60</a>
+				target="_blank" style="text-decoration: none;">${languageManager.getString("chemistry32")} 4.60</a>
 		</p>
 
 	</div>
@@ -215,23 +201,45 @@
 		role="tabpanel" aria-labelledby="examChemistry-tab">
 
 		<br>
+		
+		<div align="right" style="margin-bottom: -32px;">
+			<form action="do?command=account&tab=order" method=POST>
+
+				<input name="taskForOrder" value="Экзамен по химии"	hidden>
+
+				<textarea name="noteForOrder" hidden>${languageManager.getString("chemistry33")}
+${languageManager.getString("chemistry34")} 
+
+${languageManager.getString("chemistry07")}: 
+
+</textarea>
+
+				<textarea name="instructionForOrder" hidden>⬅ ${languageManager.getString("chemistry35")}
+⬅  ${languageManager.getString("chemistry09")}
+⬆️ ${languageManager.getString("chemistry10")}</textarea>
+
+				<button id="Update" value="toOrder" name="toOrder" align="center"
+					class="btn btn-success">${languageManager.getString("chemistry11")}</button>
+			</form>
+		</div>
+		
 		<h4>
 			<p style="text-align: center;">
-				<strong> Экзамен.</strong>
+				<strong>${languageManager.getString("chemistry36")}</strong>
 			</p>
 		</h4>
-		<br>
-		<p>Даём консультации и оказываем online-помощь на экзаменах и
-			зачётах. Подробности уточняйте по телефону или viber.</p>
-		<p style="text-align: left;">
-			Цена консультации, в случае успешной сдачи экзамена (зачёта) <span
-				style="color: #0000ff;"><strong>25 бел.руб.</strong></span>
+		
+		<p>${languageManager.getString("chemistry37")}</p>
+			
+		<h5><p style="text-align: center;">${languageManager.getString("chemistry38")}</p></h5>
+		<p style="text-align: center;">
+		<span><strong>2 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>15 ${languageManager.getString("chemistry40")}</strong></span><br>
+		<span><strong>3 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>20 ${languageManager.getString("chemistry40")}</strong></span><br>
+		<span><strong>4 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>25 ${languageManager.getString("chemistry40")}</strong></span><br>
+		<span><strong>(${languageManager.getString("chemistry41")} 4) - </strong></span> <span style="color: #0000ff;"><strong>25 ${languageManager.getString("chemistry40")}</strong></span><br>
 		</p>
-
-
 	</div>
 
 </div>
-
 
 <%@ include file="../include/end-html.jsp"%>

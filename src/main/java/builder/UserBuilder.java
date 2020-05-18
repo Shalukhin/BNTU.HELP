@@ -1,5 +1,6 @@
 package builder;
 
+import entity.PersonalData;
 import entity.Role;
 import entity.Status;
 import entity.User;
@@ -35,6 +36,11 @@ public class UserBuilder {
 	
 	public UserBuilder withStatus(Status status) {
 		user.setStatus(status);
+		return this;
+	}
+	
+	public UserBuilder withPersonalData(PersonalData personalData) {
+		user.setPersonalData(personalData);
 		return this;
 	}
 	

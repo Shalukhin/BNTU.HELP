@@ -7,6 +7,9 @@ public class AttributeValueConstant {
 	
 	public static final String ACTIVE = "active";
 	
+	public static final String DATA_BASE = "db";
+	public static final String APP_RESOURCES = "resources";
+	
 	public static final String INCORRECT_LOGIN_OR_PASS = "Не корректный логин или пароль";
 	public static final String INVALID_LOGIN_OR_PASS = "Не верный логин или пароль";
 	

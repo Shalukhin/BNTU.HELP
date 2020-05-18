@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +37,16 @@ public class FinishFileDAOImpl implements FinishFileDAO {
 		}
 		int result;
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_FINISH_FILE);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_FINISH_FILE, Statement.RETURN_GENERATED_KEYS);) {
 
 			preparedStatement.setString(1, entity.getNameFinishFile());
 			preparedStatement.setBlob(2, entity.getDataFinishFile());
 			
 			result = preparedStatement.executeUpdate();
+			
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
 			LOGGER.error("Error create finish file - SQL error, e");

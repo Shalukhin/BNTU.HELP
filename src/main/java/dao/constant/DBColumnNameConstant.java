@@ -4,9 +4,16 @@ public class DBColumnNameConstant {
 	
 	public static final String ROLE_ID = "id";
 	public static final String ROLE_NAME_ROLE = "nameRole";
-	public static final String ROLE_ID_SUBJECT = "idSubject";	
+	public static final String ROLE_ID_SUBJECT = "idSubject";
 	
-	public static final String PERSONAL_DATA_ID_USER = "idUser";
+	public static final String USER_ID = "id";
+	public static final String USER_LOGIN = "login";
+	public static final String USER_PASSWORD = "password";
+	public static final String USER_ID_ROLE = "idRole";
+	public static final String USER_ID_STATUS = "idStatus";
+	public static final String USER_ID_PERSONAL_DATA = "idPersonalData";
+	
+	public static final String PERSONAL_DATA_ID = "id";
 	public static final String PERSONAL_DATA_NAME = "name";
 	public static final String PERSONAL_DATA_PHONE = "phone";
 	public static final String PERSONAL_DATA_EMAIL = "email";

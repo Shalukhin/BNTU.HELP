@@ -4,14 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.UserBuilder;
+import dao.PersonalDataDAO;
 import dao.RoleDAO;
 import dao.StatusDAO;
 import dao.UserDAO;
+import static dao.constant.DBColumnNameConstant.*;
 import entity.User;
 import exception.DAOException;
 import exception.PoolException;
@@ -24,13 +28,14 @@ public class UserDAOImpl implements UserDAO {
 	private UserBuilder userBuilder = new UserBuilder();
 	private RoleDAO roleDAO = new RoleDAOImpl();
 	private StatusDAO statusDAO = new StatusDAOImpl();
+	private PersonalDataDAO personalDataDAO = new PersonalDataDAOImpl();
 
-	private static final String SQL_REQUEST_CREATE_USER = "INSERT INTO `user` (`login`, `password`, `idRole`, `idStatus`) VALUES (?, ?, ?, ?);";
+	private static final String SQL_REQUEST_CREATE_USER = "INSERT INTO `user` (`login`, `password`, `idRole`, `idStatus`, `idPersonalData`) VALUES (?, ?, ?, ?, ?);";
 	private static final String SQL_REQUEST_FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM `user` WHERE login = ? AND password = ?;";	
 	private static final String SQL_REQUEST_FIND_USER_BY_ID = "SELECT * FROM `user` WHERE id = ?;";
 	private static final String SQL_REQUEST_FIND_ALL_USER = "SELECT * FROM `user`;";
 	private static final String SQL_REQUEST_CHECK_USER_LOGIN = "SELECT login FROM `user` WHERE login = ?;";	
-	private static final String SQL_REQUEST_UPDATE_USER = "UPDATE `user` SET `login` = ?, `password` = ?, `idRole` = ?, `idStatus` = ? WHERE id = ?;";
+	private static final String SQL_REQUEST_UPDATE_USER = "UPDATE `user` SET `login` = ?, `password` = ?, `idRole` = ?, `idStatus` = ?, `idPersonalData` = ? WHERE id = ?;";
 	private static final String SQL_REQUEST_DELETE_USER = "DELETE FROM `user` WHERE id = ?";
 
 	@Override
@@ -41,14 +46,24 @@ public class UserDAOImpl implements UserDAO {
 		}
 		int result;
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_USER);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_USER, Statement.RETURN_GENERATED_KEYS);) {
 
 			preparedStatement.setString(1, entity.getLogin());
 			preparedStatement.setString(2, entity.getPassword());
 			preparedStatement.setInt(3, entity.getRole().getId());
 			preparedStatement.setInt(4, entity.getStatus().getId());
+			
+			if (entity.getPersonalData() != null) {
+				preparedStatement.setInt(5, entity.getPersonalData().getId());
+			} else {
+				preparedStatement.setNull(5, Types.NULL);
+			}		
 
 			result = preparedStatement.executeUpdate();
+			
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
 			LOGGER.error("Error create user - SQL error, e");
@@ -62,7 +77,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("Error create user - user not create");
 		}
 				
-		return findByLoginAndPassword(entity.getLogin(), entity.getPassword());
+		return entity;
 	}
 
 	@Override
@@ -158,22 +173,29 @@ public class UserDAOImpl implements UserDAO {
 	private List<User> buildUserList(ResultSet resultSet) throws DAOException {
 		List<User> userList = new ArrayList<User>();
 		User user;
+		String idPersonalData;
 		try {
 			while (resultSet.next()) {
 
+				idPersonalData = resultSet.getString(USER_ID_PERSONAL_DATA);
+				
 				user = userBuilder
 						.createNewUser()
-						.withId(resultSet.getInt("id"))
-						.withLogin(resultSet.getString("login"))
-						.withPassword(resultSet.getString("password"))
-						.withRole(roleDAO.findById(resultSet.getInt("idRole")))
-						.withStatus(statusDAO.findById(resultSet.getInt("idStatus")))
+						.withId(resultSet.getInt(USER_ID))
+						.withLogin(resultSet.getString(USER_LOGIN))
+						.withPassword(resultSet.getString(USER_PASSWORD))
+						.withRole(roleDAO.findById(resultSet.getInt(USER_ID_ROLE)))
+						.withStatus(statusDAO.findById(resultSet.getInt(USER_ID_STATUS)))
 						.build();
+				
+				if (idPersonalData != null) {
+					user.setPersonalData(personalDataDAO.findById(Integer.valueOf(idPersonalData)));
+				}
 				
 				userList.add(user);
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			LOGGER.error("Error build user - SQL error", e);
 			throw new DAOException("Error build user - SQL error", e);
 		}
@@ -195,7 +217,14 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement.setString(2, entity.getPassword());
 			preparedStatement.setInt(3, entity.getRole().getId());
 			preparedStatement.setInt(4, entity.getStatus().getId());
-			preparedStatement.setInt(5, entity.getId());
+			
+			if (entity.getPersonalData() != null) {
+				preparedStatement.setInt(5, entity.getPersonalData().getId());
+			} else {
+				preparedStatement.setNull(5, Types.NULL);
+			}
+			
+			preparedStatement.setInt(6, entity.getId());
 
 			result = preparedStatement.executeUpdate();
 
@@ -211,7 +240,7 @@ public class UserDAOImpl implements UserDAO {
 			throw new DAOException("Error update user - user not update");
 		}
 				
-		return findById(entity.getId());
+		return entity;
 	}
 
 	@Override

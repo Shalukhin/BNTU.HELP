@@ -10,7 +10,7 @@
 </p>
 <br>
 <p style="text-align: center;">
-	<strong> Что-то пошло не так. Попробуйте позже.</strong>
+	<strong> ${languageManager.getString("erorr01")}</strong>
 </p>
 
 <%@ include file="include/end-html.jsp"%>

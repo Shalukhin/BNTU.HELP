@@ -5,7 +5,7 @@
 
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&tab=inorganic"> (назад к ценам)</a></strong></span>
+			href="do?command=chemistry&tab=inorganic">(${languageManager.getString("inorganic01")})</a></strong></span>
 </p>
 
 
@@ -17,7 +17,6 @@
 			Л.М. Слепнева, В.Н. Яглов.</strong></em>
 </p>
 
-
 <p style="text-align: center;">
 	<img alt="" src="pict/chemistry/inorganic/met1_bntu_inorg_1.jpg"
 		style="display: block; margin-left: auto; margin-right: auto;">
@@ -28,7 +27,7 @@
 </p>
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&tab=inorganic"> (назад к ценам)</a></strong></span>
+			href="do?command=chemistry&tab=inorganic"> (${languageManager.getString("inorganic01")})</a></strong></span>
 </p>
 
 <%@ include file="../include/end-html.jsp"%>

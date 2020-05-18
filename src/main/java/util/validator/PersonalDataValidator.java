@@ -13,7 +13,7 @@ public class PersonalDataValidator {
 	public static boolean validate(PersonalData personalData) {
 		if (personalData == null 
 				|| personalData.getBonusMoney() == null 
-				|| personalData.getIdUser() < 0 || personalData.getIdInvitingUser() < 0
+				|| personalData.getId() < 0 || personalData.getIdInvitingUser() < 0
 				|| personalData.getBonusMoney().doubleValue() < 0
 				|| !validateName(personalData.getName())
 				|| !validatePhone(personalData.getPhone())

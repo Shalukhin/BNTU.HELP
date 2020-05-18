@@ -193,14 +193,14 @@
 	<li class="nav-item"><a class="nav-link ${login}" id="login-tab"
 		data-toggle="tab" href="#login" role="tab" aria-controls="login"
 		aria-selected="true">
-			<h6>Войти</h6>
+			<h6>${languageManager.getString("sign01")}</h6>
 	</a></li>
 
 
 	<li class="nav-item"><a class="nav-link ${registration}"
 		id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 		aria-controls="profile" aria-selected="false">
-			<h6>Регистрация</h6>
+			<h6>${languageManager.getString("sign02")}</h6>
 	</a></li>
 
 </ul>
@@ -210,23 +210,23 @@
 	<div class="tab-pane fade show ${login}" id="login" role="tabpanel"
 		aria-labelledby="login-tab">
 
-		<p class="login-text">Авторизация на сайте</p>
+		<p class="login-text">${languageManager.getString("sign03")}</p>
 
 		<form class="form-3" action="do?command=login&tab=welcome" method="post">
 			<p class="clearfix">
-				<label for="login">Логин</label> 
-				<input type="text" name="login"	id="login" placeholder="Логин">
+				<label for="login">${languageManager.getString("sign04")}</label> 
+				<input type="text" name="login"	id="login" placeholder="${languageManager.getString('sign04')}">
 			</p>
 			<p class="clearfix">
-				<label for="password">Пароль</label> 
-				<input type="password" name="password" id="password" placeholder="Пароль">
+				<label for="password">${languageManager.getString("sign05")}</label> 
+				<input type="password" name="password" id="password" placeholder="${languageManager.getString('sign05')}">
 			</p>
 			<p class="clearfix">
 				<input type="checkbox" name="remember" id="remember"> <label
-					for="remember">Запомнить меня</label>
+					for="remember">${languageManager.getString('sign06')}</label>
 			</p>
 			<p class="clearfix">
-				<input type="submit" name="submit" value="Войти">
+				<input type="submit" name="submit" value="${languageManager.getString('sign07')}">
 			</p>
 		</form>
 
@@ -237,21 +237,21 @@
 	<div class="tab-pane fade show ${registration}" id="profile"
 		role="tabpanel" aria-labelledby="profile-tab">
 		
-		<p class="login-text">Регистрация на сайте</p>
+		<p class="login-text">${languageManager.getString('sign08')}</p>
 		
 		<form class="form-3" action="do?command=registration&tab=welcome" method="post">
 			<p class="clearfix">
-				<label for="login">Логин</label> 
-				<input type="text" name="login"	id="loginAJAX" placeholder="Логин">
+				<label for="login">${languageManager.getString("sign04")}</label> 
+				<input type="text" name="login"	id="loginAJAX" placeholder="${languageManager.getString('sign04')}">
 			</p>
 			<p class="clearfix">
-				<label for="password">Пароль</label> 
-				<input type="password" name="password" id="password" placeholder="Пароль">
+				<label for="password">${languageManager.getString("sign05")}</label> 
+				<input type="password" name="password" id="password" placeholder="${languageManager.getString('sign05')}">
 			</p>
 			<p></p>
 
 			<p class="clearfix">
-				<input type="submit" name="submit" value="Регистрация">
+				<input type="submit" name="submit" value=${languageManager.getString('sign09')}>
 			</p>
 		</form>
 		<div id="auth-info" align="center">${messageRegistration}</div>

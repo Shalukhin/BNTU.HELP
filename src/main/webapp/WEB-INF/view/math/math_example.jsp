@@ -5,7 +5,7 @@
 
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=math"> (назад)</a></strong></span>
+			href="do?command=math"> (${languageManager.getString("math20")})</a></strong></span>
 </p>
 
 <p style="text-align: center;">
@@ -14,7 +14,7 @@
 
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=math"> (назад)</a></strong></span>
+			href="do?command=math"> (${languageManager.getString("math20")})</a></strong></span>
 </p>
 
 <%@ include file="../include/end-html.jsp"%>

@@ -19,7 +19,7 @@ import util.Parser;
 
 public class OrderConfirmCommand implements Command {
 	
-	private static final Logger LOGGER = LogManager.getLogger(OrderCommand.class.getName());
+	private static final Logger LOGGER = LogManager.getLogger(OrderConfirmCommand.class.getName());
 	
 	private OrderService orderService = ServiceFactory.getInstance().getOrderService();
 
@@ -37,12 +37,15 @@ public class OrderConfirmCommand implements Command {
 		
 		try {
 			
-			if (confirmOrderIdStr != null && orderService.confirmOrder(confirmOrderIdStr, currentUser.getId())) {
+			if (confirmOrderIdStr != null && orderService.confirmOrder(confirmOrderIdStr, currentUser)) {
 				
 				List<Order> allUserOrder = orderService.takeAllUserOrders(currentUser);
-				request.getSession().setAttribute(LIST_USER_ORDER, allUserOrder);
+				request.getSession().setAttribute(LIST_USER_ORDER, allUserOrder);				
+
+				List<Order> allExecuteOrder = orderService.takeExecuteOrders(currentUser);			
+				request.getSession().setAttribute(LIST_EXECUTE_ORDER, allExecuteOrder);		
 			}			
-		}  catch (ServiceException e) {
+		} catch (ServiceException e) {
 			LOGGER.error("Error confirm order", e);
 			return PageManager.ERROR_PAGE;
 		}		

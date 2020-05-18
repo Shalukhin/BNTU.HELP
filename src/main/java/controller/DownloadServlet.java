@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.constant.PageURLConstant;
+import static command.constant.ParameterNameConstant.*;
 
 import static command.constant.AttributeNameConstant.*;
 import static command.constant.AttributeValueConstant.*;
@@ -43,18 +44,19 @@ public class DownloadServlet extends HttpServlet {
 		InputStream in = null;
 		String fileName = null;
 
-		String source = Parser.getStringParameterByName(request, "source");
+		String source = Parser.getStringParameterByName(request, DOWNLOAD_SOURCE);
 		if (source == null) {
 			source = "";
 		}
+		
 		try {
 			switch (source) {
-			case "db":
-				int id = Integer.valueOf(Parser.getStringParameterByName(request, "id"));
+			case DATA_BASE:
+				int id = Integer.valueOf(Parser.getStringParameterByName(request, DOWNLOAD_FINISH_FILE_ID));				
 				FinishFile finishFile = finishFileService.takeFinishFileById(id);
 				fileName = finishFile.getNameFinishFile();
 				in = finishFile.getDataFinishFile();
-				break;
+				break;				
 			default:
 				fileName = request.getParameter("fileName");
 				File my_file = new File(DownloadServlet.class.getClassLoader().getResource(fileName).getFile());

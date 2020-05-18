@@ -12,9 +12,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import command.CommandProvider;
 import command.PageManager;
-import command.constant.ParameterNameConstant;
+import static command.constant.ParameterNameConstant.*;
 import exception.PoolException;
 import pool.PoolConnection;
+import property.LanguageManager;
+import util.ChangerLanguage;
 import util.Parser;
 
 public class FrontControllerServlet extends HttpServlet{
@@ -35,6 +37,7 @@ public class FrontControllerServlet extends HttpServlet{
 		}
 		
 		getServletContext().setAttribute(DATE_FORMAT, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_FOR_WEB_TABLE));
+		getServletContext().setAttribute("language", LanguageManager.INSTANCE);
 		
 		super.init();
 	}	
@@ -57,13 +60,31 @@ public class FrontControllerServlet extends HttpServlet{
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		
-		PageManager page = commandProvider.getCommand(Parser.getStringParameterByName(request, ParameterNameConstant.COMMAND)).execute(request);		
+		String command = Parser.getStringParameterByName(request, COMMAND);
+		
+		if (command.equals("changelanguage")) {			
+			String lastQuery = (String) request.getSession().getAttribute(LAST_QUERY);			
+			ChangerLanguage.change(request);
+			try {
+				response.sendRedirect(lastQuery);
+			} catch (Exception e) {
+				LOGGER.error("Error request", e);
+			}
 			
-		try {
-			request.getRequestDispatcher(page.getUrl()).forward(request, response);
-		} catch (Exception e) {
-			LOGGER.error("Error request", e);
-		}
+		} else {
+			
+			request.getSession().setAttribute(LAST_QUERY, request.getRequestURI() + "?" + request.getQueryString());
+			PageManager page = commandProvider.getCommand(command).execute(request);	
+			
+			//request.getSession().setAttribute(LAST_PAGE, page.getUrl());
+			//request.getSession().setAttribute(LAST_PAGE, Parser.getStringParameterByName(request, TAB));
+			try {			
+				request.getRequestDispatcher(page.getUrl()).forward(request, response);
+			} catch (Exception e) {
+				LOGGER.error("Error request", e);
+			}
+		}		
+		
 	}	
 
 }

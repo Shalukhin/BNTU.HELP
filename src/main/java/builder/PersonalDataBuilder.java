@@ -15,8 +15,8 @@ public class PersonalDataBuilder {
 		return this;
 	}
 	
-	public PersonalDataBuilder withIdUser(int idUser) {
-		personalData.setIdUser(idUser);
+	public PersonalDataBuilder withId(int id) {
+		personalData.setId(id);
 		return this;
 	}
 	

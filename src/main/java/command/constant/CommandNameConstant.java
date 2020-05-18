@@ -2,6 +2,7 @@ package command.constant;
 
 public enum CommandNameConstant {
 	INDEX,
+	ABOUT,
 	PAY,
 	CONTACT,
 	SIGN,
@@ -12,6 +13,11 @@ public enum CommandNameConstant {
 	PERSONAL,
 	ORDER,
 	ORDERCONFIRM,
+	ORDERDELETE,
+	ORDERPROCESS,
+	ORDERPAY,
+	ORDERCOMPLETE,
+	VIEWORDER,
 	ADMINISTRATOR,
 	CHANGEUSER,
 	CHANGETASK,
@@ -19,6 +25,7 @@ public enum CommandNameConstant {
 	MATH,
 	ENGIN,
 	INFORMATIC,
+	CHANGELANGUAGE,
 	
 	TEST,
 	ERROR;

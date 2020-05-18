@@ -3,14 +3,14 @@
 
 <script>
 function confirmSubmit(i) {
-  if (confirm("Вы уверены, что хотите удалить этот заказ?")) {
+  if (confirm("${languageManager.getString('account01')}")) {
     document.getElementById("formDelOrderId"+i).submit();
   }
   return false;
 }
 </script>
 
-
+<c:set var="delIter" value="0" />
 
 
 <br>
@@ -18,26 +18,26 @@ function confirmSubmit(i) {
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 	<li class="nav-item"><a class="nav-link ${welcome}" id="acc1-tab"
 		data-toggle="tab" href="#acc1" role="tab" aria-controls="acc1"
-		aria-selected="true"><h6>Приветствуем вас</h6></a></li>
+		aria-selected="true"><h6>${languageManager.getString("account02")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${order}" id="acc2-tab"
 		data-toggle="tab" href="#acc2" role="tab" aria-controls="acc2"
-		aria-selected="false"><h6>Сделать заказ</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("account03")}</h6></a></li>
 	<li class="nav-item"><a class="nav-link ${list}" id="acc3-tab"
 		data-toggle="tab" href="#acc3" role="tab" aria-controls="acc3"
-		aria-selected="false"><h6>Заказанные вами услуги</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("account04")}</h6></a></li>
 	
 	<c:if test="${((user.getRole().getNameRole() == \"realizer\") || (user.getRole().getNameRole() == \"admin\")) && (user.getStatus().getNameStatus() != \"blocked\")}" >
 		<li class="nav-item"><a class="nav-link ${listExecute}" id="acc5-tab"
 			data-toggle="tab" href="#acc5" role="tab" aria-controls="acc5"
-			aria-selected="false"><h6>Услуги для выполнения</h6></a></li>
+			aria-selected="false"><h6>${languageManager.getString("account05")}</h6></a></li>
 		<li class="nav-item"><a class="nav-link ${listComplete}" id="acc6-tab"
 			data-toggle="tab" href="#acc6" role="tab" aria-controls="acc6"
-			aria-selected="false"><h6>Выполненные услуги</h6></a></li>		
+			aria-selected="false"><h6>${languageManager.getString("account06")}</h6></a></li>		
 	</c:if>
 		
 	<li class="nav-item"><a class="nav-link ${personal}" id="acc4-tab"
 		data-toggle="tab" href="#acc4" role="tab" aria-controls="acc4"
-		aria-selected="false"><h6>Личные данные</h6></a></li>
+		aria-selected="false"><h6>${languageManager.getString("account07")}</h6></a></li>
 </ul>
 <div class="tab-content" id="myTabContent">
 
@@ -45,20 +45,19 @@ function confirmSubmit(i) {
 		aria-labelledby="acc1-tab">
 
 		<br>
-
+		<c:set var="userName" value="${user.getLogin()}" />
+		<c:if test="${user.getPersonalData().getName() != null}" >
+			<c:set var="userName" value="${user.getPersonalData().getName()}" />
+		</c:if>
+		
 		<h4>
 			<p style="text-align: center;">
-				<strong>Приветствуем вас, уважаемый ${user.getLogin()}</strong>
+				<strong>${languageManager.getString("account08")} ${userName}</strong>
 			</p>
 		</h4>
 
-		<br> Это ваш личный кабинет. Здесь вы можете добавить или
-		изменить личные данные, заказать и оплатить нужные вам контрольные
-		работы, а так же просмотреть список всех заказанных вами работ!
-		Ознакомиться с перечнем предлагаемых услуг, посмотреть примеры
-		выполнения контрольных работ, а также узнать актуальные цены и сделать
-		заказ вы сможете в соответствующих разделах сайта: Химия Математика
-		Инженерная графика Информатика
+		<br>
+		${languageManager.getString("account09")}
 
 	</div>
 
@@ -70,7 +69,7 @@ function confirmSubmit(i) {
 
 		<h4>
 			<p style="text-align: center;">
-				<strong> Сделайте ваш заказ</strong>
+				<strong>${languageManager.getString("account10")}</strong>
 			</p>
 		</h4>
 
@@ -78,12 +77,12 @@ function confirmSubmit(i) {
 
 		<c:set var="selected" scope="request" value="" />
 		<c:set var="instruction" scope="request"
-			value="↖  Выберите дисциплину.
-⬅  Укажите методическое пособие.
-⬅  Напишите номер вашего варианта, либо перечень номеров нужных вам заданий.
-⬅  Укажите дату и время экзамена (при заказе услуги    помощи на экзамене).
-⬅  Укажите ваш контактный номер (если не заполнены \"личные данные\").
-⬆️  Нажмите кнопку \"Заказать\"" />
+			value="↖   ${languageManager.getString('account10')}
+⬅   ${languageManager.getString('account12')}
+⬅   ${languageManager.getString('account13')}
+⬅   ${languageManager.getString('account14')}
+⬅   ${languageManager.getString('account15')}
+⬆️   ${languageManager.getString('account16')}" />
 
 		<c:if test="${externalInstruction != null}">
 			<c:set var="instruction" scope="request"
@@ -94,7 +93,7 @@ function confirmSubmit(i) {
 			<div class="row">
 				<div class=col-md-5>
 					<select id="selectTask" name="orderedTask" class="form-control">
-						<option>~ Выберите услугу ~</option>
+						<option>~ ${languageManager.getString("account17")} ~</option>
 
 						<c:forEach items="${listAllTask}" var="task">
 
@@ -114,11 +113,11 @@ function confirmSubmit(i) {
 					<c:set var="block" value="" />
 					<c:if test="${user.getStatus().getNameStatus() == \"blocked\" }" >
 						<c:set var="block" value="disabled" />
-						<c:set var="messageOrder" value="<font color=&quot;#e76767&quot;><strong>Ваш аккаунт заблокирован! Вы не можете заказывать услуги!</strong></font>" />
+						<c:set var="messageOrder" value="<font color=&quot;#e76767&quot;><strong>${languageManager.getString('account18')}</strong></font>" />
 						
 					</c:if>
 					<button ${block} id="Update" value="Update" name="toOrder"
-						class="btn btn-success">Заказать</button>
+						class="btn btn-success">${languageManager.getString("account19")}</button>
 				</div>
 
 			</div>
@@ -129,7 +128,7 @@ function confirmSubmit(i) {
 						<!--  <label for="exampleFormControlTextarea1">Example textarea</label> -->
 						<textarea class="form-control" id="exampleFormControlTextarea1"
 							rows="10" name="note"
-							placeholder="Введите информацию по вашему заказу...">${externalNote}</textarea>
+							placeholder="${languageManager.getString('account20')}">${externalNote}</textarea>
 					</div>
 				</div>
 				<div class=col-md-5>
@@ -145,19 +144,17 @@ function confirmSubmit(i) {
 		<p style="text-align: center;">${messageOrder}
 			<span style="color: #0000ff;"><strong> ${jobType}</strong></span>
 		</p>
-
-
-
-
+		
 	</div>
 
 	<div class="tab-pane fade show ${list}" id="acc3" role="tabpanel"
 		aria-labelledby="acc3-tab">
-
+		<form id="formRefreshList" action="do?command=account&tab=list" method="post"></form>
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Список заказанных вами услуг</strong>
+				<strong>${languageManager.getString("account21")}</strong>&nbsp;&nbsp;
+				<button type="submit" title="${languageManager.getString('account22')}" class="btn btn-outline-dark btn-sm" form="formRefreshList">&#x21bb;</button>
 			</p>
 		</h4>
 		<br>
@@ -165,12 +162,12 @@ function confirmSubmit(i) {
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col" width="3%"></th>
-					<th scope="col" width="37%">Заказанная услуга</th>
-					<th scope="col" width="15%">Дата заказа</th>
-					<th scope="col" width="10%">Цена</th>
-					<th scope="col" width="14%">Статус заказа</th>
-					<th scope="col" width="16%">Ваши действия</th>
+					<th scope="col" width="3%"></th>					
+					<th scope="col" width="37%">${languageManager.getString("account23")}</th>
+					<th scope="col" width="15%">${languageManager.getString("account24")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account25")}</th>
+					<th scope="col" width="14%">${languageManager.getString("account26")}</th>
+					<th scope="col" width="16%">${languageManager.getString("account27")}</th>
 					<th scope="col" width="5%"> </th>
 
 				</tr>
@@ -184,10 +181,12 @@ function confirmSubmit(i) {
 						<th scope="row">${i}</th>
 						
 						<td>
-							${order.getTask().getNameTask()}&nbsp&nbsp
+							<a href="do?command=vieworder&viewOrderId=${order.getId()}&tab=list">${order.getTask().getNameTask()}</a>&nbsp&nbsp
 							<input type="checkbox" id="hd-${i}" class="hide" /> 
-							<label for="hd-${i}">(инф)</label>
-							<div>${order.getNote()}</div>
+							<label for="hd-${i}">(${languageManager.getString("account28")})</label>
+							<div>
+								${languageManager.getString("account29")}  &ndash; №${order.getId()} <br>
+								${order.getNote()}</div>
 						</td>
 						
 						<td>${order.getDateCreate().format(dateFormat)}</td>
@@ -195,33 +194,32 @@ function confirmSubmit(i) {
 						<td>
 							<c:set var="priceOrder" value="________" />
 							<c:if test="${order.isProcessed()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#747478&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#747478&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
 							<c:if test="${order.isConfirmed()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#e76767&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#e76767&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
 							<c:if test="${order.isPaid()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
+							
 							${priceOrder}
-							
-							
 						</td>
 
 						<td>
-							<c:set var="statusOrder" value="В процессе обработки" /> 
+							<c:set var="statusOrder" value="${languageManager.getString('account30')}" /> 
 							
 							<c:if test="${order.isProcessed()}">
-								<c:set var="statusOrder" value="В ожидании подтверждения" />
+								<c:set var="statusOrder" value="${languageManager.getString('account31')}" />
 							</c:if> 
 							<c:if test="${order.isConfirmed()}">
-								<c:set var="statusOrder" value="В ожидании оплаты" />
+								<c:set var="statusOrder" value="${languageManager.getString('account32')}" />
 							</c:if> 
 							<c:if test="${order.isPaid()}">
-								<c:set var="statusOrder" value="В процессе выполнения" />
+								<c:set var="statusOrder" value="${languageManager.getString('account33')}" />
 							</c:if> 
 							<c:if test="${order.isCompleted()}">
-								<c:set var="statusOrder" value="Выполнен" />
+								<c:set var="statusOrder" value="${languageManager.getString('account34')}" />
 							</c:if> 
 							
 							${statusOrder}							
@@ -233,37 +231,37 @@ function confirmSubmit(i) {
 						
 						<td ${colspan}>
 						<c:set var="colspan" value="" />
-						<c:set var="actionUser" value="<font size=&quot;2&quot;>Ожидайте, исполнитель уточняет цену заказа</font>" /> 
+						<c:set var="actionUser" value="<font size=&quot;2&quot;>${languageManager.getString('account35')}</font>" /> 
 							
 							<c:if test="${order.isProcessed()}">
 								<form id="formConfirmOrderId${order.getId()}" action="do?command=orderconfirm&tab=list" method="post">
 									<input name="confirmOrderId" value="${order.getId()}" hidden>									
 								</form>
-								<c:set var="actionUser" value="<button title=&quot;Подтвердить заказ&quot; 
+								<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account36')}&quot; 
 										class=&quot;btn btn-outline-info btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formConfirmOrderId${order.getId()}&quot;>Подтвердить заказ</button>" />
+										type=&quot;submit&quot; form=&quot;formConfirmOrderId${order.getId()}&quot;>${languageManager.getString('account36')}</button>" />
 							</c:if> 
 							
 							<c:if test="${order.isConfirmed()}">
-								<form id="formPayOrderId${order.getId()}" action="do?command=test" method="post">
-									<input name="payOrderId" value="${order.getId()}" hidden>									
+								<form id="formGoPayOrderId${order.getId()}" action="do?command=test" method="post">
+									<input name="goPayOrderId" value="${order.getId()}" hidden>									
 								</form>
-								<c:set var="actionUser" value="<button title=&quot;Оплатить заказ&quot; 
+								<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account37')}&quot; 
 										class=&quot;btn btn-outline-success btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formPayOrderId${order.getId()}&quot;>Оплатить заказ</button>" />
+										type=&quot;submit&quot; form=&quot;formGoPayOrderId${order.getId()}&quot;>${languageManager.getString('account37')}</button>" />
 							</c:if>
 							
 							<c:if test="${order.isPaid()}">
-								<c:set var="actionUser" value="<font size=&quot;2&quot;>Ожидайте, исполнитель работает над вашим заказом</font>" />
+								<c:set var="actionUser" value="<font size=&quot;2&quot;>${languageManager.getString('account38')}</font>" />
 							</c:if> 
 							
 							<c:if test="${order.isCompleted()}">
-								<form id="formDownloadOrderId${order.getId()}" action="do?command=test" method="post">
-									<input name="downloadOrderId" value="${order.getId()}" hidden>									
+								<form id="formDownloadFinishFileId${order.getId()}" action="download?source=db" method="post">
+									<input name="downloadFinishFileId" value="${order.getFinishFile().getId()}" hidden>									
 								</form>
-								<c:set var="actionUser" value="<button title=&quot;Скачать выполненный заказ&quot; 
+								<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account39')}&quot; 
 										class=&quot;btn btn-success btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formDownloadOrderId${order.getId()}&quot;>Скачать выполненный заказ</button>" />
+										type=&quot;submit&quot; form=&quot;formDownloadFinishFileId${order.getId()}&quot;>${languageManager.getString('account39')}</button>" />
 							</c:if> 
 							
 							${actionUser}							
@@ -273,11 +271,11 @@ function confirmSubmit(i) {
 						
 							<td valign="middle">
 								<c:if test="${!order.isPaid()}" >
-									<form id="formDelOrderId${order.getId()}" action="do?command=test&tab=list" method="post">
+									<form id="formDelOrderId${delIter}" action="do?command=orderdelete&tab=list" method="post">
 										<input name="delOrderId" value="${order.getId()}" hidden>
 									</form>
-									<button type="button" title="Удалить заказ" class="btn btn-outline-danger btn-sm" style="margin-top: 10px;" 
-											onclick="confirmSubmit(${order.getId()})">del</button>						
+									<button type="button" title="${languageManager.getString('account40')}" class="btn btn-outline-danger btn-sm" style="margin-top: 10px;" 
+											onclick="confirmSubmit(${delIter})">&nbsp;X&nbsp;</button>						
 								</c:if>
 							</td>
 						
@@ -285,7 +283,8 @@ function confirmSubmit(i) {
 						
 					</tr>
 
-					<c:set var="i" value="${i+1}" />
+					<c:set var="i" value="${i + 1}" />
+					<c:set var="delIter" value="${delIter + 1}" />
 
 				</c:forEach>
 
@@ -302,11 +301,12 @@ function confirmSubmit(i) {
 	
 	<div class="tab-pane fade show ${listExecute}" id="acc5" role="tabpanel"
 		aria-labelledby="acc5-tab">
-
+		<form id="formRefreshListExecute" action="do?command=account&tab=listExecute" method="post"></form>										
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Список услуг для выполнения</strong>
+				<strong>${languageManager.getString("account41")}</strong>&nbsp;&nbsp;
+				<button type="submit" title="${languageManager.getString('account42')}" class="btn btn-outline-dark btn-sm" form="formRefreshListExecute">&#x21bb;</button>
 			</p>
 		</h4>
 		<br>
@@ -315,12 +315,12 @@ function confirmSubmit(i) {
 			<thead>
 				<tr>
 					<th scope="col" width="3%"></th>
-					<th scope="col" width="36%">Заказанная услуга</th>
-					<th scope="col" width="10%">Заказчик</th>
-					<th scope="col" width="11%">Дата заказа</th>
-					<th scope="col" width="8%">Цена</th>
-					<th scope="col" width="12%">Статус заказа</th>
-					<th scope="col" width="16%">Ваши действия</th>
+					<th scope="col" width="35%">${languageManager.getString("account43")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account44")}</th>
+					<th scope="col" width="11%">${languageManager.getString("account45")}</th>
+					<th scope="col" width="9%">${languageManager.getString("account46")}</th>
+					<th scope="col" width="12%">${languageManager.getString("account47")}</th>
+					<th scope="col" width="16%">${languageManager.getString("account48")}</th>
 					<th scope="col" width="4%"> </th>
 
 				</tr>
@@ -334,10 +334,13 @@ function confirmSubmit(i) {
 						<th scope="row">${j}</th>
 						
 						<td>
-							${order.getTask().getNameTask()}&nbsp&nbsp
+							<a href="do?command=vieworder&viewOrderId=${order.getId()}&tab=listExecute">${order.getTask().getNameTask()}</a>&nbsp&nbsp							
 							<input type="checkbox" id="hdExecute-${j}" class="hide" /> 
-							<label for="hdExecute-${j}">(инф)</label>
-							<div>${order.getNote()}</div>
+							<label for="hdExecute-${j}">(${languageManager.getString("account49")})</label>							
+							<div>
+								${languageManager.getString("account29")}  &ndash; №${order.getId()} <br>
+								${order.getNote()}
+							</div>
 						</td>
 						
 						<td>
@@ -348,35 +351,38 @@ function confirmSubmit(i) {
 
 						<td>
 							
-							<c:set var="priceOrder" value="<input size=&quot;3&quot; name=&quot;processAdjustedPriceTask&quot; value=&quot;${order.getAdjustedPriceTask()}&quot;>" />
+							<c:set var="priceOrder" value="						
+								<form id=&quot;formProcessOrderId${order.getId()}&quot; action=&quot;do?command=orderprocess&tab=listExecute&quot; method=&quot;post&quot;>
+									<input name=&quot;processOrderId&quot; value=&quot;${order.getId()}&quot; hidden>
+									<input size=&quot;3&quot; name=&quot;processAdjustedPriceTask&quot; value=&quot;${order.getAdjustedPriceTask()}&quot;>
+								</form>							
+							" />
 							
 							<c:if test="${order.isProcessed()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#747478&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#747478&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
 							<c:if test="${order.isConfirmed()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#e76767&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#e76767&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
 							<c:if test="${order.isPaid()}" >
-								<c:set var="priceOrder" value="<font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} р.</strong></font>" />
+								<c:set var="priceOrder" value="<font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} ${languageManager.getString('account50')}</strong></font>" />
 							</c:if>
 							
-							<form id="formProcessOrderId${order.getId()}" action="do?command=test&tab=listExecute" method="post">
-								${priceOrder}
-							</form>
+							${priceOrder}							
 							
 						</td>
 
 						<td>
-							<c:set var="statusOrder" value="В процессе обработки" /> 
+							<c:set var="statusOrder" value="${languageManager.getString('account51')}" /> 
 							
 							<c:if test="${order.isProcessed()}">
-								<c:set var="statusOrder" value="В ожидании подтверждения" />
+								<c:set var="statusOrder" value="${languageManager.getString('account52')}" />
 							</c:if> 
 							<c:if test="${order.isConfirmed()}">
-								<c:set var="statusOrder" value="В ожидании оплаты" />
+								<c:set var="statusOrder" value="${languageManager.getString('account53')}" />
 							</c:if> 
 							<c:if test="${order.isPaid()}">
-								<c:set var="statusOrder" value="В процессе выполнения" />
+								<c:set var="statusOrder" value="${languageManager.getString('account54')}" />
 							</c:if> 							
 							
 							${statusOrder}							
@@ -389,32 +395,34 @@ function confirmSubmit(i) {
 						
 						<td ${colspan}>
 						<c:set var="colspan" value="" />
-						<c:set var="actionUser" value="<button title=&quot;Подтвердить цену&quot; 
+						<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account55')}&quot; 
 										class=&quot;btn btn-outline-info btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formProcessOrderId${order.getId()}&quot;>Подтвердить цену</button>" /> 
+										type=&quot;submit&quot; form=&quot;formProcessOrderId${order.getId()}&quot;>${languageManager.getString('account55')}</button>" /> 
 							
 							<c:if test="${order.isProcessed()}">
-								<c:set var="actionUser" value="<font size=&quot;2&quot;>Ожидайте подтверждения заказа </font>" /> 
+								<c:set var="actionUser" value="<font size=&quot;2&quot;>${languageManager.getString('account56')}</font>" /> 
 							</c:if> 
 							
 							<c:if test="${order.isConfirmed()}">
-								<form id="formPaidOrderId${order.getId()}" action="do?command=test" method="post">
-									<input name="paidOrderId" value="${order.getId()}" hidden>									
+								<form id="formPayOrderId${order.getId()}" action="do?command=orderpay&tab=listExecute" method="post">
+									<input name="payOrderId" value="${order.getId()}" hidden>									
 								</form>
-								<c:set var="actionUser" value="<button title=&quot;Подтвердить оплату&quot; 
+								<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account57')}&quot; 
 										class=&quot;btn btn-outline-success btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formPaidOrderId${order.getId()}&quot;>Подтвердить оплату</button>" />
+										type=&quot;submit&quot; form=&quot;formPayOrderId${order.getId()}&quot;>${languageManager.getString('account57')}</button>" />
 							</c:if>
 							
 							<c:if test="${order.isPaid()}">							
 							
 								<c:set var="actionUser" value="
 									<div class=&quot;custom-file mb-3&quot;>
-    									<form action=&quot;do?command=test&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;>
+    									<form id=&quot;formDownOrderId${order.getId()}&quot; action=&quot;do?command=ordercomplete&tab=listComplete&completeOrderId=${order.getId()}&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot;>
+    										
       										<input type=&quot;file&quot; class=&quot;custom-file-input&quot; id=&quot;customFile&quot; name=&quot;filename&quot;>
-      										<label class=&quot;custom-file-label&quot; for=&quot;customFile&quot;>Choose file</label>
-      										<input type=&quot;submit&quot; name=&quot;Submit&quot; class=&quot;btn btn btn-outline-primary btn-sm&quot;>
+      										<label class=&quot;custom-file-label&quot; for=&quot;customFile&quot;>${languageManager.getString('account58')}</label>
+      									<!--  	<input type=&quot;submit&quot; name=&quot;Submit&quot; class=&quot;btn btn btn-outline-primary btn-sm&quot;>  -->
      									</form>
+     									<button class=&quot;btn btn btn-outline-primary btn-sm&quot; type=&quot;submit&quot; form=&quot;formDownOrderId${order.getId()}&quot;>${languageManager.getString('account59')}</button>
     								</div>				
 								" />
 								
@@ -435,11 +443,11 @@ function confirmSubmit(i) {
 						
 							<td valign="middle">
 								<c:if test="${!order.isPaid()}" >
-									<form id="formDelOrderId${order.getId()}" action="do?command=test&tab=listExecute" method="post">
+									<form id="formDelOrderId${delIter}" action="do?command=orderdelete&tab=listExecute" method="post">
 										<input name="delOrderId" value="${order.getId()}" hidden>
 									</form>
 									<button type="button" title="Удалить заказ" class="btn btn-outline-danger btn-sm" style="margin-top: 10px;" 
-											onclick="confirmSubmit(${order.getId()})">del</button>						
+											onclick="confirmSubmit(${delIter})">&nbsp;X&nbsp;</button>						
 								</c:if>
 							</td>
 						
@@ -448,6 +456,8 @@ function confirmSubmit(i) {
 					</tr>
 
 					<c:set var="j" value="${j+1}" />
+					
+					<c:set var="delIter" value="${delIter + 1}" />
 
 				</c:forEach>
 
@@ -459,11 +469,12 @@ function confirmSubmit(i) {
 	
 	<div class="tab-pane fade show ${listComplete}" id="acc6" role="tabpanel"
 		aria-labelledby="acc6-tab">
-
+		<form id="formRefreshListComplete" action="do?command=account&tab=listComplete" method="post"></form>
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Список выполнененых заказов</strong>
+				<strong>${languageManager.getString("account60")}</strong>&nbsp;&nbsp;
+				<button type="submit" title="${languageManager.getString('account61')}" class="btn btn-outline-dark btn-sm" form="formRefreshListComplete">&#x21bb;</button>
 			</p>
 		</h4>
 		<br>
@@ -472,13 +483,13 @@ function confirmSubmit(i) {
 			<thead>
 				<tr>
 					<th scope="col" width="3%"></th>
-					<th scope="col" width="40%">Заказанная услуга</th>
-					<th scope="col" width="10%">Заказчик</th>
-					<th scope="col" width="10%">Исполнитель</th>
-					<th scope="col" width="10%">Заказан</th>
-					<th scope="col" width="10%">Выполнен</th>
-					<th scope="col" width="8%">Цена</th>					
-					<th scope="col" width="9%">Скачать</th>
+					<th scope="col" width="40%">${languageManager.getString("account62")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account63")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account64")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account65")}</th>
+					<th scope="col" width="10%">${languageManager.getString("account66")}</th>
+					<th scope="col" width="9%">${languageManager.getString("account67")}</th>					
+					<th scope="col" width="8%">${languageManager.getString("account68")}</th>
 					
 
 				</tr>
@@ -492,10 +503,13 @@ function confirmSubmit(i) {
 						<th scope="row">${k}</th>
 						
 						<td>
-							${order.getTask().getNameTask()}&nbsp&nbsp
+							<a href="do?command=vieworder&viewOrderId=${order.getId()}&tab=listComplete">${order.getTask().getNameTask()}</a>&nbsp&nbsp
 							<input type="checkbox" id="hdComplete-${k}" class="hide" /> 
-							<label for="hdComplete-${j}">(инф)</label>
-							<div>${order.getNote()}</div>
+							<label for="hdComplete-${k}">(${languageManager.getString("account69")})</label>
+							<div>
+								${languageManager.getString("account29")} &ndash; №${order.getId()} <br>
+								${order.getNote()}
+							</div>
 						</td>
 						
 						<td>
@@ -510,15 +524,15 @@ function confirmSubmit(i) {
 						
 						<td>${order.getDateComplete().format(dateFormat)}</td>
 
-						<td><font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} р.</strong></font></td>					
+						<td><font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} ${languageManager.getString("account50")}</strong></font></td>					
 						
 						<td>
-							<form id="formDownloadOrderId${order.getId()}" action="do?command=test" method="post">
-								<input name="downloadOrderId" value="${order.getId()}" hidden>									
+							<form id="formDownloadFinishFileId${order.getId()}" action="download?source=db" method="post">
+								<input name="downloadFinishFileId" value="${order.getFinishFile().getId()}" hidden>									
 							</form>
 								
-							<button title="Скачать выполненный заказ" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 0px" 
-										type="submit" form="formDownloadOrderId${order.getId()}">Скачать</button>	
+							<button title="${languageManager.getString('account70')}" class="btn btn-success btn-sm" style="margin-top: 10px; margin-left: 0px" 
+										type="submit" form="formDownloadFinishFileId${order.getId()}">${languageManager.getString("account71")}</button>	
 						</td>		
 						
 					</tr>
@@ -543,7 +557,7 @@ function confirmSubmit(i) {
 		<br>
 		<h4>
 			<p style="text-align: center;">
-				<strong> Личные данные</strong>
+				<strong>${languageManager.getString("account72")}</strong>
 			</p>
 		</h4>
 
@@ -554,37 +568,37 @@ function confirmSubmit(i) {
 				method="post">
 
 				<div class="form-group">
-					<label for="name">Ваше имя:</label> <input class="form-control"
-						id="name" placeholder="Введите ваше имя" name="name"
-						value="${personalData.getName()}">
+					<label for="name">${languageManager.getString("account73")}</label> 
+					<input class="form-control" id="name" placeholder="${languageManager.getString('account74')}" name="name"
+						value="${user.getPersonalData().getName()}">
 					<!--<small class="form-text text-muted">
 					We'll never	share your email with anyone else.
 				</small>  -->
 				</div>
 
 				<div class="form-group">
-					<label for="name">Ваш номер телефона:</label> <input
+					<label for="name">${languageManager.getString("account75")}</label> <input
 						class="form-control" id="phone" placeholder="+375XXXXXXXXX"
-						name="phone" value="${personalData.getPhone()}">
+						name="phone" value="${user.getPersonalData().getPhone()}">
 					<!--<small class="form-text text-muted">
 					We'll never	share your email with anyone else.
 				</small>  -->
 				</div>
 
 				<div class="form-group">
-					<label for="exampleInputEmail1">Адрес электронной почты:</label> <input
+					<label for="exampleInputEmail1">${languageManager.getString("account76")}</label> <input
 						type="email" class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Enter email"
-						name="email" value="${personalData.getEmail()}">
+						aria-describedby="emailHelp" placeholder="${languageManager.getString('account77')}"
+						name="email" value="${user.getPersonalData().getEmail()}">
 					<!--	<small id="emailHelp" class="form-text text-muted">We'll never
 					share your email with anyone else.</small>  -->
 				</div>
 
 				<div class="form-group">
-					<label for="name">Бонусные деньги:</label> <input
+					<label for="name">${languageManager.getString("account78")}</label> <input
 						class="form-control" readonly="readonly" id="money" name="money"
 						placeholder="0.00"
-						value="${personalData.getBonusMoney().toString()}">
+						value="${user.getPersonalData().getBonusMoney().toString()}">
 					<!--<small class="form-text text-muted">
 					We'll never	share your email with anyone else.
 				</small>  -->
@@ -601,13 +615,11 @@ function confirmSubmit(i) {
 					out</label>
 			</div>  -->
 				<button type="submit" class="btn btn-primary" name="submit"
-					value="save">Сохранить</button>
+					value="save">${languageManager.getString("account79")}</button>
 			</form>
 			<p style="text-align: center;">${messagePersonal}</p>
 		</div>
-
-
-
+		
 	</div>
 </div>
 

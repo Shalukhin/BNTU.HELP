@@ -7,13 +7,11 @@ import builder.UserBuilder;
 import command.Command;
 import command.PageManager;
 import entity.Order;
-import entity.PersonalData;
 import entity.Task;
 import entity.User;
 import exception.ServiceException;
 import factory.ServiceFactory;
 import service.OrderService;
-import service.PersonalDataService;
 import service.TaskService;
 import service.UserService;
 import util.Parser;
@@ -27,10 +25,6 @@ public class LoginCommand implements Command {
 
 	private final static Logger LOGGER = LogManager.getLogger(LoginCommand.class.getName());
 	
-	
-	
-	
-	private PersonalDataService personalDataService = ServiceFactory.getInstance().getPersonalDataService();
 	private TaskService taskService = ServiceFactory.getInstance().getTaskService();
 	private OrderService orderService = ServiceFactory.getInstance().getOrderService();
 	private UserService userService = ServiceFactory.getInstance().getUserService();
@@ -61,13 +55,8 @@ public class LoginCommand implements Command {
 		}
 		request.getSession().setAttribute(USER, userFromDB);
 		
-		PersonalData personalData = null;
-		try {
-			personalData = personalDataService.takeUserPersonalData(userFromDB.getId());
-		} catch (ServiceException e) {
-			LOGGER.error("Error take user personal data", e);
-		}
-		request.getSession().setAttribute(PERSONAL_DATA, personalData);
+		
+//		request.getSession().setAttribute(PERSONAL_DATA, userFromDB.getPersonalData());
 		
 		List<Task> allTask = new ArrayList<>();
 		try {

@@ -1,6 +1,7 @@
 package service.impl;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.FinishFileBuilder;
@@ -32,6 +33,10 @@ private static final Logger LOGGER = LogManager.getLogger(FinishFileServiceImpl.
 	@Override
 	public FinishFile addNewFinishFile(String nameFinishFile, FileItem item) throws ServiceException {	
 		
+		if (StringUtils.isBlank(item.getName()) || item.getSize() == 0) {
+			return null;
+		}
+
 		try {
 			
 			FinishFile finishFile = finishFileBuilder
@@ -40,6 +45,7 @@ private static final Logger LOGGER = LogManager.getLogger(FinishFileServiceImpl.
 					.withDataFinishFile(item.getInputStream())
 					.build();
 			
+			System.out.println(finishFile);
 			return finishFileDAO.create(finishFile);
 			
 		} catch (Exception e) {

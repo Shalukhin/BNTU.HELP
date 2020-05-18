@@ -5,8 +5,7 @@
 
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&tab=analitic"> (назад к
-				ценам)</a></strong></span>
+			href="do?command=chemistry&tab=analitic"> (${languageManager.getString("analitic01")})</a></strong></span>
 </p>
 
 
@@ -26,8 +25,7 @@
 </p>
 <p style="text-align: center;">
 	<span style="color: #0000ff;"><strong><a
-			href="do?command=chemistry&tab=analitic"> (назад к
-				ценам)</a></strong></span>
+			href="do?command=chemistry&tab=analitic"> (${languageManager.getString("analitic01")})</a></strong></span>
 </p>
 
 <%@ include file="../include/end-html.jsp"%>

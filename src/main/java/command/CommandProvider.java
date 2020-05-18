@@ -9,7 +9,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import command.constant.CommandNameConstant;
+import command.impl.AboutCommand;
 import command.impl.AccountCommand;
+import command.impl.ChangeLanguageCommand;
 import command.impl.ChemistryCommand;
 import command.impl.ContactCommand;
 import command.impl.EnginCommand;
@@ -20,12 +22,17 @@ import command.impl.LoginCommand;
 import command.impl.LogoutCommand;
 import command.impl.MathCommand;
 import command.impl.OrderConfirmCommand;
+import command.impl.OrderDeleteCommand;
+import command.impl.OrderPayCommand;
+import command.impl.OrderProcessCommand;
 import command.impl.OrderCommand;
+import command.impl.OrderCompleteCommand;
 import command.impl.PayCommand;
 import command.impl.PersonalDataCommand;
 import command.impl.RegistrationCommand;
 import command.impl.SignCommand;
 import command.impl.TestCommand;
+import command.impl.ViewOrderCommand;
 import command.impl.administrator.AdministratorCommand;
 import command.impl.administrator.ChangeTaskCommand;
 import command.impl.administrator.ChangeUserCommand;
@@ -38,6 +45,7 @@ public class CommandProvider {
 	
 	public CommandProvider() {
 		repository.put(INDEX, new IndexCommand());
+		repository.put(ABOUT, new AboutCommand());
 		repository.put(CONTACT, new ContactCommand());
 		repository.put(PAY, new PayCommand());
 		repository.put(SIGN, new SignCommand());
@@ -51,10 +59,16 @@ public class CommandProvider {
 		repository.put(PERSONAL, new PersonalDataCommand());
 		repository.put(ORDER, new OrderCommand());
 		repository.put(ORDERCONFIRM, new OrderConfirmCommand());
+		repository.put(ORDERDELETE, new OrderDeleteCommand());
+		repository.put(ORDERPROCESS, new OrderProcessCommand());
+		repository.put(ORDERPAY, new OrderPayCommand());
+		repository.put(ORDERCOMPLETE, new OrderCompleteCommand());
+		repository.put(VIEWORDER, new ViewOrderCommand());
 		repository.put(CHEMISTRY, new ChemistryCommand());
 		repository.put(MATH, new MathCommand());
 		repository.put(ENGIN, new EnginCommand());
 		repository.put(INFORMATIC, new InformaticCommand());
+		repository.put(CHANGELANGUAGE, new ChangeLanguageCommand());
 		
 		repository.put(TEST, new TestCommand());
 		repository.put(ERROR, new ErrorCommand());

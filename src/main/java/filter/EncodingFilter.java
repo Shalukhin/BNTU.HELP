@@ -11,14 +11,10 @@ import javax.servlet.ServletResponse;
 public class EncodingFilter implements Filter {
 	
 	String encoding;
-   
-    public EncodingFilter() {
-    }
     
     public void init(FilterConfig fConfig) throws ServletException {
 		encoding = fConfig.getInitParameter("encoding");
 	}
-
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
@@ -32,9 +28,11 @@ public class EncodingFilter implements Filter {
 		}		
 		
 		chain.doFilter(request, response);
-	}	
-	
-	public void destroy() {
 	}
 
+	@Override
+	public void destroy() {
+		
+	}		
+	
 }

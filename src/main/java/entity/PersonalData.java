@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class PersonalData {
 	
-	private int idUser;
+	private int id;
 	private String name;
 	private String phone;
 	private String email;
@@ -15,12 +15,12 @@ public class PersonalData {
 		super();
 	}
 
-	public int getIdUser() {
-		return idUser;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -69,8 +69,8 @@ public class PersonalData {
 		int result = 1;
 		result = prime * result + ((bonusMoney == null) ? 0 : bonusMoney.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + id;
 		result = prime * result + idInvitingUser;
-		result = prime * result + idUser;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
@@ -95,9 +95,9 @@ public class PersonalData {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (idInvitingUser != other.idInvitingUser)
+		if (id != other.id)
 			return false;
-		if (idUser != other.idUser)
+		if (idInvitingUser != other.idInvitingUser)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -114,8 +114,8 @@ public class PersonalData {
 
 	@Override
 	public String toString() {
-		return "PersonalData [idUser=" + idUser + ", name=" + name + ", phone=" + phone + ", email=" + email
-				+ ", bonusMoney=" + bonusMoney + ", idInvitingUser=" + idInvitingUser + "]";
-	}	
+		return "PersonalData [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", bonusMoney="
+				+ bonusMoney + ", idInvitingUser=" + idInvitingUser + "]";
+	}
 	
 }

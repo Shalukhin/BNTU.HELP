@@ -35,10 +35,10 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String REQUEST_FIND_ALL_COMPLETE_ORDER_BY_SUBJECT_NAME_BY_ID_USER = "SELECT * FROM `order` JOIN `task` ON order.idTask = task.id"
 			+ " JOIN `subject` ON task.idSubject = subject.id WHERE isCompleted AND nameSubject = ? AND idRealizer = ?;";
 	private static final String SQL_REQUEST_FIND_ALL_ORDER_BY_ID_USER = "SELECT * FROM `order` WHERE idUser = ?;";
-	private static final String SQL_REQUEST_UPDATE_ORDER = "UPDATE `order` SET `idUser` = ?, `idTask` = ?, `note` = ?, `adjustedPriceTask` = ?, "
+	private static final String SQL_REQUEST_UPDATE_ORDER = "UPDATE `order` SET `idUser` = ?, `idTask` = ?, `idRealizer` = ?, `note` = ?, `adjustedPriceTask` = ?, "
 			+ "`priceOrder` = ?, `isProcessed` = ?, `isConfirmed` = ?, `isPaid` = ?, `isCompleted` = ?, `dateCreate` = ?, `dateProcess` = ?, "
-			+ "`dateConfirm` = ?, `datePay` = ?, `dateComplete` = ? WHERE id = ?;";
-	private static final String SQL_REQUEST_DELETE_ORDER_BY_ID = "DELETE FROM `user` WHERE id = ?";
+			+ "`dateConfirm` = ?, `datePay` = ?, `dateComplete` = ?, `idFinishFile` = ? WHERE id = ?;";
+	private static final String SQL_REQUEST_DELETE_ORDER_BY_ID = "DELETE FROM `order` WHERE id = ?";
 	
 	private OrderBuilder orderBuilder = new OrderBuilder();
 	private UserDAO userDAO = new UserDAOImpl();
@@ -236,7 +236,7 @@ public class OrderDAOImpl implements OrderDAO{
 	private List<Order> buildOrderList(ResultSet resultSet) throws DAOException {
 		List<Order> orderList = new ArrayList<>();
 		Order order;
-		String realizer;
+		String realizerIdStr;
 		String dateOrderProcess;
 		String dateOrderConfirm;
 		String dateOrderPay;
@@ -245,7 +245,7 @@ public class OrderDAOImpl implements OrderDAO{
 		try {
 			while (resultSet.next()) {				
 
-				realizer = resultSet.getString(DBColumnNameConstant.ORDER_ID_REALIZER);
+				realizerIdStr = resultSet.getString(DBColumnNameConstant.ORDER_ID_REALIZER);
 				dateOrderProcess = resultSet.getString(DBColumnNameConstant.ORDER_DATE_PROCESS);
 				dateOrderConfirm = resultSet.getString(DBColumnNameConstant.ORDER_DATE_CONFIRM);
 				dateOrderPay = resultSet.getString(DBColumnNameConstant.ORDER_DATE_PAY);
@@ -267,8 +267,8 @@ public class OrderDAOImpl implements OrderDAO{
 						.withDateCreate(LocalDateTime.parse(resultSet.getString(DBColumnNameConstant.ORDER_DATE_CREATE).replace(" ", "T")))
 						.build();
 
-				if (realizer != null) {
-					order.setRealizer(userDAO.findById(Integer.valueOf(realizer)));
+				if (realizerIdStr != null) {
+					order.setRealizer(userDAO.findById(Integer.valueOf(realizerIdStr)));
 				}
 								
 				if (dateOrderProcess != null) {
@@ -303,7 +303,7 @@ public class OrderDAOImpl implements OrderDAO{
 
 	@Override
 	public Order update(Order entity) throws DAOException {
-		
+
 		if (entity == null) {
 			LOGGER.error("Error update order - order null");
 			throw new DAOException("Error update order - order null");
@@ -314,40 +314,47 @@ public class OrderDAOImpl implements OrderDAO{
 
 			preparedStatement.setInt(1, entity.getUser().getId());
 			preparedStatement.setInt(2, entity.getTask().getId());
-			preparedStatement.setString(3, entity.getNote());
-			preparedStatement.setBigDecimal(4, entity.getAdjustedPriceTask());
-			preparedStatement.setBigDecimal(5, entity.getPriceOrder());
-			preparedStatement.setBoolean(6, entity.isProcessed());
-			preparedStatement.setBoolean(7, entity.isConfirmed());
-			preparedStatement.setBoolean(8, entity.isPaid());
-			preparedStatement.setBoolean(9, entity.isCompleted());
-			preparedStatement.setString(10, entity.getDateCreate().toString().replace('T', ' '));			
+			preparedStatement.setInt(3, entity.getRealizer().getId());
+			preparedStatement.setString(4, entity.getNote());
+			preparedStatement.setBigDecimal(5, entity.getAdjustedPriceTask());
+			preparedStatement.setBigDecimal(6, entity.getPriceOrder());
+			preparedStatement.setBoolean(7, entity.isProcessed());
+			preparedStatement.setBoolean(8, entity.isConfirmed());
+			preparedStatement.setBoolean(9, entity.isPaid());
+			preparedStatement.setBoolean(10, entity.isCompleted());
+			preparedStatement.setString(11, entity.getDateCreate().toString().replace('T', ' '));			
 			
 			if (entity.getDateProcess() != null) {
-				preparedStatement.setString(11, entity.getDateProcess().toString().replace('T', ' '));
-			} else {
-				preparedStatement.setNull(11, Types.NULL);
-			}
-			
-			if (entity.getDateConfirm() != null) {
-				preparedStatement.setString(12, entity.getDateConfirm().toString().replace('T', ' '));
+				preparedStatement.setString(12, entity.getDateProcess().toString().replace('T', ' '));
 			} else {
 				preparedStatement.setNull(12, Types.NULL);
 			}
 			
-			if (entity.getDatePay() != null) {
-				preparedStatement.setString(13, entity.getDatePay().toString().replace('T', ' '));
-			}else {
+			if (entity.getDateConfirm() != null) {
+				preparedStatement.setString(13, entity.getDateConfirm().toString().replace('T', ' '));
+			} else {
 				preparedStatement.setNull(13, Types.NULL);
 			}
 			
-			if (entity.getDateComplete() != null) {
-				preparedStatement.setString(14, entity.getDateComplete().toString().replace('T', ' '));
+			if (entity.getDatePay() != null) {
+				preparedStatement.setString(14, entity.getDatePay().toString().replace('T', ' '));
 			}else {
 				preparedStatement.setNull(14, Types.NULL);
 			}
 			
-			preparedStatement.setInt(15, entity.getId());
+			if (entity.getDateComplete() != null) {
+				preparedStatement.setString(15, entity.getDateComplete().toString().replace('T', ' '));
+			}else {
+				preparedStatement.setNull(15, Types.NULL);
+			}
+			
+			if (entity.getFinishFile() != null) {
+				preparedStatement.setInt(16, entity.getFinishFile().getId());
+			}else {
+				preparedStatement.setNull(16, Types.NULL);
+			}
+			
+			preparedStatement.setInt(17, entity.getId());
 
 			result = preparedStatement.executeUpdate();
 

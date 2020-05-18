@@ -87,14 +87,21 @@ h1 {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-1">
-				<a href="view/index.html"> <img
+				<a href="do?command=index"> <img
 					style="display: block; margin-left: auto; margin-right: auto;"
 					src="pict/logo.gif" alt="">
 				</a>
 			</div>
-			<div class="col-md-11" style="text-align: center;">
-				<h1>Контрольные работы и помощь для студентов БНТУ</h1>
+			<div class="col-md-10" style="text-align: center;">
+			<!--  	<h1>Контрольные работы и помощь для студентов БНТУ</h1> -->
+			<h1>${languageManager.getString("begin01")}<font color="red" face="cursive">.HELP</font> &#8212; ${languageManager.getString("begin02")}</h1>
 			</div>
+	<!--  	<div>
+				<a href="do?command=chemistry&tab=inorganic"> <img
+					style="display: block; margin-left: auto; margin-right: auto;"
+					src="pict/logo2.png" alt="">
+				</a>
+			</div>  -->
 		</div>
 		<br>
 
@@ -106,19 +113,19 @@ h1 {
 				
 					<li class="nav-item "><a
 						class="nav-link ${chemistryMenuPosition}"
-						href="do?command=chemistry&tab=inorganic">Химия</a></li>
+						href="do?command=chemistry&tab=inorganic">${languageManager.getString("begin03")}</a></li>
 
 					<li class="nav-item"><a 
 						class="nav-link ${mathMenuPosition}"
-						href="do?command=math">Математика</a></li>
+						href="do?command=math">${languageManager.getString("begin04")}</a></li>
 
 					<li class="nav-item"><a 
 					class="nav-link ${enginMenuPosition}"
-						href="do?command=engin">Инженерная графика</a></li>
+						href="do?command=engin">${languageManager.getString("begin05")}</a></li>
 
 					<li class="nav-item"><a 
 					class="nav-link ${informaticMenuPosition}"
-						href="do?command=informatic">Информатика</a></li>
+						href="do?command=informatic">${languageManager.getString("begin06")}</a></li>
 
 					<!--<li class="nav-item">
                 	<a class="nav-link" href="#">Link</a>
@@ -136,7 +143,7 @@ h1 {
 
 					<c:if test="${user == null}">
 						<li class="nav-item"><a class="nav-link ${signMenuPosition}"
-							href="do?command=sign&tab=login">Вход</a></li>
+							href="do?command=sign&tab=login">${languageManager.getString("begin07")}</a></li>
 					</c:if>
 
 					<c:if test="${user != null}">
@@ -145,19 +152,31 @@ h1 {
 						
 						<c:if test="${user.getRole().getNameRole() == \"admin\"}" >
 							<li class="nav-item"><a class="nav-link ${adminMenuPosition}"
-							href="do?command=administrator&tab=allUser">Управление</a></li>						
+							href="do?command=administrator&tab=allUser">${languageManager.getString("begin08")}</a></li>						
 						</c:if>	
 							
 						<li class="nav-item"><a class="nav-link"
-							href="do?command=logout">Выход</a></li>
+							href="do?command=logout">${languageManager.getString("begin09")}</a></li>
 					</c:if>
 
 					<li class="nav-item"><a class="nav-link ${payMenuPosition}"
-						href="do?command=pay">Оплата</a></li>
+						href="do?command=pay">${languageManager.getString("begin10")}</a></li>
 					<li class="nav-item"><a
-						class="nav-link ${contactMenuPosition}" href="do?command=contact">Контакты</a></li>
-					<li class="nav-item"><a class="nav-link ${indexMenuPosition}"
-						href="do?command=index">О нас</a></li>
+						class="nav-link ${contactMenuPosition}" href="do?command=contact">${languageManager.getString("begin11")}</a></li>
+					<li class="nav-item"><a class="nav-link ${aboutMenuPosition}"
+						href="do?command=about">${languageManager.getString("begin12")}</a></li>
+					
+					<c:if test="${language.getCurrentLanguage() == \"ru\" }" >
+						<li class="nav-item"><a class="nav-link"
+						href="do?command=changelanguage">En</a></li>
+					</c:if>
+					
+					<c:if test="${language.getCurrentLanguage() == \"en\" }" >
+						<li class="nav-item"><a class="nav-link"
+						href="do?command=changelanguage">Ru</a></li>
+					</c:if> 
+					
+					
 				</ul>
 			</div>
 		</nav>
