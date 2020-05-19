@@ -2,7 +2,7 @@ package command.constant;
 
 public class ParameterNameConstant {
 	
-	public static final String COMMAND = "command";
+	public static final String COMMAND_PARAMETER = "command";
 	
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
@@ -46,7 +46,6 @@ public class ParameterNameConstant {
 	public static final String CHANGE_NAME_TASK = "changeNameTask";
 	public static final String CHANGE_PRICE_TASK = "changePriceTask";
 	public static final String CHANGE_COURSE_TASK = "changeCourseTask";
-	public static final String CHANGE_SUBJECT_TASK = "changeSubjectTask";	
-
+	public static final String CHANGE_SUBJECT_TASK = "changeSubjectTask";
 
 }

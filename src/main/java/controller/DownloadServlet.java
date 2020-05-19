@@ -14,9 +14,10 @@ import command.constant.PageURLConstant;
 import static command.constant.ParameterNameConstant.*;
 
 import static command.constant.AttributeNameConstant.*;
-import static command.constant.AttributeValueConstant.*;
+import static command.constant.ValueConstant.*;
 import entity.FinishFile;
 import factory.ServiceFactory;
+import property.LanguageManager;
 import service.FinishFileService;
 import util.Parser;
 
@@ -79,7 +80,7 @@ public class DownloadServlet extends HttpServlet {
 			out.flush();
 			
 		} catch (Exception e) {
-			request.setAttribute(ERROR, ERROR_FILE_NOT_FOUND);
+			request.setAttribute(ERROR, LanguageManager.INSTANCE.getString(ERROR_FILE_NOT_FOUND));
 			request.getRequestDispatcher(PageURLConstant.ERROR_PAGE_URL).forward(request, response);
 		}		
 	}

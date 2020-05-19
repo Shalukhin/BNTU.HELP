@@ -231,6 +231,7 @@
 		</form>
 
 		<p style="text-align: center;">${messageLogin}</p>
+		<c:set var="messageLogin" scope="session" value="${null}" />
 
 	</div>
 
@@ -255,6 +256,7 @@
 			</p>
 		</form>
 		<div id="auth-info" align="center">${messageRegistration}</div>
+		<c:set var="messageRegistration" scope="session" value="${null}" />
 		
 		
 	</div>

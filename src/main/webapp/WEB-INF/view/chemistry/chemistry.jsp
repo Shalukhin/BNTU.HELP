@@ -24,7 +24,7 @@
 		<br>
 
 		<div align="right" style="margin-bottom: -32px;">
-			<form action="do?command=account&tab=order" method=POST>
+			<form action="do?command=prepareorder&tab=order" method=POST>
 
 				<input name="taskForOrder" value="Контрольная работа по общей химии" hidden>
 
@@ -84,7 +84,7 @@ ${languageManager.getString("chemistry07")}:
 
 		<br>
 		<div align="right" style="margin-bottom: -32px;">
-			<form action="do?command=account&tab=order" method=POST>
+			<form action="do?command=prepareorder&tab=order" method=POST>
 
 				<input name="taskForOrder" value="Контрольная работа по органической химии"
 					hidden>
@@ -144,7 +144,7 @@ ${languageManager.getString("chemistry07")}:
 		<br>
 		
 		<div align="right" style="margin-bottom: -32px;">
-			<form action="do?command=account&tab=order" method=POST>
+			<form action="do?command=prepareorder&tab=order" method=POST>
 
 				<input name="taskForOrder" value="Контрольная работа по аналитической химии"
 					hidden>
@@ -203,7 +203,7 @@ ${languageManager.getString("chemistry07")}:
 		<br>
 		
 		<div align="right" style="margin-bottom: -32px;">
-			<form action="do?command=account&tab=order" method=POST>
+			<form action="do?command=prepareorder&tab=order" method=POST>
 
 				<input name="taskForOrder" value="Экзамен по химии"	hidden>
 

@@ -31,17 +31,16 @@ public class AttributeNameConstant {
 	public static final String CHEMISTRY_MAIN_MENU_POSITION = "chemistryMenuPosition";	
 	public static final String MATH_MAIN_MENU_POSITION = "mathMenuPosition";
 	public static final String ENGIN_MAIN_MENU_POSITION = "enginMenuPosition";
-	public static final String INFORMATIC_MAIN_MENU_POSITION = "informaticMenuPosition";
-	
-	public static final String LOGIN_TAB_POSITION = "login";
-	public static final String REGISTRATION_TAB_POSITION = "registration";
-	public static final String WELCOME_TAB_POSITION = "welcome";
+	public static final String INFORMATIC_MAIN_MENU_POSITION = "informaticMenuPosition";	
 	
 	public static final String MESSAGE_LOGIN = "messageLogin";
 	public static final String MESSAGE_REGISTRATION = "messageRegistration";
 	public static final String MESSAGE_PERSONAL = "messagePersonal";
 	public static final String MESSAGE_ORDER = "messageOrder";
 	public static final String MESSAGE_ORDER_JOB_TYPE_ORDERED = "jobType";
+	public static final String MESSAGE_ORDER_LIST = "messageOrderList";
+	public static final String MESSAGE_ORDER_EXECUTE = "messageOrderExecute";
+	public static final String MESSAGE_ORDER_COMPLETE = "messageOrderComplete";
 	public static final String MESSAGE_ADMIN_USER_LIST = "messageAdminUserList";
 	public static final String MESSAGE_ADMIN_TASK_LIST = "messageAdminTaskList";
 	
@@ -57,10 +56,5 @@ public class AttributeNameConstant {
 	public static final String INPUT_PRICE_TASK = "inputPriceTask";
 	public static final String INPUT_COURSE_TASK = "inputCourseTask";
 	public static final String INPUT_SUBJECT_TASK = "inputSubjectTask";
-	
-	
-	
-	
-	
 
 }

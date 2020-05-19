@@ -3,7 +3,6 @@ package service.impl;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import builder.PersonalDataBuilder;
 import builder.UserBuilder;
 import dao.PersonalDataDAO;
@@ -47,7 +46,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User loginUser(User user) throws ServiceException {
+	public User loginUser(String login, String password) throws ServiceException {
+		
+		User user = userBuilder
+						.createNewUser()
+						.withLogin(login)
+						.withPassword(password)
+						.build();
+		
 		if (!UserValidator.validateByLoginAndPassword(user)) {
 			return null;
 		}
@@ -189,6 +195,16 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			LOGGER.error("Error delete user", e);
 			throw new ServiceException("Error delete user", e);
+		}
+	}
+
+	@Override
+	public User refreshUser(int id) throws ServiceException {
+		try {
+			return userDAO.findById(id);
+		} catch (DAOException e) {
+			LOGGER.error("Error refresh user", e);
+			throw new ServiceException("Error refresh user", e);
 		}
 	}
 

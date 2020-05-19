@@ -21,12 +21,7 @@ public class PageURLConstant {
 	public static final String ENGIN_EXAMPLE_PAGE_URL = "pict/engin/engin_example?.jpg";
 	public static final String INFORMATIC_PAGE_URL = "WEB-INF/view/informatic/informatic.jsp";
 	public static final String INFORMATIC_EXAMPLE_PAGE_URL = "WEB-INF/view/informatic/informatic_example.jsp";
-	public static final String INFORMATIC_TEXTBOOK_PAGE_URL = "pict/informatic/informatic_textbook.pdf";
-	public static final String LANGUAGE_PAGE_URL = "WEB-INF/view/index.jsp";
-	
+	public static final String INFORMATIC_TEXTBOOK_PAGE_URL = "pict/informatic/informatic_textbook.pdf";	
 	public static final String TEST_PAGE_URL = "WEB-INF/view/test.jsp";
 	
-	
-	
-
 }

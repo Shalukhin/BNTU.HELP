@@ -85,8 +85,8 @@ function confirmSubmit(i) {
 ⬆️   ${languageManager.getString('account16')}" />
 
 		<c:if test="${externalInstruction != null}">
-			<c:set var="instruction" scope="request"
-				value="${externalInstruction}" />
+			<c:set var="instruction" scope="request" value="${externalInstruction}" />
+			<c:set var="externalInstruction" scope="session" value="${null}" />
 		</c:if>
 
 		<form action="do?command=order&tab=order" method=POST>
@@ -106,6 +106,7 @@ function confirmSubmit(i) {
 							<c:set var="selected" scope="request" value="" />
 						</c:forEach>
 					</select>
+					<c:set var="externalFirstOption" scope="session" value="${null}" />
 				</div>
 
 
@@ -129,6 +130,7 @@ function confirmSubmit(i) {
 						<textarea class="form-control" id="exampleFormControlTextarea1"
 							rows="10" name="note"
 							placeholder="${languageManager.getString('account20')}">${externalNote}</textarea>
+						<c:set var="externalNote" scope="session" value="${null}" />
 					</div>
 				</div>
 				<div class=col-md-5>
@@ -144,6 +146,8 @@ function confirmSubmit(i) {
 		<p style="text-align: center;">${messageOrder}
 			<span style="color: #0000ff;"><strong> ${jobType}</strong></span>
 		</p>
+		<c:set var="messageOrder" scope="session" value="${null}" />
+		<c:set var="jobType" scope="session" value="${null}" />
 		
 	</div>
 
@@ -157,7 +161,11 @@ function confirmSubmit(i) {
 				<button type="submit" title="${languageManager.getString('account22')}" class="btn btn-outline-dark btn-sm" form="formRefreshList">&#x21bb;</button>
 			</p>
 		</h4>
-		<br>
+		
+		<p style="text-align: center;">
+			<font color="#CD5C5C"><strong>${messageOrderList}</strong></font>
+			<c:set var="messageOrderList" scope="session" value="${null}" />
+		</p>
 
 		<table class="table table-striped">
 			<thead>
@@ -309,7 +317,11 @@ function confirmSubmit(i) {
 				<button type="submit" title="${languageManager.getString('account42')}" class="btn btn-outline-dark btn-sm" form="formRefreshListExecute">&#x21bb;</button>
 			</p>
 		</h4>
-		<br>
+		
+		<p style="text-align: center;">
+			<font color="#CD5C5C"><strong>${messageOrderExecute}</strong></font>
+			<c:set var="messageOrderExecute" scope="session" value="${null}" />
+		</p>
 
 		<table class="table table-striped">
 			<thead>
@@ -477,7 +489,11 @@ function confirmSubmit(i) {
 				<button type="submit" title="${languageManager.getString('account61')}" class="btn btn-outline-dark btn-sm" form="formRefreshListComplete">&#x21bb;</button>
 			</p>
 		</h4>
-		<br>
+		
+		<p style="text-align: center;">
+			<font color="#CD5C5C"><strong>${messageOrderComplete}</strong></font>
+			<c:set var="messageOrderComplete" scope="session" value="${null}" />
+		</p>
 
 		<table class="table table-striped">
 			<thead>
@@ -618,6 +634,7 @@ function confirmSubmit(i) {
 					value="save">${languageManager.getString("account79")}</button>
 			</form>
 			<p style="text-align: center;">${messagePersonal}</p>
+			<c:set var="messagePersonal" scope="session" value="${null}" />
 		</div>
 		
 	</div>

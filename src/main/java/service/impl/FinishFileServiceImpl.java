@@ -43,9 +43,8 @@ private static final Logger LOGGER = LogManager.getLogger(FinishFileServiceImpl.
 					.createNewFinishFile()
 					.withNameFinishFile(nameFinishFile)
 					.withDataFinishFile(item.getInputStream())
-					.build();
+					.build();			
 			
-			System.out.println(finishFile);
 			return finishFileDAO.create(finishFile);
 			
 		} catch (Exception e) {

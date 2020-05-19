@@ -32,6 +32,7 @@
 		
 		<p style="text-align: center;">
 			<font color="#CD5C5C"><strong>${messageAdminUserList}</strong></font>
+			<c:set var="messageAdminUserList" scope="session" value="${null}" />
 		</p>
 		
 		<table class="table table-bordered" >
@@ -143,6 +144,7 @@
 
 		<p style="text-align: center;">
 			<font color="#CD5C5C"><strong>${messageAdminTaskList}</strong></font>
+			<c:set var="messageAdminTaskList" scope="session" value="${null}" />
 		</p>
 		
 		<table class="table table-bordered" >
@@ -200,6 +202,11 @@
 							</td>						
 						
 						</form>
+						
+						<c:set var="inputNameTask" scope="session" value="${null}" />
+						<c:set var="inputPriceTask" scope="session" value="${null}" />
+						<c:set var="inputCourseTask" scope="session" value="${null}" />
+						<c:set var="inputSubjectTask" scope="session" value="${null}" />			
 						
 						<td colspan="2">
 							<button title="Добавить услугу" class="btn btn-success" style="margin-top: 0px;" type="submit" 
@@ -292,8 +299,6 @@
 			</tbody>
 		</table>
 
-
-
 	</div>
 <!--  
 	<div class="tab-pane fade show ${allOrder}" id="adm3" role="tabpanel"
@@ -306,15 +311,7 @@
 			</p>
 		</h4>
 		<br>
-		
-		
-
-
-
-
 	</div>
-
-
 
 	<div class="tab-pane fade show ${reset}" id="adm4" role="tabpanel"
 		aria-labelledby="adm4-tab">
@@ -326,9 +323,6 @@
 		</h4>
 
 		<br>
-
-
-
 	</div>
 				-->
 </div>

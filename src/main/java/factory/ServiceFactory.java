@@ -3,7 +3,6 @@ package factory;
 import service.CourseService;
 import service.FinishFileService;
 import service.OrderService;
-import service.PersonalDataService;
 import service.RoleService;
 import service.StatusService;
 import service.SubjectService;
@@ -12,7 +11,6 @@ import service.UserService;
 import service.impl.CourseServiceImpl;
 import service.impl.FinishFileServiceImpl;
 import service.impl.OrderServiceImpl;
-import service.impl.PersonalDataServiceImpl;
 import service.impl.RoleServiceImpl;
 import service.impl.StatusServiceImpl;
 import service.impl.SubjectServiceImpl;
@@ -25,8 +23,7 @@ public class ServiceFactory {
 	
 	private UserService userService = new UserServiceImpl();
 	private RoleService roleService = new RoleServiceImpl();
-	private StatusService statusService = new StatusServiceImpl();
-	private PersonalDataService personalDataService = new PersonalDataServiceImpl();
+	private StatusService statusService = new StatusServiceImpl();	
 	private TaskService taskService = new TaskServiceImpl();
 	private OrderService orderService = new OrderServiceImpl();
 	private SubjectService subjectService = new SubjectServiceImpl();
@@ -52,11 +49,7 @@ public class ServiceFactory {
 	
 	public StatusService getStatusService() {
 		return statusService;
-	}
-	
-	public PersonalDataService getPersonalDataService() {
-		return personalDataService;
-	}
+	}	
 	
 	public TaskService getTaskService() {
 		return taskService;

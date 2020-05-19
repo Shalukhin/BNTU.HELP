@@ -36,6 +36,12 @@
 
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css'>
+	
+<script>
+function ChangerLanguageGUI() {
+	document.getElementById("lang").submit();	
+}
+</script>
 
 <style type="text/css">
 h1 {
@@ -165,17 +171,16 @@ h1 {
 						class="nav-link ${contactMenuPosition}" href="do?command=contact">${languageManager.getString("begin11")}</a></li>
 					<li class="nav-item"><a class="nav-link ${aboutMenuPosition}"
 						href="do?command=about">${languageManager.getString("begin12")}</a></li>
-					
-					<c:if test="${language.getCurrentLanguage() == \"ru\" }" >
-						<li class="nav-item"><a class="nav-link"
-						href="do?command=changelanguage">En</a></li>
+						
+					<form id="lang" method="post" action="do?command=changelanguage"></form>
+
+					<c:if test="${languageManager.getCurrentLanguage() == \"ru\" }" >
+						<li class="nav-item"> <a onclick="ChangerLanguageGUI()" class="nav-link" href="#">En</a></li>
 					</c:if>
 					
-					<c:if test="${language.getCurrentLanguage() == \"en\" }" >
-						<li class="nav-item"><a class="nav-link"
-						href="do?command=changelanguage">Ru</a></li>
-					</c:if> 
-					
+					<c:if test="${languageManager.getCurrentLanguage() == \"en\" }" >
+						<li class="nav-item"> <a onclick="ChangerLanguageGUI()" class="nav-link" href="#">Ru</a></li>
+					</c:if> 					
 					
 				</ul>
 			</div>
