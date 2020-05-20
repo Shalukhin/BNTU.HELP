@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.CourseBuilder;
 import dao.CourseDAO;
+import static dao.constant.DBColumnNameConstant.*;
 import entity.Course;
 import exception.DAOException;
 import exception.PoolException;
@@ -27,7 +28,6 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public Course create(Course entity) throws DAOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -108,8 +108,8 @@ public class CourseDAOImpl implements CourseDAO {
 			while (resultSet.next()) {
 				course = courseBuilder
 							.createNewCourse()
-							.withId(resultSet.getInt("id"))
-							.withNumberCourse(resultSet.getInt("numberCourse"))
+							.withId(resultSet.getInt(COURSE_ID))
+							.withNumberCourse(resultSet.getInt(COURSE_NUMBER))
 							.build();
 
 				courseList.add(course);

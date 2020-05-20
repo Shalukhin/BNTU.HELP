@@ -17,8 +17,8 @@ import exception.DAOException;
 import exception.ServiceException;
 import factory.DAOFactory;
 import service.UserService;
-import util.validator.PersonalDataValidator;
-import util.validator.UserValidator;
+import validator.PersonalDataValidator;
+import validator.UserValidator;
 
 public class UserServiceImpl implements UserService {
 
@@ -127,9 +127,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User editUser(String idUserStr, String loginUserStr, String passwordUserStr, String nameRoleStr,
-			String nameStatusStr) throws ServiceException {
-
-		User modifiedUser = buildUser(loginUserStr, passwordUserStr, nameRoleStr, nameStatusStr);
+			String nameStatusStr, String idPersonalDataStr) throws ServiceException {
+	
+		User modifiedUser = buildUser(loginUserStr, passwordUserStr, nameRoleStr, nameStatusStr, idPersonalDataStr);
 
 		if (!UserValidator.validate(modifiedUser)) {
 			LOGGER.error("Error update user - invalid user");
@@ -146,7 +146,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	private User buildUser(String loginUserStr, String passwordUserStr, String RoleStr, String nameStatusStr) {
+	private User buildUser(String loginUserStr, String passwordUserStr, String RoleStr, String nameStatusStr, String idPersonalDataStr) {
 
 		Role role = null;
 		String[] roleParameter = RoleStr.trim().split(" ");
@@ -170,8 +170,18 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
-		User user = userBuilder.createNewUser().withLogin(loginUserStr).withPassword(passwordUserStr).withRole(role)
-				.withStatus(status).build();
+		User user = userBuilder
+				.createNewUser()
+				.withLogin(loginUserStr)
+				.withPassword(passwordUserStr)
+				.withRole(role)
+				.withStatus(status)				
+				.build();
+		try {
+			user.setPersonalData(personalDataDAO.findById(Integer.valueOf(idPersonalDataStr)));			
+		} catch (Exception e) {
+			LOGGER.error("Error build user - personal data user not found", e);			
+		}
 
 		return user;
 	}

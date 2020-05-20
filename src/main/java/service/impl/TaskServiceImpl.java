@@ -17,7 +17,7 @@ import exception.DAOException;
 import exception.ServiceException;
 import factory.DAOFactory;
 import service.TaskService;
-import util.validator.TaskValidator;
+import validator.TaskValidator;
 
 public class TaskServiceImpl implements TaskService {
 	

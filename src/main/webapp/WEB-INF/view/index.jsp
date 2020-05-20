@@ -10,5 +10,4 @@
 	<img src="pict/main/${mainPict}" class="img-fluid" alt="Responsive image">
 </div>
 
-
 <%@ include file="include/end-html.jsp" %>

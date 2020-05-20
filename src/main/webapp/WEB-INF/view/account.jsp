@@ -11,10 +11,7 @@ function confirmSubmit(i) {
 </script>
 
 <c:set var="delIter" value="0" />
-
-
 <br>
-
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 	<li class="nav-item"><a class="nav-link ${welcome}" id="acc1-tab"
 		data-toggle="tab" href="#acc1" role="tab" aria-controls="acc1"
@@ -57,7 +54,14 @@ function confirmSubmit(i) {
 		</h4>
 
 		<br>
-		${languageManager.getString("account09")}
+		<font size="5" face="Constantia">&emsp;&emsp;${languageManager.getString("account09")}</font><br>
+		<font size="5" face="Segoe Print">
+		&emsp;&#9658;&nbsp;<a href="do?command=chemistry&tab=inorganic">${languageManager.getString("begin03")}</a><br>
+		&emsp;&#9658;&nbsp;<a href="do?command=math">${languageManager.getString("begin04")}</a><br>
+		&emsp;&#9658;&nbsp;<a href="do?command=engin">${languageManager.getString("begin05")}</a><br>
+		&emsp;&#9658;&nbsp;<a href="do?command=informatic">${languageManager.getString("begin06")}</a>
+		</font>
+	<!-- 		 -->
 
 	</div>
 
@@ -197,7 +201,7 @@ function confirmSubmit(i) {
 								${order.getNote()}</div>
 						</td>
 						
-						<td>${order.getDateCreate().format(dateFormat)}</td>
+						<td><ctg:date-time value="${order.getDateCreate()}" /></td>
 
 						<td>
 							<c:set var="priceOrder" value="________" />
@@ -359,7 +363,7 @@ function confirmSubmit(i) {
 							${order.getUser().getLogin()}							
 						</td>
 						
-						<td>${order.getDateCreate().format(dateFormat)}</td>
+						<td><ctg:date-time value="${order.getDateCreate()}" /></td>
 
 						<td>
 							
@@ -536,9 +540,9 @@ function confirmSubmit(i) {
 							${order.getRealizer().getLogin()}							
 						</td>
 						
-						<td>${order.getDateCreate().format(dateFormat)}</td>
+						<td><ctg:date-time value="${order.getDateCreate()}" /></td>
 						
-						<td>${order.getDateComplete().format(dateFormat)}</td>
+						<td><ctg:date-time value="${order.getDateComplete()}" /></td>
 
 						<td><font color=&quot;#40853d&quot;><strong>${order.getPriceOrder()} ${languageManager.getString("account50")}</strong></font></td>					
 						

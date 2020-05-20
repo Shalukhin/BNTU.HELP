@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import exception.PoolException;
-import util.validator.CommonValidator;
+import validator.PoolValidator;
 
 public enum PoolConnection {
 
@@ -124,7 +124,7 @@ public enum PoolConnection {
 			LOGGER.error("Error DB properties file", e);
 			throw new PoolException("Error DB properties file", e);
 		}
-		if (!CommonValidator.isValidPropertyDB(dbInfo)) {
+		if (!PoolValidator.isValidPropertyDB(dbInfo)) {
 			LOGGER.error("Error content DB properties file");
 			throw new PoolException("Error content DB properties file");
 		}
@@ -138,7 +138,7 @@ public enum PoolConnection {
 			LOGGER.error("Error pool properties file");
 			throw new PoolException("Error pool properties file", e);
 		}
-		if (!CommonValidator.isValidPropertyPool(poolInfo)) {
+		if (!PoolValidator.isValidPropertyPool(poolInfo)) {
 			LOGGER.error("Error content pool properties file");
 			throw new PoolException("Error content pool properties file");
 		}

@@ -6,6 +6,10 @@ public class DBColumnNameConstant {
 	public static final String ROLE_NAME_ROLE = "nameRole";
 	public static final String ROLE_ID_SUBJECT = "idSubject";
 	
+	public static final String STATUS_ID = "id";
+	public static final String STATUS_NAME = "nameStatus";
+	public static final String STATUS_RATIO_PAY = "ratioPay";	
+	
 	public static final String USER_ID = "id";
 	public static final String USER_LOGIN = "login";
 	public static final String USER_PASSWORD = "password";
@@ -25,6 +29,12 @@ public class DBColumnNameConstant {
 	public static final String TASK_PRICE_TASK = "priceTask";
 	public static final String TASK_ID_COURSE = "idCourse";
 	public static final String TASK_ID_SUBJECT = "idSubject";
+	
+	public static final String COURSE_ID = "id";
+	public static final String COURSE_NUMBER = "numberCourse";
+	
+	public static final String SUBJECT_ID = "id";
+	public static final String SUBJECT_NAME = "nameSubject";	
 	
 	public static final String ORDER_ID = "id";
 	public static final String ORDER_ID_USER = "idUser";

@@ -6,6 +6,7 @@ public class ParameterNameConstant {
 	
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
+	public static final String REMEMBER = "remember";
 	
 	public static final String NAME = "name";
 	public static final String PHONE = "phone";
@@ -41,6 +42,7 @@ public class ParameterNameConstant {
 	public static final String CHANGE_PASSWORD_USER = "changePasswordUser";
 	public static final String CHANGE_ROLE_USER = "changeRoleUser";
 	public static final String CHANGE_STATUS_USER = "changeStatusUser";
+	public static final String CHANGE_PERSONAL_DATA_USER = "changePersonalDataUser";
 	
 	public static final String CHANGE_ID_TASK = "changeIdTask";
 	public static final String CHANGE_NAME_TASK = "changeNameTask";

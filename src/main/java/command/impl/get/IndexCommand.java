@@ -15,7 +15,8 @@ public class IndexCommand implements CommandGET{
 		Object bundle = request.getSession().getAttribute(LANGUAGE_MANAGER);
 		if (bundle == null) {
 			request.getSession().setAttribute(LANGUAGE_MANAGER, LanguageManager.INSTANCE);
-		}
+		}		
+		
 		request.setAttribute(INDEX_MAIN_MENU_POSITION, ACTIVE);		//for indicate main menu current item
 		return PageManager.INDEX_PAGE;
 	}

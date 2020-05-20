@@ -9,6 +9,8 @@ import static command.constant.QueryURLConstant.SIGN_QUERY_URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import command.CommandPOST;
@@ -32,7 +34,7 @@ public class ChangeUserCommand implements CommandPOST {
 	private UserService userService = ServiceFactory.getInstance().getUserService();
 
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		if (request.getSession().getAttribute(USER) == null) {			
 			return new URLManager(SIGN_QUERY_URL).addParameterURL(TAB, LOGIN_TAB_POSITION);
@@ -48,6 +50,7 @@ public class ChangeUserCommand implements CommandPOST {
 		String passwordUserFromGUI = Parser.getStringParameterByName(request, CHANGE_PASSWORD_USER);
 		String RoleFromGUI = Parser.getStringParameterByName(request, CHANGE_ROLE_USER);
 		String nameStatusFromGUI = Parser.getStringParameterByName(request, CHANGE_STATUS_USER);
+		String idPersonalDataFromGUI = Parser.getStringParameterByName(request, CHANGE_PERSONAL_DATA_USER);
 		
 		String action = Parser.getStringParameterByName(request, ACTION);
 		try {
@@ -55,7 +58,7 @@ public class ChangeUserCommand implements CommandPOST {
 			switch (action) {
 			case EDIT :	
 				
-				if(userService.editUser(idUserFromGUI, loginUserFromGUI, passwordUserFromGUI, RoleFromGUI, nameStatusFromGUI) != null) {
+				if(userService.editUser(idUserFromGUI, loginUserFromGUI, passwordUserFromGUI, RoleFromGUI, nameStatusFromGUI, idPersonalDataFromGUI) != null) {
 					request.getSession().setAttribute(MESSAGE_ADMIN_USER_LIST, LanguageManager.INSTANCE.getString(USER_UPDATE) + LocalDateTime.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_FOR_MESSAGE)));
 				} else {
 					request.getSession().setAttribute(MESSAGE_ADMIN_USER_LIST, LanguageManager.INSTANCE.getString(USER_NOT_UPDATE_DATA_NOT_CORRECT));

@@ -8,6 +8,8 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -34,7 +36,7 @@ public class OrderCompleteCommand implements CommandPOST {
 	private static final String REALIZER_ROLE = "realizer";
 
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		if (request.getSession().getAttribute(USER) == null) {			
 			return new URLManager(SIGN_QUERY_URL).addParameterURL(TAB, LOGIN_TAB_POSITION);

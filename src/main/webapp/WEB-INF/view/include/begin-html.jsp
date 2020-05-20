@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="ctg" uri="/WEB-INF/tld/custom.tld" %>
 <%@ page language="java" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -39,7 +40,13 @@
 	
 <script>
 function ChangerLanguageGUI() {
-	document.getElementById("lang").submit();	
+	document.getElementById("formLanguage").submit();	
+}
+</script>
+
+<script>
+function LogoutGUI() {
+	document.getElementById("formLogout").submit();	
 }
 </script>
 
@@ -100,7 +107,7 @@ h1 {
 			</div>
 			<div class="col-md-10" style="text-align: center;">
 			<!--  	<h1>Контрольные работы и помощь для студентов БНТУ</h1> -->
-			<h1>${languageManager.getString("begin01")}<font color="red" face="cursive">.HELP</font> &#8212; ${languageManager.getString("begin02")}</h1>
+			<h1><strong>${languageManager.getString("begin01")}</strong><font color="red" face="cursive">.HELP</font> &#8212; <font face="Segoe Print"><strong>${languageManager.getString("begin02")}</strong></font></h1>
 			</div>
 	<!--  	<div>
 				<a href="do?command=chemistry&tab=inorganic"> <img
@@ -160,9 +167,11 @@ h1 {
 							<li class="nav-item"><a class="nav-link ${adminMenuPosition}"
 							href="do?command=administrator&tab=allUser">${languageManager.getString("begin08")}</a></li>						
 						</c:if>	
+						
+						<form id="formLogout" method="post" action="do?command=logout"></form>
 							
 						<li class="nav-item"><a class="nav-link"
-							href="do?command=logout">${languageManager.getString("begin09")}</a></li>
+							href="#" onclick="LogoutGUI()">${languageManager.getString("begin09")}</a></li>
 					</c:if>
 
 					<li class="nav-item"><a class="nav-link ${payMenuPosition}"
@@ -172,7 +181,7 @@ h1 {
 					<li class="nav-item"><a class="nav-link ${aboutMenuPosition}"
 						href="do?command=about">${languageManager.getString("begin12")}</a></li>
 						
-					<form id="lang" method="post" action="do?command=changelanguage"></form>
+					<form id="formLanguage" method="post" action="do?command=changelanguage"></form>
 
 					<c:if test="${languageManager.getCurrentLanguage() == \"ru\" }" >
 						<li class="nav-item"> <a onclick="ChangerLanguageGUI()" class="nav-link" href="#">En</a></li>

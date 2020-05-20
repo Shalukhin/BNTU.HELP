@@ -15,12 +15,12 @@ import command.impl.get.EnginCommand;
 import command.impl.get.ErrorCommand;
 import command.impl.get.IndexCommand;
 import command.impl.get.InformaticCommand;
-import command.impl.get.LogoutCommand;
 import command.impl.get.MathCommand;
 import command.impl.get.PayCommand;
 import command.impl.get.SignCommand;
 import command.impl.get.TestCommand;
 import command.impl.get.ViewOrderCommand;
+import command.impl.post.LogoutCommand;
 
 public class CommandGETProvider {
 	
@@ -34,8 +34,7 @@ public class CommandGETProvider {
 		repository.put(ABOUT, new AboutCommand());
 		repository.put(CONTACT, new ContactCommand());
 		repository.put(PAY, new PayCommand());
-		repository.put(SIGN, new SignCommand());	
-		repository.put(LOGOUT, new LogoutCommand());
+		repository.put(SIGN, new SignCommand());		
 		repository.put(ACCOUNT, new AccountCommand());
 		repository.put(VIEWORDER, new ViewOrderCommand());
 		repository.put(CHEMISTRY, new ChemistryCommand());

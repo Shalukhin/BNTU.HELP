@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.SubjectBuilder;
 import dao.SubjectDAO;
+import static dao.constant.DBColumnNameConstant.*;
 import entity.Subject;
 import exception.DAOException;
 import exception.PoolException;
@@ -27,8 +28,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 	
 
 	@Override
-	public Subject create(Subject entity) throws DAOException {
-		// TODO Auto-generated method stub
+	public Subject create(Subject entity) throws DAOException {		
 		return null;
 	}
 
@@ -109,8 +109,8 @@ public class SubjectDAOImpl implements SubjectDAO {
 			while (resultSet.next()) {
 				subject = subjectBuilder
 						.createNewSubject()
-						.withId(resultSet.getInt("id"))
-						.withNameSubject(resultSet.getString("nameSubject"))
+						.withId(resultSet.getInt(SUBJECT_ID))
+						.withNameSubject(resultSet.getString(SUBJECT_NAME))
 						.build();				
 				
 				subjectList.add(subject);

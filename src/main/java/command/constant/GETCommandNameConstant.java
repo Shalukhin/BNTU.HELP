@@ -7,7 +7,6 @@ public enum GETCommandNameConstant {
 	PAY,
 	CONTACT,
 	SIGN,	
-	LOGOUT,	
 	ACCOUNT,	
 	VIEWORDER,		
 	CHEMISTRY,

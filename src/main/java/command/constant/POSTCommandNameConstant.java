@@ -15,6 +15,7 @@ public enum POSTCommandNameConstant {
 	CHANGEUSER,
 	CHANGETASK,	
 	CHANGELANGUAGE,
+	LOGOUT,
 	ERRORPOST,	
 	
 }

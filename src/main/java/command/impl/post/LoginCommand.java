@@ -1,6 +1,9 @@
 package command.impl.post;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import command.CommandPOST;
@@ -24,7 +27,7 @@ public class LoginCommand implements CommandPOST {
 	private UserService userService = ServiceFactory.getInstance().getUserService();
 
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String loginUserFromGUI = Parser.getStringParameterByName(request, LOGIN);
 		String passwordUserFromGUI = Parser.getStringParameterByName(request, PASSWORD);
@@ -41,6 +44,11 @@ public class LoginCommand implements CommandPOST {
 			return new URLManager(ERROR_QUERY_URL);
 		}
 		request.getSession().setAttribute(USER, userFromDB);
+		
+		if (Parser.getStringParameterByName(request, REMEMBER) != null) {			
+			response.addCookie(new Cookie("Login", userFromDB.getLogin()));
+			response.addCookie(new Cookie("Password", userFromDB.getPassword()));			
+		}
 		
 		return new URLManager(ACCOUNT_QUERY_URL).addParameterURL(TAB, WELCOME_TAB_POSITION);
 	}	

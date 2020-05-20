@@ -97,11 +97,11 @@
 		<td width="10%"><font face="cursive">${languageManager.getString("order20")}</font></td>
 	</tr>
 	<tr align="center">
-		<td>${curretnOrder.getDateCreate().format(dateFormat)}</td>
-		<td>${curretnOrder.getDateProcess().format(dateFormat)}</td>
-		<td>${curretnOrder.getDateConfirm().format(dateFormat)}</td>
-		<td>${curretnOrder.getDatePay().format(dateFormat)}</td>
-		<td>${curretnOrder.getDateComplete().format(dateFormat)}</td>
+		<td><ctg:date-time value="${curretnOrder.getDateCreate()}" /></td>
+		<td><ctg:date-time value="${curretnOrder.getDateProcess()}" /></td>
+		<td><ctg:date-time value="${curretnOrder.getDateConfirm()}" /></td>
+		<td><ctg:date-time value="${curretnOrder.getDatePay()}" /></td>
+		<td><ctg:date-time value="${curretnOrder.getDateComplete()}" /></td>
 	</tr>
 </table>
 </p>

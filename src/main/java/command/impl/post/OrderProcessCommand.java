@@ -5,6 +5,8 @@ import static command.constant.ValueConstant.*;
 import static command.constant.ParameterNameConstant.*;
 import static command.constant.QueryURLConstant.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import command.CommandPOST;
@@ -26,7 +28,7 @@ public class OrderProcessCommand implements CommandPOST {
 	private static final String REALIZER_ROLE = "realizer";
 
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		if (request.getSession().getAttribute(USER) == null) {			
 			return new URLManager(SIGN_QUERY_URL).addParameterURL(TAB, LOGIN_TAB_POSITION);

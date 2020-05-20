@@ -3,6 +3,7 @@ package command.impl.post;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import command.CommandPOST;
 import command.URLManager;
@@ -18,11 +19,17 @@ public class ChangeLanguageCommand implements CommandPOST {
 	private static final Locale RUSSIAN_LOCALE = new Locale(RUSSIAN_LANGUAGE);
 	private static final Locale ENGLISH_LOCALE = new Locale(ENGLISH_LANGUAGE);
 
-
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		LanguageManager languageManager = (LanguageManager) request.getSession().getAttribute(LANGUAGE_MANAGER);
+		Object languageManagerObj = request.getSession().getAttribute(LANGUAGE_MANAGER);
+		LanguageManager languageManager = null;
+		
+		if (languageManagerObj != null) {
+			languageManager = (LanguageManager) languageManagerObj;
+		} else {
+			languageManager = LanguageManager.INSTANCE;
+		}		
 		
 		switch (languageManager.getCurrentLanguage()) {
 		

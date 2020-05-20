@@ -12,6 +12,7 @@ import command.impl.post.ChangeTaskCommand;
 import command.impl.post.ChangeUserCommand;
 import command.impl.post.ErrorPOSTCommand;
 import command.impl.post.LoginCommand;
+import command.impl.post.LogoutCommand;
 import command.impl.post.OrderCommand;
 import command.impl.post.OrderCompleteCommand;
 import command.impl.post.OrderConfirmCommand;
@@ -42,6 +43,7 @@ public class CommandPOSTProvider {
 		repository.put(CHANGEUSER, new ChangeUserCommand());
 		repository.put(CHANGETASK, new ChangeTaskCommand());
 		repository.put(CHANGELANGUAGE, new ChangeLanguageCommand());
+		repository.put(LOGOUT, new LogoutCommand());
 		repository.put(ERRORPOST, new ErrorPOSTCommand());				
 	}
 	

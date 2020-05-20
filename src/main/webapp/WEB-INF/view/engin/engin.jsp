@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../include/begin-html.jsp"%>
 
-<br>${languageManager.getString("engin01")}
+<br>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
 

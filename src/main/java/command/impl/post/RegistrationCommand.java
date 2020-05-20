@@ -1,6 +1,8 @@
 package command.impl.post;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import command.CommandPOST;
@@ -23,7 +25,7 @@ public class RegistrationCommand implements CommandPOST {
 	private UserService userService = ServiceFactory.getInstance().getUserService();
 	
 	@Override
-	public URLManager execute(HttpServletRequest request) {
+	public URLManager execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String loginUserFromGUI = Parser.getStringParameterByName(request, LOGIN);
 		String passwordUserFromGUI = Parser.getStringParameterByName(request, PASSWORD);

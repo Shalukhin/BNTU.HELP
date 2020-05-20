@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import builder.StatusBuilder;
 import dao.StatusDAO;
+import static dao.constant.DBColumnNameConstant.*;
 import entity.Status;
 import exception.DAOException;
 import exception.PoolException;
@@ -108,9 +109,9 @@ public class StatusDAOImpl implements StatusDAO {
 				
 				status = statusBuilder
 						.createNewStatus()
-						.withId(resultSet.getInt("id"))
-						.withNameStatus(resultSet.getString("nameStatus"))
-						.withRatioPay(resultSet.getDouble("ratioPay"))
+						.withId(resultSet.getInt(STATUS_ID))
+						.withNameStatus(resultSet.getString(STATUS_NAME))
+						.withRatioPay(resultSet.getDouble(STATUS_RATIO_PAY))
 						.build();
 				
 				statusList.add(status);

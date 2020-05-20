@@ -107,6 +107,7 @@
 								</select>
 							
 							</td>
+							<input name="changePersonalDataUser" value="${itemUser.getPersonalData().getId()}" hidden>
 							
 						</form>
 						
