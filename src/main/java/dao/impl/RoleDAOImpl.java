@@ -32,8 +32,7 @@ public class RoleDAOImpl implements RoleDAO {
 
 	@Override
 	public Role create(Role bean) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Error - Role create operation not defined");
 	}
 	
 	@Override
@@ -53,10 +52,10 @@ public class RoleDAOImpl implements RoleDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find role by name - SQL error, e");
+			LOGGER.error("Error find role by name - SQL error", e);
 			throw new DAOException("Error find role by name - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find role by name - pool error, e");
+			LOGGER.error("Error find role by name - pool error", e);
 			throw new DAOException("Error find role by name - pool error", e);
 		}
 	}
@@ -79,10 +78,10 @@ public class RoleDAOImpl implements RoleDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find role by name and subject - SQL error, e");
+			LOGGER.error("Error find role by name and subject - SQL error", e);
 			throw new DAOException("Error find role by name and subject - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find role by name and subject - pool error, e");
+			LOGGER.error("Error find role by name and subject - pool error", e);
 			throw new DAOException("Error find role by name and subject - pool error", e);
 		}
 	}
@@ -104,10 +103,10 @@ public class RoleDAOImpl implements RoleDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find role by ID - SQL error, e");
+			LOGGER.error("Error find role by ID - SQL error", e);
 			throw new DAOException("Error find role by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find role by ID - pool error, e");
+			LOGGER.error("Error find role by ID - pool error, e", e);
 			throw new DAOException("Error find role by ID - pool error", e);
 		}
 	}
@@ -123,10 +122,10 @@ public class RoleDAOImpl implements RoleDAO {
 			return buildRoleList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all role - SQL error, e");
+			LOGGER.error("Error find all role - SQL error", e);
 			throw new DAOException("Error find all role - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all role - pool error, e");
+			LOGGER.error("Error find all role - pool error", e);
 			throw new DAOException("Error find all role - pool error", e);
 		}
 	}
@@ -159,20 +158,17 @@ public class RoleDAOImpl implements RoleDAO {
 	
 	@Override
 	public Role update(Role bean) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Error - Role update operation not defined");
 	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Role delete operation not defined");
 	}
 
 	@Override
 	public boolean delete(Role bean) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Role delete operation not defined");
 	}	
 	
 }

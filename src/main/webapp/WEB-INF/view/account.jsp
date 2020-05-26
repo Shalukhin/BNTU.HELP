@@ -255,12 +255,12 @@ function confirmSubmit(i) {
 							</c:if> 
 							
 							<c:if test="${order.isConfirmed()}">
-								<form id="formGoPayOrderId${order.getId()}" action="do?command=test" method="post">
-									<input name="goPayOrderId" value="${order.getId()}" hidden>									
+								<form id="formGoToPayOrderId${order.getId()}" action="do?command=gotopay" method="post">
+									<input name="goToPayOrderId" value="${order.getId()}" hidden>									
 								</form>
 								<c:set var="actionUser" value="<button title=&quot;${languageManager.getString('account37')}&quot; 
 										class=&quot;btn btn-outline-success btn-sm&quot; style=&quot;margin-top: 10px; margin-left: 0px&quot; 
-										type=&quot;submit&quot; form=&quot;formGoPayOrderId${order.getId()}&quot;>${languageManager.getString('account37')}</button>" />
+										type=&quot;submit&quot; form=&quot;formGoToPayOrderId${order.getId()}&quot;>${languageManager.getString('account37')}</button>" />
 							</c:if>
 							
 							<c:if test="${order.isPaid()}">

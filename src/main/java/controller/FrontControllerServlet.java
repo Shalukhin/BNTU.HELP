@@ -52,6 +52,7 @@ public class FrontControllerServlet extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setAttribute("tempdir", getServletContext().getAttribute("javax.servlet.context.tempdir"));		
 			
 		if (request.getSession().getAttribute(USER) == null) {
@@ -93,7 +94,7 @@ public class FrontControllerServlet extends HttpServlet{
 		Cookie[] cookies = request.getCookies();		
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals(COOKIE_LOGIN)) {
+				if (cookie.getName().equals(COOKIE_LOGIN)) {				
 					loginFromCookie = cookie.getValue();
 				}
 				if (cookie.getName().equals(COOKIE_PASSWORD)) {

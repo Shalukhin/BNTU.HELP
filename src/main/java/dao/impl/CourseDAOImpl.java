@@ -28,7 +28,7 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public Course create(Course entity) throws DAOException {
-		return null;
+		throw new UnsupportedOperationException("Error - Course create operation not defined");
 	}
 
 	@Override
@@ -48,10 +48,10 @@ public class CourseDAOImpl implements CourseDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find course by ID - SQL error, e");
+			LOGGER.error("Error find course by ID - SQL error", e);
 			throw new DAOException("Error find course by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find course by ID - pool error, e");
+			LOGGER.error("Error find course by ID - pool error", e);
 			throw new DAOException("Error find course by ID - pool error", e);
 		}
 	}
@@ -73,11 +73,11 @@ public class CourseDAOImpl implements CourseDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find course by ID - SQL error, e");
-			throw new DAOException("Error find course by ID - SQL error", e);
+			LOGGER.error("Error find course by number - SQL error", e);
+			throw new DAOException("Error find course by number - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find course by ID - pool error, e");
-			throw new DAOException("Error find course by ID - pool error", e);
+			LOGGER.error("Error find course by number - pool error", e);
+			throw new DAOException("Error find course by number - pool error", e);
 		}
 	}
 	
@@ -92,10 +92,10 @@ public class CourseDAOImpl implements CourseDAO {
 			return buildCourseList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all сourse - SQL error, e");
+			LOGGER.error("Error find all сourse - SQL error", e);
 			throw new DAOException("Error find all сourse - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all сourse - pool error, e");
+			LOGGER.error("Error find all сourse - pool error", e);
 			throw new DAOException("Error find all сourse - pool error", e);
 		}
 	}
@@ -123,21 +123,18 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public Course update(Course entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+	public Course update(Course entity) throws DAOException {		
+		throw new UnsupportedOperationException("Error - Course update operation not defined");
 	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Course delete operation not defined");
 	}
 
 	@Override
 	public boolean delete(Course entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Course delete operation not defined");
 	}	
 	
 }

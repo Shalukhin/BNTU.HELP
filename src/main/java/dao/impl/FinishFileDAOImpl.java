@@ -49,15 +49,15 @@ public class FinishFileDAOImpl implements FinishFileDAO {
 			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
-			LOGGER.error("Error create finish file - SQL error, e");
+			LOGGER.error("Error create finish file - SQL error", e);
 			throw new DAOException("Error create finish file - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create finish file - pool error, e");
+			LOGGER.error("Error create finish file - pool error", e);
 			throw new DAOException("Error create finish file - pool error", e);
 		}
 		
 		if (result != 1) {
-			throw new DAOException("Error create finish file - user not create");
+			throw new DAOException("Error create finish file - finish file not create");
 		}
 				
 		return entity;
@@ -81,10 +81,10 @@ public class FinishFileDAOImpl implements FinishFileDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find finish file by ID - SQL error, e");
+			LOGGER.error("Error find finish file by ID - SQL error", e);
 			throw new DAOException("Error find finish file by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find finish file by ID - pool error, e");
+			LOGGER.error("Error find finish file by ID - pool error", e);
 			throw new DAOException("Error find finish file by ID - pool error", e);
 		}
 	}
@@ -114,20 +114,17 @@ public class FinishFileDAOImpl implements FinishFileDAO {
 
 	@Override
 	public FinishFile update(FinishFile entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Error - FinishFile update operation not defined");
 	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - FinishFile delete operation not defined");
 	}
 
 	@Override
 	public boolean delete(FinishFile entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - FinishFile delete operation not defined");
 	}
 
 }

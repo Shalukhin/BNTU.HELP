@@ -51,10 +51,10 @@ public class TaskDAOImpl implements TaskDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error create task - SQL error, e");
+			LOGGER.error("Error create task - SQL error", e);
 			throw new DAOException("Error create task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create task - pool error, e");
+			LOGGER.error("Error create task - pool error", e);
 			throw new DAOException("Error create task - pool error", e);
 		}
 		
@@ -83,10 +83,10 @@ public class TaskDAOImpl implements TaskDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find task - SQL error, e");
+			LOGGER.error("Error find task - SQL error", e);
 			throw new DAOException("Error find task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find task - pool error, e");
+			LOGGER.error("Error find task - pool error", e);
 			throw new DAOException("Error find task - pool error", e);
 		}
 	}
@@ -109,10 +109,10 @@ public class TaskDAOImpl implements TaskDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find task - SQL error, e");
+			LOGGER.error("Error find task - SQL error", e);
 			throw new DAOException("Error find task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find task - pool error, e");
+			LOGGER.error("Error find task - pool error", e);
 			throw new DAOException("Error find task - pool error", e);
 		}
 	}
@@ -128,10 +128,10 @@ public class TaskDAOImpl implements TaskDAO {
 			return buildTaskList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all task - SQL error, e");
+			LOGGER.error("Error find all task - SQL error", e);
 			throw new DAOException("Error find all task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all task - pool error, e");
+			LOGGER.error("Error find all task - pool error", e);
 			throw new DAOException("Error find all task - pool error", e);
 		}
 	}
@@ -162,7 +162,7 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public Task update(Task entity) throws DAOException {
-		// SQL_REQUEST_UPDATE_TASK = "UPDATE `task` SET `nameTask` = ?, `priceTask` = ?, `idCourse` = ?, `idSubject` = ? WHERE id = ?;";
+		
 		if (entity == null) {
 			LOGGER.error("Error update task - task null");
 			throw new DAOException("Error update task - task null");
@@ -180,10 +180,10 @@ public class TaskDAOImpl implements TaskDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error update task - SQL error, e");
+			LOGGER.error("Error update task - SQL error", e);
 			throw new DAOException("Error update task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error update task - pool error, e");
+			LOGGER.error("Error update task - pool error", e);
 			throw new DAOException("Error update task - pool error", e);
 		}
 		
@@ -217,13 +217,12 @@ public class TaskDAOImpl implements TaskDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error delete task - SQL error, e");
+			LOGGER.error("Error delete task - SQL error", e);
 			throw new DAOException("Error delete task - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error delete task - pool error, e");
+			LOGGER.error("Error delete task - pool error", e);
 			throw new DAOException("Error delete task - pool error", e);
-		}		
-				
+		}				
 		return (result == 1);	
 	}	
 

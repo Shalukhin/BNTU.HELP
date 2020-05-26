@@ -28,8 +28,7 @@ public class StatusDAOImpl implements StatusDAO {
 
 	@Override
 	public Status create(Status bean) throws DAOException {
-		
-		return null;
+		throw new UnsupportedOperationException("Error - Status create operation not defined");
 	}
 
 	@Override
@@ -49,10 +48,10 @@ public class StatusDAOImpl implements StatusDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find status by name - SQL error, e");
+			LOGGER.error("Error find status by name - SQL error", e);
 			throw new DAOException("Error find status by name - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find status by name - pool error, e");
+			LOGGER.error("Error find status by name - pool error", e);
 			throw new DAOException("Error find status by name - pool error", e);
 		}
 	}
@@ -74,10 +73,10 @@ public class StatusDAOImpl implements StatusDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find status by ID - SQL error, e");
+			LOGGER.error("Error find status by ID - SQL error", e);
 			throw new DAOException("Error find status by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find status by ID - pool error, e");
+			LOGGER.error("Error find status by ID - pool error", e);
 			throw new DAOException("Error find status by ID - pool error", e);
 		}
 	}
@@ -93,11 +92,11 @@ public class StatusDAOImpl implements StatusDAO {
 			return buildStatusList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all role - SQL error, e");
-			throw new DAOException("Error find all role - SQL error", e);
+			LOGGER.error("Error find all status - SQL error", e);
+			throw new DAOException("Error find all status - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all role - pool error, e");
-			throw new DAOException("Error find all role - pool error", e);
+			LOGGER.error("Error find all status - pool error", e);
+			throw new DAOException("Error find all status - pool error", e);
 		}
 	}	
 
@@ -126,22 +125,17 @@ public class StatusDAOImpl implements StatusDAO {
 
 	@Override
 	public Status update(Status bean) throws DAOException {
-		
-		return null;
+		throw new UnsupportedOperationException("Error - Status update operation not defined");
 	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		
-		return false;
+		throw new UnsupportedOperationException("Error - Status delete operation not defined");
 	}
 
 	@Override
 	public boolean delete(Status bean) throws DAOException {
-		
-		return false;
-	}
-
-	
+		throw new UnsupportedOperationException("Error - Status delete operation not defined");		
+	}	
 
 }

@@ -71,10 +71,10 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
-			LOGGER.error("Error create personal data - SQL error, e");
+			LOGGER.error("Error create personal data - SQL error", e);
 			throw new DAOException("Error create personal data - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create personal data - pool error, e");
+			LOGGER.error("Error create personal data - pool error", e);
 			throw new DAOException("Error create personal data - pool error", e);
 		}
 
@@ -102,10 +102,10 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find personal data - SQL error, e");
+			LOGGER.error("Error find personal data - SQL error", e);
 			throw new DAOException("Error find personal data - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find personal data - pool error, e");
+			LOGGER.error("Error find personal data - pool error", e);
 			throw new DAOException("Error find personal data - pool error", e);
 		}
 	}
@@ -172,10 +172,10 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			result = preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
-			LOGGER.error("Error update personal data - SQL error, e");
+			LOGGER.error("Error update personal data - SQL error", e);
 			throw new DAOException("Error update personal data - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error update personal data - pool error, e");
+			LOGGER.error("Error update personal data - pool error", e);
 			throw new DAOException("Error update personal data - pool error", e);
 		}
 		
@@ -208,10 +208,10 @@ public class PersonalDataDAOImpl implements PersonalDataDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error delete personal data - SQL error, e");
+			LOGGER.error("Error delete personal data - SQL error", e);
 			throw new DAOException("Error delete personal data - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error delete personal data - pool error, e");
+			LOGGER.error("Error delete personal data - pool error", e);
 			throw new DAOException("Error delete personal data - pool error", e);
 		}		
 				

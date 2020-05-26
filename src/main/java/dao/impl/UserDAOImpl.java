@@ -66,10 +66,10 @@ public class UserDAOImpl implements UserDAO {
 			entity.setId(resultSet.getInt(1));
 
 		} catch (SQLException e) {
-			LOGGER.error("Error create user - SQL error, e");
+			LOGGER.error("Error create user - SQL error", e);
 			throw new DAOException("Error create user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create user - pool error, e");
+			LOGGER.error("Error create user - pool error", e);
 			throw new DAOException("Error create user - pool error", e);
 		}
 		
@@ -97,10 +97,10 @@ public class UserDAOImpl implements UserDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find user by ID - SQL error, e");
+			LOGGER.error("Error find user by ID - SQL error", e);
 			throw new DAOException("Error find user by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find user by ID - pool error, e");
+			LOGGER.error("Error find user by ID - pool error", e);
 			throw new DAOException("Error find user by ID - pool error", e);
 		}		
 	}	
@@ -123,10 +123,10 @@ public class UserDAOImpl implements UserDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find user - SQL error, e");
+			LOGGER.error("Error find user - SQL error", e);
 			throw new DAOException("Error find user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find user - pool error, e");
+			LOGGER.error("Error find user - pool error", e);
 			throw new DAOException("Error find user - pool error", e);
 		}		
 	}
@@ -142,10 +142,10 @@ public class UserDAOImpl implements UserDAO {
 			return buildUserList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all user - SQL error, e");
+			LOGGER.error("Error find all user - SQL error", e);
 			throw new DAOException("Error find all user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all user - pool error, e");
+			LOGGER.error("Error find all user - pool error", e);
 			throw new DAOException("Error find all user - pool error", e);
 		}
 	}
@@ -162,10 +162,10 @@ public class UserDAOImpl implements UserDAO {
 			return resultSet.next();		
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find user - SQL error, e");
+			LOGGER.error("Error find user - SQL error", e);
 			throw new DAOException("Error find user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find user - pool error, e");
+			LOGGER.error("Error find user - pool error", e);
 			throw new DAOException("Error find user - pool error", e);
 		}
 	}
@@ -229,10 +229,10 @@ public class UserDAOImpl implements UserDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error update user - SQL error, e");
+			LOGGER.error("Error update user - SQL error", e);
 			throw new DAOException("Error update user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error update user - pool error, e");
+			LOGGER.error("Error update user - pool error", e);
 			throw new DAOException("Error update user - pool error", e);
 		}
 		
@@ -264,10 +264,10 @@ public class UserDAOImpl implements UserDAO {
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error delete user - SQL error, e");
+			LOGGER.error("Error delete user - SQL error", e);
 			throw new DAOException("Error delete user - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error delete user - pool error, e");
+			LOGGER.error("Error delete user - pool error", e);
 			throw new DAOException("Error delete user - pool error", e);
 		}		
 				

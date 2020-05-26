@@ -64,11 +64,11 @@ public class OrderDAOImpl implements OrderDAO{
 			result = preparedStatement.executeUpdate();			
 
 		} catch (SQLException e) {
-			LOGGER.error("Error create order - SQL error, e");
+			LOGGER.error("Error create order - SQL error", e);
 			throw new DAOException("Error create order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error create order - pool error, e");
-			throw new DAOException("Error create uorderser - pool error", e);
+			LOGGER.error("Error create order - pool error", e);
+			throw new DAOException("Error create order - pool error", e);
 		}
 		
 		if (result != 1) {
@@ -95,10 +95,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -121,10 +121,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result;
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -147,10 +147,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result;
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -171,10 +171,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result;
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -198,10 +198,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result;
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -225,10 +225,10 @@ public class OrderDAOImpl implements OrderDAO{
 			return result;
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find order - SQL error, e");
+			LOGGER.error("Error find order - SQL error", e);
 			throw new DAOException("Error find order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find order - pool error, e");
+			LOGGER.error("Error find order - pool error", e);
 			throw new DAOException("Error find order - pool error", e);
 		}
 	}
@@ -359,10 +359,10 @@ public class OrderDAOImpl implements OrderDAO{
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error update order - SQL error, e");
+			LOGGER.error("Error update order - SQL error", e);
 			throw new DAOException("Error update order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error update order - pool error, e");
+			LOGGER.error("Error update order - pool error", e);
 			throw new DAOException("Error update order - pool error", e);
 		}
 		
@@ -385,10 +385,10 @@ public class OrderDAOImpl implements OrderDAO{
 			result = preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			LOGGER.error("Error delete order - SQL error, e");
+			LOGGER.error("Error delete order - SQL error", e);
 			throw new DAOException("Error delete order - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error delete order - pool error, e");
+			LOGGER.error("Error delete order - pool error", e);
 			throw new DAOException("Error delete order - pool error", e);
 		}		
 				

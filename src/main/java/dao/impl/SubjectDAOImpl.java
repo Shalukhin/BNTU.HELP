@@ -29,7 +29,7 @@ public class SubjectDAOImpl implements SubjectDAO {
 
 	@Override
 	public Subject create(Subject entity) throws DAOException {		
-		return null;
+		throw new UnsupportedOperationException("Error - Subject create operation not defined");
 	}
 
 	@Override
@@ -49,10 +49,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find subject by ID - SQL error, e");
+			LOGGER.error("Error find subject by ID - SQL error", e);
 			throw new DAOException("Error find subject by ID - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find subject by ID - pool error, e");
+			LOGGER.error("Error find subject by ID - pool error", e);
 			throw new DAOException("Error find subject by ID - pool error", e);
 		}
 	}
@@ -74,10 +74,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 			return result.get(0);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find subject by name - SQL error, e");
+			LOGGER.error("Error find subject by name - SQL error", e);
 			throw new DAOException("Error find subject by name - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find subject by name - pool error, e");
+			LOGGER.error("Error find subject by name - pool error", e);
 			throw new DAOException("Error find subject by name - pool error", e);
 		}
 	}
@@ -93,10 +93,10 @@ public class SubjectDAOImpl implements SubjectDAO {
 			return buildSubjectList(resultSet);
 
 		} catch (SQLException e) {
-			LOGGER.error("Error find all subject - SQL error, e");
+			LOGGER.error("Error find all subject - SQL error", e);
 			throw new DAOException("Error find all subject - SQL error", e);
 		} catch (PoolException e) {
-			LOGGER.error("Error find all subject - pool error, e");
+			LOGGER.error("Error find all subject - pool error", e);
 			throw new DAOException("Error find all subject - pool error", e);
 		}
 	}
@@ -125,20 +125,17 @@ public class SubjectDAOImpl implements SubjectDAO {
 
 	@Override
 	public Subject update(Subject entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException("Error - Subject update operation not defined");
 	}
 
 	@Override
 	public boolean delete(int id) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Subject delete operation not defined");
 	}
 
 	@Override
 	public boolean delete(Subject entity) throws DAOException {
-		// TODO Auto-generated method stub
-		return false;
+		throw new UnsupportedOperationException("Error - Subject delete operation not defined");
 	}	
 
 }
