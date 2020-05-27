@@ -86,6 +86,16 @@ public class FrontControllerServlet extends HttpServlet{
 		response.sendRedirect(url.getUrl());		
 	}
 	
+	@Override
+	public void destroy() {
+		try {
+			PoolConnection.INSANCE.closePool();
+		} catch (Exception e) {
+			LOGGER.error("Error close pool", e);
+		}
+		super.destroy();
+	}
+	
 	private void autoSignIn(HttpServletRequest request) {
 		
 		String loginFromCookie = null;

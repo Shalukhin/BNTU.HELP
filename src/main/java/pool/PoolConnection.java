@@ -107,6 +107,7 @@ public enum PoolConnection {
 				throw new PoolException("Error close pool connection sql error", e);
 			}
 		}
+		isInitPool.set(false);
 	}
 	
 	private void validateIsInitPool() throws PoolException {
