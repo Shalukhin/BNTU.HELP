@@ -54,6 +54,8 @@ public class FrontControllerServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("tempdir", getServletContext().getAttribute("javax.servlet.context.tempdir"));		
+		
+		PoolConnection.INSANCE.testPool();
 			
 		if (request.getSession().getAttribute(USER) == null) {
 			autoSignIn(request);
@@ -93,6 +95,7 @@ public class FrontControllerServlet extends HttpServlet{
 		} catch (Exception e) {
 			LOGGER.error("Error close pool", e);
 		}
+		System.out.println("пул закрыт");
 		super.destroy();
 	}
 	

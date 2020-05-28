@@ -8,7 +8,7 @@
 	<welcome-file-list>
 		<welcome-file>start.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<jsp-config>
 		<taglib>
 			<taglib-uri>customtags</taglib-uri>
@@ -52,7 +52,7 @@
 		<servlet-name>DownloadServlet</servlet-name>
 		<url-pattern>/download</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>AJAXServlet</servlet-name>
 		<servlet-class>controller.AJAXServlet</servlet-class>
@@ -84,5 +84,25 @@
 		<url-pattern>*.pdf</url-pattern>
 	</servlet-mapping>
 
+	<error-page>
+		<error-code>401</error-code>
+		<location>/errorlink.jsp</location>
+	</error-page>
+	<error-page>		
+		<error-code>403</error-code>
+		<location>/errorlink.jsp</location>
+	</error-page>
+	<error-page>		
+		<error-code>404</error-code>
+		<location>/WEB-INF/view/error.jsp</location>
+	</error-page>
+	<error-page>		
+		<error-code>500</error-code>
+		<location>/errorlink.jsp</location>
+	</error-page>
+	<error-page>		
+		<error-code>503</error-code>
+		<location>/errorlink.jsp</location>
+	</error-page>
 
 </web-app>

@@ -39,17 +39,12 @@ public class AJAXServlet extends HttpServlet {
 			System.out.println("err");
 		}
 	}
-
-	@Override
-	public String getServletInfo() {
-		return "Short description";
-	}//
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, JSONException {
 		
-		response.setContentType("application/json");// Отправляем от сервера данные в JSON -формате
-		response.setCharacterEncoding("utf-8");// Кодировка отправляемых данных
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
 		
 		try (PrintWriter out = response.getWriter()) {
 			JSONObject jsonEnt = new JSONObject();
@@ -64,18 +59,9 @@ public class AJAXServlet extends HttpServlet {
 				jsonEnt.put("serverInfo", "Логин свободен!");
 			}
 			
-//			if (request.getParameter("login").equals("myLogin")
-//					&& request.getParameter("password").equals("myPassword")) {
-//				jsonEnt.put("backgroundColor", "#99CC66");
-//				jsonEnt.put("serverInfo", "Вы вошли!");
-//			} else {
-//				jsonEnt.put("backgroundColor", "#CC6666");
-//				jsonEnt.put("serverInfo", "Введен неправильный логин или пароль!");
-//			}
 			out.print(jsonEnt.toString());
 		} catch (Exception e) {
 			LOGGER.error("Error AJAX", e);
 		}
 	}
-
 }

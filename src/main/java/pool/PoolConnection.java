@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayDeque;
 import java.util.Properties;
 import java.util.Queue;
@@ -29,6 +30,7 @@ public enum PoolConnection {
 	private final static String DB_PROPERTY_URL = "url";
 	private final static String POOL_PROPERTIES_FILE_NAME = "pool.properties";
 	private final static String POOL_PROPERTIES_CAPASITY = "capasity";
+	private final static String TEST_QUERY = "SELECT 1";
 	private Properties dbInfo;
 	private Properties poolInfo;
 	private int capasityPool;
@@ -108,6 +110,24 @@ public enum PoolConnection {
 			}
 		}
 		isInitPool.set(false);
+	}
+	
+	public void testPool() {		
+		try(Connection connection = getConnection(); Statement statement = connection.createStatement()) {
+			statement.executeQuery(TEST_QUERY);
+			return;
+		} catch (Exception e) {
+			LOGGER.error("Error - invalid connections");
+		}		
+		
+		try {
+			if (isInitPool.get()) {
+				closePool();
+			}
+			initialization();
+		} catch (Exception e){
+			LOGGER.error("Error reinitialization pool");
+		}		
 	}
 	
 	private void validateIsInitPool() throws PoolException {
