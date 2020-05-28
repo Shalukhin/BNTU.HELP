@@ -52,6 +52,9 @@ public class AttributeNameConstant {
 	
 	public static final String VIEW_CURRENT_ORDER = "curretnOrder";
 	
+	public static final String AJAX_BACKGROUND_COLOR = "backgroundColor";
+	public static final String AJAX_LOGIN_INFO = "serverInfo";	
+	
 	public static final String INPUT_NAME_TASK = "inputNameTask";
 	public static final String INPUT_PRICE_TASK = "inputPriceTask";
 	public static final String INPUT_COURSE_TASK = "inputCourseTask";

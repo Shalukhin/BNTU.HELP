@@ -48,4 +48,9 @@ public class ValueConstant {
 	public static final String ALL_USER_ADMIN_TAB_POSITION = "allUser";
 	public static final String ALL_TASK_ADMIN_TAB_POSITION = "allTask";
 	
+	public static final String AJAX_COLOR_RED = "#CC6666";
+	public static final String AJAX_COLOR_GREEN = "#CC6666";
+	public static final String AJAX_LOGIN_BUSY = "message22";
+	public static final String AJAX_LOGIN_FREE = "message23";
+	
 }

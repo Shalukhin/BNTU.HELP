@@ -32,6 +32,9 @@ public class FrontControllerServlet extends HttpServlet{
 	private static final String COOKIE_LOGIN = "Login";
 	private static final String COOKIE_PASSWORD = "Password";
 	
+	private static final String TEMPDIR = "tempdir";
+	private static final String TEMPDIR_PASS = "javax.servlet.context.tempdir";
+	
 	private CommandGETProvider commandGETProvider = new CommandGETProvider();
 	private CommandPOSTProvider commandPOSTProvider = new CommandPOSTProvider();
 	private UserService userService = ServiceFactory.getInstance().getUserService();
@@ -53,7 +56,7 @@ public class FrontControllerServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setAttribute("tempdir", getServletContext().getAttribute("javax.servlet.context.tempdir"));		
+		request.setAttribute(TEMPDIR, getServletContext().getAttribute(TEMPDIR_PASS));		
 		
 		PoolConnection.INSANCE.testPool();
 			
