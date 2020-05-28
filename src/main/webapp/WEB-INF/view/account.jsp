@@ -157,7 +157,10 @@ function confirmSubmit(i) {
 
 	<div class="tab-pane fade show ${list}" id="acc3" role="tabpanel"
 		aria-labelledby="acc3-tab">
-		<form id="formRefreshList" action="do?command=account&tab=list" method="post"></form>
+		<form id="formRefreshList" action="do" method="get">
+			<input type="text" name="command" value="account" hidden>
+			<input type="text" name="tab" value="list" hidden>
+		</form>
 		<br>
 		<h4>
 			<p style="text-align: center;">
@@ -313,7 +316,10 @@ function confirmSubmit(i) {
 	
 	<div class="tab-pane fade show ${listExecute}" id="acc5" role="tabpanel"
 		aria-labelledby="acc5-tab">
-		<form id="formRefreshListExecute" action="do?command=account&tab=listExecute" method="post"></form>										
+		<form id="formRefreshListExecute" action="do" method="get">
+			<input type="text" name="command" value="account" hidden>
+			<input type="text" name="tab" value="listExecute" hidden>
+		</form>										
 		<br>
 		<h4>
 			<p style="text-align: center;">
@@ -485,7 +491,10 @@ function confirmSubmit(i) {
 	
 	<div class="tab-pane fade show ${listComplete}" id="acc6" role="tabpanel"
 		aria-labelledby="acc6-tab">
-		<form id="formRefreshListComplete" action="do?command=account&tab=listComplete" method="post"></form>
+		<form id="formRefreshListComplete" action="do" method="get">
+			<input type="text" name="command" value="account" hidden>
+			<input type="text" name="tab" value="listComplete" hidden>
+		</form>
 		<br>
 		<h4>
 			<p style="text-align: center;">
