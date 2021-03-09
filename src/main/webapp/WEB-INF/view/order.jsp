@@ -19,7 +19,7 @@
 
 <h4>
 	<p style="text-align: center;">
-		<strong>${languageManager.getString("order06")} №${curretnOrder.getId()} &ndash; ${statusOrder}</strong>
+		<strong>${languageManager.getString("order06")} №${curretnOrder.getIdIndicate()} &ndash; ${statusOrder}</strong>
 	</p>
 </h4>
 

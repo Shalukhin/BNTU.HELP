@@ -229,14 +229,15 @@ ${languageManager.getString("chemistry07")}:
 			</p>
 		</h4>
 		
-		<p>${languageManager.getString("chemistry37")}</p>
-			
-		<h5><p style="text-align: center;">${languageManager.getString("chemistry38")}</p></h5>
+		<p>${languageManager.getString("chemistry37")}</p>	
+		
+		<h5><p style="text-align: center;">Цена услуги online-помощи:</p></h5>
 		<p style="text-align: center;">
+		<span><strong>1 ${languageManager.getString("chemistry38_5")} - </strong></span> <span style="color: #0000ff;"><strong>10 ${languageManager.getString("chemistry40")}</strong></span><br>
 		<span><strong>2 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>15 ${languageManager.getString("chemistry40")}</strong></span><br>
 		<span><strong>3 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>20 ${languageManager.getString("chemistry40")}</strong></span><br>
 		<span><strong>4 ${languageManager.getString("chemistry39")} - </strong></span> <span style="color: #0000ff;"><strong>25 ${languageManager.getString("chemistry40")}</strong></span><br>
-		<span><strong>(${languageManager.getString("chemistry41")} 4) - </strong></span> <span style="color: #0000ff;"><strong>25 ${languageManager.getString("chemistry40")}</strong></span><br>
+		<span><strong>5 ${languageManager.getString("chemistry41")} &nbsp- </strong></span> <span style="color: #0000ff;"><strong>30 ${languageManager.getString("chemistry40")}</strong></span><br>
 		</p>
 	</div>
 

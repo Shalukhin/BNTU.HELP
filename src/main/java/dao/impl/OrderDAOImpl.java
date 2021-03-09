@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class OrderDAOImpl implements OrderDAO{
 	private static final String REQUEST_FIND_ALL_COMPLETE_ORDER_BY_SUBJECT_NAME_BY_ID_USER = "SELECT * FROM `order` JOIN `task` ON order.idTask = task.id"
 			+ " JOIN `subject` ON task.idSubject = subject.id WHERE isCompleted AND nameSubject = ? AND idRealizer = ?;";
 	private static final String SQL_REQUEST_FIND_ALL_ORDER_BY_ID_USER = "SELECT * FROM `order` WHERE idUser = ?;";
-	private static final String SQL_REQUEST_UPDATE_ORDER = "UPDATE `order` SET `idUser` = ?, `idTask` = ?, `idRealizer` = ?, `note` = ?, `adjustedPriceTask` = ?, "
+	private static final String SQL_REQUEST_UPDATE_ORDER = "UPDATE `order` SET `idIndicate` = ?, `idUser` = ?, `idTask` = ?, `idRealizer` = ?, `note` = ?, `adjustedPriceTask` = ?, "
 			+ "`priceOrder` = ?, `isProcessed` = ?, `isConfirmed` = ?, `isPaid` = ?, `isCompleted` = ?, `dateCreate` = ?, `dateProcess` = ?, "
 			+ "`dateConfirm` = ?, `datePay` = ?, `dateComplete` = ?, `idFinishFile` = ? WHERE id = ?;";
 	private static final String SQL_REQUEST_DELETE_ORDER_BY_ID = "DELETE FROM `order` WHERE id = ?";
@@ -53,7 +54,7 @@ public class OrderDAOImpl implements OrderDAO{
 		}
 		int result;
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_ORDER);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_CREATE_ORDER, Statement.RETURN_GENERATED_KEYS);) {
 			
 			preparedStatement.setInt(1, entity.getUser().getId());
 			preparedStatement.setInt(2, entity.getTask().getId());
@@ -61,7 +62,13 @@ public class OrderDAOImpl implements OrderDAO{
 			preparedStatement.setBigDecimal(4, entity.getAdjustedPriceTask());
 			preparedStatement.setBigDecimal(5, entity.getPriceOrder());
 
-			result = preparedStatement.executeUpdate();			
+			result = preparedStatement.executeUpdate();
+			
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			entity.setId(resultSet.getInt(1));
+		//	entity.setDateCreate(LocalDateTime.parse(resultSet.getString(13).replace(" ", "T")));
+			
 
 		} catch (SQLException e) {
 			LOGGER.error("Error create order - SQL error", e);
@@ -255,6 +262,7 @@ public class OrderDAOImpl implements OrderDAO{
 				order = orderBuilder
 						.createNewOrder()
 						.withId(resultSet.getInt(DBColumnNameConstant.ORDER_ID))
+						.withIdIndicate(resultSet.getString(DBColumnNameConstant.ORDER_ID_INDICATE))
 						.withUser(userDAO.findById(resultSet.getInt(DBColumnNameConstant.ORDER_ID_USER)))
 						.withTask(taskDAO.findById(resultSet.getInt(DBColumnNameConstant.ORDER_ID_TASK)))
 						.withNote(resultSet.getString(DBColumnNameConstant.ORDER_NOTE))
@@ -311,50 +319,57 @@ public class OrderDAOImpl implements OrderDAO{
 		int result;
 		try (Connection connection = PoolConnection.INSANCE.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_UPDATE_ORDER);) {
-
-			preparedStatement.setInt(1, entity.getUser().getId());
-			preparedStatement.setInt(2, entity.getTask().getId());
-			preparedStatement.setInt(3, entity.getRealizer().getId());
-			preparedStatement.setString(4, entity.getNote());
-			preparedStatement.setBigDecimal(5, entity.getAdjustedPriceTask());
-			preparedStatement.setBigDecimal(6, entity.getPriceOrder());
-			preparedStatement.setBoolean(7, entity.isProcessed());
-			preparedStatement.setBoolean(8, entity.isConfirmed());
-			preparedStatement.setBoolean(9, entity.isPaid());
-			preparedStatement.setBoolean(10, entity.isCompleted());
-			preparedStatement.setString(11, entity.getDateCreate().toString().replace('T', ' '));			
+			
+			preparedStatement.setString(1, entity.getIdIndicate());
+			preparedStatement.setInt(2, entity.getUser().getId());
+			preparedStatement.setInt(3, entity.getTask().getId());
+			
+			if (entity.getRealizer() != null) {
+				preparedStatement.setInt(4, entity.getRealizer().getId());
+			} else {
+				preparedStatement.setNull(4, Types.NULL);
+			}		
+			
+			preparedStatement.setString(5, entity.getNote());
+			preparedStatement.setBigDecimal(6, entity.getAdjustedPriceTask());
+			preparedStatement.setBigDecimal(7, entity.getPriceOrder());
+			preparedStatement.setBoolean(8, entity.isProcessed());
+			preparedStatement.setBoolean(9, entity.isConfirmed());
+			preparedStatement.setBoolean(10, entity.isPaid());
+			preparedStatement.setBoolean(11, entity.isCompleted());
+			preparedStatement.setString(12, entity.getDateCreate().toString().replace('T', ' '));			
 			
 			if (entity.getDateProcess() != null) {
-				preparedStatement.setString(12, entity.getDateProcess().toString().replace('T', ' '));
-			} else {
-				preparedStatement.setNull(12, Types.NULL);
-			}
-			
-			if (entity.getDateConfirm() != null) {
-				preparedStatement.setString(13, entity.getDateConfirm().toString().replace('T', ' '));
+				preparedStatement.setString(13, entity.getDateProcess().toString().replace('T', ' '));
 			} else {
 				preparedStatement.setNull(13, Types.NULL);
 			}
 			
-			if (entity.getDatePay() != null) {
-				preparedStatement.setString(14, entity.getDatePay().toString().replace('T', ' '));
-			}else {
+			if (entity.getDateConfirm() != null) {
+				preparedStatement.setString(14, entity.getDateConfirm().toString().replace('T', ' '));
+			} else {
 				preparedStatement.setNull(14, Types.NULL);
 			}
 			
-			if (entity.getDateComplete() != null) {
-				preparedStatement.setString(15, entity.getDateComplete().toString().replace('T', ' '));
+			if (entity.getDatePay() != null) {
+				preparedStatement.setString(15, entity.getDatePay().toString().replace('T', ' '));
 			}else {
 				preparedStatement.setNull(15, Types.NULL);
 			}
 			
-			if (entity.getFinishFile() != null) {
-				preparedStatement.setInt(16, entity.getFinishFile().getId());
+			if (entity.getDateComplete() != null) {
+				preparedStatement.setString(16, entity.getDateComplete().toString().replace('T', ' '));
 			}else {
 				preparedStatement.setNull(16, Types.NULL);
 			}
 			
-			preparedStatement.setInt(17, entity.getId());
+			if (entity.getFinishFile() != null) {
+				preparedStatement.setInt(17, entity.getFinishFile().getId());
+			}else {
+				preparedStatement.setNull(17, Types.NULL);
+			}
+			
+			preparedStatement.setInt(18, entity.getId());
 
 			result = preparedStatement.executeUpdate();
 

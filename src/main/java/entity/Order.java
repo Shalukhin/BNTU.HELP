@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Order {
 	
 	private int id;
+	private String idIndicate;
 	private User user;
 	private Task task;
 	private User realizer;
@@ -33,6 +34,14 @@ public class Order {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getIdIndicate() {
+		return idIndicate;
+	}
+
+	public void setIdIndicate(String idIndicate) {
+		this.idIndicate = idIndicate;
 	}
 
 	public User getUser() {
@@ -175,6 +184,7 @@ public class Order {
 		result = prime * result + ((dateProcess == null) ? 0 : dateProcess.hashCode());
 		result = prime * result + ((finishFile == null) ? 0 : finishFile.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((idIndicate == null) ? 0 : idIndicate.hashCode());
 		result = prime * result + (isCompleted ? 1231 : 1237);
 		result = prime * result + (isConfirmed ? 1231 : 1237);
 		result = prime * result + (isPaid ? 1231 : 1237);
@@ -233,6 +243,11 @@ public class Order {
 			return false;
 		if (id != other.id)
 			return false;
+		if (idIndicate == null) {
+			if (other.idIndicate != null)
+				return false;
+		} else if (!idIndicate.equals(other.idIndicate))
+			return false;
 		if (isCompleted != other.isCompleted)
 			return false;
 		if (isConfirmed != other.isConfirmed)
@@ -271,11 +286,13 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", task=" + task + ", realizer=" + realizer + ", note=" + note
-				+ ", adjustedPriceTask=" + adjustedPriceTask + ", priceOrder=" + priceOrder + ", isProcessed="
-				+ isProcessed + ", isConfirmed=" + isConfirmed + ", isPaid=" + isPaid + ", isCompleted=" + isCompleted
-				+ ", dateCreate=" + dateCreate + ", dateProcess=" + dateProcess + ", dateConfirm=" + dateConfirm
-				+ ", datePay=" + datePay + ", dateComplete=" + dateComplete + ", finishFile=" + finishFile + "]";
-	}	
+		return "Order [id=" + id + ", idIndicate=" + idIndicate + ", user=" + user + ", task=" + task + ", realizer="
+				+ realizer + ", note=" + note + ", adjustedPriceTask=" + adjustedPriceTask + ", priceOrder="
+				+ priceOrder + ", isProcessed=" + isProcessed + ", isConfirmed=" + isConfirmed + ", isPaid=" + isPaid
+				+ ", isCompleted=" + isCompleted + ", dateCreate=" + dateCreate + ", dateProcess=" + dateProcess
+				+ ", dateConfirm=" + dateConfirm + ", datePay=" + datePay + ", dateComplete=" + dateComplete
+				+ ", finishFile=" + finishFile + "]";
+	}
 	
+
 }

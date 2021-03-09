@@ -37,6 +37,7 @@ public class DBColumnNameConstant {
 	public static final String SUBJECT_NAME = "nameSubject";	
 	
 	public static final String ORDER_ID = "id";
+	public static final String ORDER_ID_INDICATE = "idIndicate";
 	public static final String ORDER_ID_USER = "idUser";
 	public static final String ORDER_ID_TASK = "idTask";
 	public static final String ORDER_ID_REALIZER = "idRealizer";

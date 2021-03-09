@@ -200,7 +200,7 @@ function confirmSubmit(i) {
 							<input type="checkbox" id="hd-${i}" class="hide" /> 
 							<label for="hd-${i}">(${languageManager.getString("account28")})</label>
 							<div>
-								${languageManager.getString("account29")}  &ndash; №${order.getId()} <br>
+								${languageManager.getString("account29")}  &ndash; №${order.getIdIndicate()} <br>
 								${order.getNote()}</div>
 						</td>
 						
@@ -360,7 +360,7 @@ function confirmSubmit(i) {
 							<input type="checkbox" id="hdExecute-${j}" class="hide" /> 
 							<label for="hdExecute-${j}">(${languageManager.getString("account49")})</label>							
 							<div>
-								${languageManager.getString("account29")}  &ndash; №${order.getId()} <br>
+								${languageManager.getString("account29")}  &ndash; №${order.getIdIndicate()} <br>
 								${order.getNote()}
 							</div>
 						</td>
@@ -536,7 +536,7 @@ function confirmSubmit(i) {
 							<input type="checkbox" id="hdComplete-${k}" class="hide" /> 
 							<label for="hdComplete-${k}">(${languageManager.getString("account69")})</label>
 							<div>
-								${languageManager.getString("account29")} &ndash; №${order.getId()} <br>
+								${languageManager.getString("account29")} &ndash; №${order.getIdIndicate()} <br>
 								${order.getNote()}
 							</div>
 						</td>

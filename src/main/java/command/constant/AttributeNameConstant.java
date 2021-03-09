@@ -6,6 +6,7 @@ public class AttributeNameConstant {
 	public static final String LANGUAGE_MANAGER = "languageManager";
 	public static final String DATE_FORMAT = "dateFormat";
 	public static final String ERROR = "error";
+	public static final String ORDER_FOR_PAY = "orderForPay";
 	public static final String LAST_PAGE = "lastPage";
 	public static final String LAST_TAB = "lastTab";
 	public static final String LAST_QUERY = "lastQuery";

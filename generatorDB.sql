@@ -175,6 +175,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `studshop`.`order` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `idIndicate` VARCHAR(10) NOT NULL DEFAULT '0000000',
   `idUser` INT(11) NOT NULL,
   `idTask` INT(11) NOT NULL,
   `idRealizer` INT(11) NULL DEFAULT NULL,

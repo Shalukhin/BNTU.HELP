@@ -49,9 +49,16 @@ public class OrderServiceImpl implements OrderService {
 						.withTask(orderedTask)
 						.withNote(note)
 						.withAdjustedPriceTask(orderedTask.getPriceTask())
-						.build();			
+						.build();
 				
-				return orderDAO.create(order);
+				Order orderAfterSaveInDB = orderDAO.findById(orderDAO.create(order).getId());
+				
+				String idIndicate = String.format("%03d%02d%02d", orderAfterSaveInDB.getId(), orderAfterSaveInDB.getDateCreate().getHour(), orderAfterSaveInDB.getDateCreate().getMinute());
+				
+				orderAfterSaveInDB.setIdIndicate(idIndicate);				
+				
+				return orderDAO.update(orderAfterSaveInDB);
+				
 			} else {
 				return null;
 			}

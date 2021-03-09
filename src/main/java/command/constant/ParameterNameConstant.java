@@ -21,7 +21,8 @@ public class ParameterNameConstant {
 	
 	public static final String PROCESS_ORDER_ID = "processOrderId";
 	public static final String PROCESS_ADJUSTED_PRICE_TASK = "processAdjustedPriceTask";	
-	public static final String CONFIRM_ORDER_ID = "confirmOrderId";	
+	public static final String CONFIRM_ORDER_ID = "confirmOrderId";
+	public static final String GO_TO_PAY_ORDER_ID = "goToPayOrderId";
 	public static final String PAY_ORDER_ID = "payOrderId";
 	public static final String COMPLETE_ORDER_ID = "completeOrderId";	
 	public static final String DOWNLOAD_FINISH_FILE_ID = "downloadFinishFileId";

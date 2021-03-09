@@ -22,6 +22,11 @@ public class OrderBuilder {
 		return this;
 	}
 	
+	public OrderBuilder withIdIndicate (String idIndicate) {
+		order.setIdIndicate(idIndicate);
+		return this;
+	}
+	
 	public OrderBuilder withUser (User user) {
 		order.setUser(user);
 		return this;

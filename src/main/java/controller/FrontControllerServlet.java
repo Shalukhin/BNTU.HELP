@@ -15,6 +15,7 @@ import command.CommandPOSTProvider;
 import command.PageManager;
 import command.URLManager;
 import command.constant.QueryURLConstant;
+import entity.User;
 import exception.PoolException;
 import exception.ServiceException;
 import factory.ServiceFactory;
@@ -28,6 +29,9 @@ public class FrontControllerServlet extends HttpServlet{
 	private static final long serialVersionUID = -5618225533764372191L;
 	
 	private static final Logger LOGGER = LogManager.getLogger(FrontControllerServlet.class.getName());
+	
+	private static final String URL_LOGIN = "login";
+	private static final String URL_PASSWORD = "pass";
 	
 	private static final String COOKIE_LOGIN = "Login";
 	private static final String COOKIE_PASSWORD = "Password";
@@ -59,9 +63,11 @@ public class FrontControllerServlet extends HttpServlet{
 		request.setAttribute(TEMPDIR, getServletContext().getAttribute(TEMPDIR_PASS));		
 		
 		PoolConnection.INSANCE.testPool();
+		
+		autoSignInFromURL(request);
 			
 		if (request.getSession().getAttribute(USER) == null) {
-			autoSignIn(request);
+			autoSignInFromCookie(request);
 		}
 		
 		super.service(request, response);
@@ -102,7 +108,19 @@ public class FrontControllerServlet extends HttpServlet{
 		super.destroy();
 	}
 	
-	private void autoSignIn(HttpServletRequest request) {
+	private void autoSignInFromURL(HttpServletRequest request) {
+		String loginFromURL = request.getParameter(URL_LOGIN);
+		String passwordFromURL = request.getParameter(URL_PASSWORD);
+		if (loginFromURL != null && passwordFromURL != null) {
+			try {				
+				request.getSession().setAttribute(USER, userService.loginUser(loginFromURL, passwordFromURL));	
+			} catch (ServiceException e) {
+				LOGGER.error("Error auto sign in from URL", e);
+			}
+		}		
+	}
+	
+	private void autoSignInFromCookie(HttpServletRequest request) {		
 		
 		String loginFromCookie = null;
 		String passwordFromCookie = null;
@@ -119,12 +137,13 @@ public class FrontControllerServlet extends HttpServlet{
 			}
 		}
 		
-		try {
-			request.getSession().setAttribute(USER, userService.loginUser(loginFromCookie, passwordFromCookie));
-		} catch (ServiceException e) {
-			LOGGER.error("Error auto sign in", e);
-		}
-		
+		if (loginFromCookie != null && passwordFromCookie != null) {
+			try {
+				request.getSession().setAttribute(USER, userService.loginUser(loginFromCookie, passwordFromCookie));	
+			} catch (ServiceException e) {
+				LOGGER.error("Error auto sign in from cookie", e);
+			}
+		}		
 	}
 	
 }
